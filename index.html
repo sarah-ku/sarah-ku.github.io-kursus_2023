@@ -246,14 +246,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>“Det er ikke, fordi noget er svært, at vi ikke tør, det er, fordi vi ikke tør, at noget er svært” - Seneca</p>
 <div id="inledning-til-kapitel" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Inledning til kapitel<a href="index.html#inledning-til-kapitel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Her opsummerer jeg nogle grundlæggende R og statistik, der betragtes som forudsætninger i det nuværende kursus. Selvom vi i kurset skifter hurtigt over til den tidyverse-pakke løsning, som erstatter meget af funktionaliteten fra base-R, er det stadig vigtigt at have et grundlæggende kendskab til hvordan tingene fungerer i base-R - derfor hvis du har meget lidt erfaring med base-R anbefaler jeg, at du også bruger noget ekstra tid udover den første mødegange til at komme op på niveauet.</p>
-<p>For at bestå kurset er det ikke forventningen, at du kender til alle detaljer og teori bag de statistiske metoder, men at du kan anvende dem hensigtsmæssigt i praksis i R, samt fortolke resultaterne. Jeg giver masser af muligheder for at øve dig med at lave statistik hele vejen gennem kurset, og i selve eksamen stiller jeg ikke spørgsmål om metoder, der ikke bliver dækkede blandt de forskellige øvelser (herunder workshop opgaver). Jeg kommer også ind på lineær regression igen senere gennem forelæsningerne så vær ikke bekymret hvis du ikke har set det hele før.</p>
-<p>Se gerne også “Quiz - grundlæggende” på Absalon for at tjekke din forståelse og udfylde eventuelle huller i din viden (OBS: Quizzen er tilgængelig lidt inden starten af kurset).</p>
+<p>Først og fremmest, velkommen til kurset! Det her dokument er kursusnotaterne, som indeholder bla. videoer, forklaringer og problemstillinger, og jeg opdaterer dem løbende gennem hele forløbet. Vær opmærksom på, at der også vil være flere dokumenter på Absalon vedrørende forelæsninger, workshops og løsningerne til øvelserne.</p>
+<p>I dette kapitel opsummerer jeg nogle grundlæggende elementer inden for R og statistik, der betragtes som forudsætninger i dette kursus. Selvom vi i kurset skifter hurtigt over til den tidyverse-pakken, som erstatter en stor del af funktionaliteten fra base-R, er det stadig vigtigt at have et grundlæggende kendskab til hvordan tingene fungerer i base-R. Hvis du har begrænset erfaring med base-R, anbefaler jeg, at du bruger ekstra tid ud over de første mødegange for at nå det nødvendige niveau.</p>
+<p>For at bestå kurset forventes det ikke, at du kender til alle detaljer og teorier bag de statistiske metoder, men at du kan anvende dem hensigtsmæssigt i praksis i R og fortolke resultaterne korrekte. Der vil være masser af muligheder for at øve dig I at anvende statistik hele vejen gennem kurset, og under eksamen vil jeg ikke stille spørgsmål om metoder, der ikke er dækket i de forskellige øvelser (herunder workshop-opgaver). Lineær regression vil også blive gennemgået i forelæsningerne så vær ikke bekymret hvis du ikke har set det hele før.</p>
+<p>Se gerne også “Quiz - grundlæggende” på Absalon for at tjekke din forståelse og udfylde eventuelle huller i din viden (OBS: Quizzen er tilgængelig kort tid inden kursets start).</p>
 </div>
 <div id="rstudio" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> RStudio<a href="index.html#rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Vi kommer fremadrettet til at være afhængig af RStudio til at lave blandt andet R Markdown dokumenter. Kendskab til R Markdown er emnet i vores næste lektion og jeg antager, at du ikke har benyttet det før.</p>
-<p>Det allerførste du skulle gør, hvis du ikke har installeret RStudio på din computer, er at downloade det gratis på nettet:</p>
+<p>Vi kommer fremadrettet til at være afhængig af RStudio til at arbejde med bl.a. R Markdown dokumenter. Kendskab til R Markdown er emnet i vores næste lektion og jeg går ud fra, at du ikke har benyttet det før.</p>
+<p>Det allerførste du bør gør, hvis du ikke har installeret RStudio på din computer, er at downloade det gratis på nettet:</p>
 <p><a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a></p>
 <p>Følg venligst RStudios egne anvisninger til at få det installeret. Bemærk, at installering af RStudio er ikke den samme som at have R installeret på din computer - man skal installere dem begge to (man kan bruge R uden RStudio men ikke omvendt.</p>
 <div id="de-forskellige-vinduer-i-rstudio" class="section level3 hasAnchor" number="1.2.1">
@@ -283,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="r-pakker" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> R pakker<a href="index.html#r-pakker" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R pakker er simpelthen en samling af funktioner (eller datasæt i nogle tilfælde), der udvider hvad er tilgængelige i base-R (den R man få, uden at indlæse en pakke). I R er der mange tusind R pakker (op mod 100,000), der er tilgængelige på <strong>CRAN</strong> (<a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>). Indenfor det biologiske fag er der også mange flere pakker på <strong>Bioconductor</strong> (<a href="https://www.bioconductor.org/" class="uri">https://www.bioconductor.org/</a>), og i nogle tilfælde kan R pakker også installeres direkte fra <strong>Github</strong>.</p>
+<p>R pakker er simpelthen en samling af funktioner (eller datasæt i nogle tilfælde), der udvider, hvad er tilgængelige i base-R (den R man få, uden at indlæse en pakke). I R er der mange tusind R pakker (op mod 100,000), der er tilgængelige på <strong>CRAN</strong> (<a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>). Indenfor det biologiske fag er der også mange flere pakker på <strong>Bioconductor</strong> (<a href="https://www.bioconductor.org/" class="uri">https://www.bioconductor.org/</a>), og i nogle tilfælde kan R pakker også installeres direkte fra <strong>Github</strong>.</p>
 <p>I dette kursus arbejder vi rigtig meget med en pakke der hedder <strong>tidyverse</strong>. <strong>tidyverse</strong> er faktisk en samling af otte R pakker, som indlæses på en gang. Inden du indlæse pakken, skal du først sikre dig, at pakken er installeret på systemet ved følgende kommando:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Alle pakker på <strong>CRAN</strong> er installeret på samme måde. Når du faktisk gerne vil bruge en R pakke, skal du først indlæse den ved at bruge <code>library()</code>:</p>
@@ -554,20 +555,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Man kan nemt lave sin egne ‘fake’ data ved at simulere det fra en fordeling, der vil typiske være den normale fordeling, idet den normale fordeling opstår mest hyppigt i den virkelige verden (husk den klassiske klokke-form). I R kan man bruge funktionen <code>rnorm</code> til at simulere data - først angiver man, hvor mange observationer man vil have, og dernæst den mean og standard deviation (sd), som er de to nødvendige parametre for at beskrive en normal fordeling</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="index.html#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="dv">1</span>) <span class="co">#standard normal distribution</span></span>
 <span id="cb40-2"><a href="index.html#cb40-2" aria-hidden="true" tabindex="-1"></a>x <span class="co">#så har vi 25 værdier fra en normal distribution med mean=0 og standard deviation=1.</span></span></code></pre></div>
-<pre><code>##  [1] -2.82261706  0.26874272 -1.78806334  0.37571717 -0.61549517 -0.96374640
-##  [7]  0.21358606  0.09965699  0.67511050  0.46031547 -0.29352270  1.01240120
-## [13]  1.33415159 -1.73876665 -1.07348582 -0.43038635  0.87062651 -0.08187334
-## [19]  1.12995954  1.00606358  0.40681011 -0.72342863 -2.75387659  0.81117701
-## [25] -0.34684046</code></pre>
+<pre><code>##  [1]  0.67406805  0.01042711  1.53986463  2.05411070 -0.15679476  0.37470989
+##  [7]  0.38931952 -0.75521284 -0.96443417  0.78251205  1.54681448 -2.53474131
+## [13]  1.15080960  1.86534497 -1.84273833  1.23408709  0.33034867  0.54966254
+## [19]  1.54943808  0.33324097 -0.16770625  0.76143656  0.06783324  0.07118063
+## [25]  0.40268012</code></pre>
 <p>I stedet for at kigge på alle værdier på én gang, vil vi måske hellere kigge kun på de første (eller sidste) værdier:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="index.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x) <span class="co">#første 6</span></span>
-<span id="cb42-2"><a href="index.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -2.8226171  0.2687427 -1.7880633  0.3757172 -0.6154952 -0.9637464</span></span>
+<span id="cb42-2"><a href="index.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.67406805  0.01042711  1.53986463  2.05411070 -0.15679476  0.37470989</span></span>
 <span id="cb42-3"><a href="index.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(x) <span class="co">#sidste 6</span></span>
-<span id="cb42-4"><a href="index.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  1.0060636  0.4068101 -0.7234286 -2.7538766  0.8111770 -0.3468405</span></span>
+<span id="cb42-4"><a href="index.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.33324097 -0.16770625  0.76143656  0.06783324  0.07118063  0.40268012</span></span>
 <span id="cb42-5"><a href="index.html#cb42-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="co">#første værdi</span></span>
-<span id="cb42-6"><a href="index.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -2.822617</span></span>
+<span id="cb42-6"><a href="index.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.6740681</span></span>
 <span id="cb42-7"><a href="index.html#cb42-7" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">length</span>(x)] <span class="co">#sidste data point</span></span>
-<span id="cb42-8"><a href="index.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -0.3468405</span></span></code></pre></div>
+<span id="cb42-8"><a href="index.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.4026801</span></span></code></pre></div>
 <p>Bemærk, at til forskellen af Python og mange andre programmering sprog, R bruger 1-baserende indicer - det betyder, at den første værdi er <code>x[1]</code> og <strong>ikke</strong> <code>x[0]</code> som i Python.</p>
 </div>
 <div id="measures-of-central-tendency" class="section level3 hasAnchor" number="1.8.2">
@@ -618,11 +619,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb43-5"><a href="index.html#cb43-5" aria-hidden="true" tabindex="-1"></a>my_var <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
 <span id="cb43-6"><a href="index.html#cb43-6" aria-hidden="true" tabindex="-1"></a>my_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
 <span id="cb43-7"><a href="index.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_mean,my_median,my_max,my_min,my_var,my_sd) <span class="co">#print results</span></span></code></pre></div>
-<pre><code>## [1] -0.19871136  0.09965699  1.33415159 -2.82261706  1.32408597  1.15068935</code></pre>
+<pre><code>## [1]  0.3706505  0.3893195  2.0541107 -2.5347413  1.1784470  1.0855630</code></pre>
 <p>Man kan også lave et summary af dataen, som bestå af mange af de statistiker navnt ovenpå:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="index.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -2.82262 -0.72343  0.09966 -0.19871  0.67511  1.33415</code></pre>
+## -2.53474  0.01043  0.38932  0.37065  1.15081  2.05411</code></pre>
 </div>
 <div id="tapply" class="section level3 hasAnchor" number="1.8.3">
 <h3><span class="header-section-number">1.8.3</span> <code>tapply()</code><a href="index.html#tapply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
