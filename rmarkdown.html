@@ -241,11 +241,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rmarkdown" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Introduktion til R Markdown<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>I dag begynder vi at arbejde med R Markdown. Selve emnet er relativt kort og er designet til, at du kan komme i gang med at bruge R Markdown i praksis, men notaterne referere også til nogle ekstra muligheder så du kan indrette dit dokument efter eget ønske. Der er to videoer - én er en ‘quick-start guide’ for at komme i gang, og den anden viser en simpel lineær regression i R Markdown - har du ikke brug for lidt genopfriskning, kan man også se mere om funktionaliten i R Markdown.</p>
-<p>Efter quizzerne og problemstillinger er der en worksheet, hvor du kan øve dig videre med de typer opgaver vi kommer til at se i workshopperne. Fra næste gang (fredag) skifter vi emnet til visualiseringer i <strong>ggplot2</strong>, og vi arbejder naturligvis i R Markdown fremadrettet.</p>
+<p>I dag starter vi med at arbejde med R Markdown. Emnet er kort og er designet til at hjælpe dig med at komme i gang med at bruge R Markdown i praksis. Notaterne inkluderer også nogle ekstra muligheder, så du kan indrette dit dokument efter eget ønske. Der er to videoer tilgængelige - den ene er en “quick-start guide” til at komme i gang, og den anden viser en simpel lineær regression i R Markdown. Hvis du ikke har brug for en genopfriskning, kan du stadig udforske mere af funktionaliteten i R Markdown.</p>
+<p>Efter quizzerne og problemstillingerne er der en worksheet, hvor du kan øve dig yderligere med de typer opgaver, vi vil se i workshopperne. Fra næste gang (fredag) skifter vi emnet til visualiseringer i ggplot2, og vi vil fortsætte med at bruge R Markdown fremadrettet.</p>
 <div id="hvad-er-r-markdown" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Hvad er R Markdown?<a href="rmarkdown.html#hvad-er-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R Markdown er både en nem og fleksibel måde at arbejde med R til projekter på. Her kan du kombinere din R-kode, output og tekst i samme dokument, og derudover fremviser et pænt HTML dokument fra det, som potentielt kan deles med andre. Jeg anbefaler at du bruger R Markdown til alle opgaverne i kurset og <strong>ved eksamen forventer jeg at du afleverer et HTML dokument</strong> til mig med din “knittede” kode fra din analyse.</p>
+<p>R Markdown er en nem og fleksibel måde at arbejde med R i projekter på. Her kan du kombinere din R-kode, output og tekst i samme dokument og generere et pænt HTML-dokument, som potentielt kan deles med andre. Jeg anbefaler, at du bruger R Markdown til alle opgaver i kurset. <strong>OBS: Ved eksamen forventer jeg, at du afleverer et HTML-dokument til mig med din “knittede” kode fra din analyse</strong>.</p>
 </div>
 <div id="installere-r-markdown" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Installere R Markdown<a href="rmarkdown.html#installere-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -254,20 +254,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="videodemonstrationer" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Videodemonstrationer<a href="rmarkdown.html#videodemonstrationer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Jeg har lavet to videoer som kan ses her:</p>
+<p>Jeg har lavet to videoer, som du kan se nedenfor:</p>
 <p>Video 1:</p>
-<p>Jeg viser</p>
+<p>I denne video viser jeg, hvordan du:</p>
 <ul>
-<li>hvordan man laver et nyt dokument i R Markdown</li>
-<li>hvordan man skriver tekst ind i dokumentet</li>
-<li>hvordan man bruger “knit” til at lave et HTML-dokument</li>
-<li>hvordan man opretter og kører kode chunks</li>
+<li>opretter et nyt dokument i R Markdown</li>
+<li>skriver tekst i dokumentet</li>
+<li>bruger “knit” til at lave et HTML-dokument</li>
+<li>opretter og kører kodechunks.</li>
 </ul>
-<!-- Link her hvis det ikke virker nedenunder: https://vimeo.com/541035944 -->
-<!-- ```{r,echo=FALSE} -->
-<!-- library("vembedr") -->
-<!-- embed_url("https://vimeo.com/541035944") -->
-<!-- ``` -->
 <p>Link her hvis det ikke virker nedenunder: <a href="https://vimeo.com/702416505" class="uri">https://vimeo.com/702416505</a></p>
 <pre><code>## 
 ## Vedhæfter pakke: &#39;vembedr&#39;</code></pre>
@@ -280,18 +275,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Video 2:</p>
-<p>Jeg viser en kort lineær regression analyse:</p>
+<p>I denne video viser jeg en kort lineær regression analyse:</p>
 <ul>
-<li>Indlæse datasæt og lave plot af datasættet</li>
-<li>Lynhurtig gennemgåelse af ligningen for rette linje</li>
+<li>Hvordan man indlæser et datasæt og laver et plot af datasættet</li>
+<li>En lynhurtig gennemgang af ligningen for en ret linje</li>
 <li>Hvordan man anvender funktionen <code>lm()</code> til at fitte en lineær model</li>
-<li>Fortolkelse af resultaterne</li>
+<li>Fortolkning af resultaterne af modellen og deres statistiske betydning.</li>
 </ul>
-<!-- Link her hvis det ikke virker nedenunder: https://vimeo.com/541232690 -->
-<!-- ```{r,echo=FALSE} -->
-<!-- #library("vembedr") -->
-<!-- embed_url("https://vimeo.com/541232690") -->
-<!-- ``` -->
 <p>Link her hvis det ikke virker nedenunder: <a href="https://vimeo.com/701240044" class="uri">https://vimeo.com/701240044</a></p>
 <div class="vembedr">
 <div>
@@ -301,12 +291,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="oprette-et-nyt-dokument-i-r-markdown" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Oprette et nyt dokument i R Markdown<a href="rmarkdown.html#oprette-et-nyt-dokument-i-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Man åbner et nyt rmarkdown dokument ved at trykke “New” &gt; “New File” &gt; “New R Markdown…”. Man kan også trykke på “+” knappen øverst til venstre hjørne.</p>
+<p>Man åbner et nyt R Markdown dokument i RStudio ved at klikke på “File” &gt; “New File” &gt; “R Markdown…”. Alternativt kan man klikke på “+” knappen i øverste venstre hjørne af RStudio vinduet og vælge “R Markdown”.</p>
 <div class="figure">
 <img src="plots/open_new_rmarkdown.png" alt="" />
 <p class="caption">Hvordan man åbner et nyt R Markdown dokument</p>
 </div>
-<p>Dernæst angiver man en titel (det kan ændres senere hvis der er bruge for det) og bekræfter, at outputtet kommer i HTML form. I kurset arbejdes der kun med HTML dokumenter, men man har også andre muligheder, som du er velkommen til at afprøve (PDF/Word/Shiny osv…).</p>
+<p>Dernæst angiver man en titel (som kan ændres senere hvis nødvendigt) og specificerer, at outputtet skal være i HTML-format. I dette kursus arbejder vi kun med HTML-dokumenter, men der er også andre muligheder, som du er velkommen til at prøve (PDF/Word/Shiny osv.).</p>
 <div class="figure">
 <img src="plots/create_new_rmarkdown.png" alt="" />
 <p class="caption">Hvordan man åbne et nyt R Markdown dokument</p>
