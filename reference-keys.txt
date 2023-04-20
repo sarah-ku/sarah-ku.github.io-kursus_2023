@@ -14,6 +14,8 @@ vectorer
 datatyper
 dataframes
 delmægder-af-dataframes
+ifelse
+loops
 descriptive-statistics
 simulere-data-fra-den-normale-fordeling
 measures-of-central-tendency
