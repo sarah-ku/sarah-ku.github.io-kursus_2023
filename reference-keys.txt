@@ -21,6 +21,7 @@ simulere-data-fra-den-normale-fordeling
 measures-of-central-tendency
 tapply
 statistike-tester
+p-værdien
 korrelation
 test-for-uafhængighed-chi-sq-test
 sample-t-test
@@ -56,4 +57,3 @@ matematik
 problemstillinger-1
 færdig-for-i-dag-og-næste-gang
 ekstra-links
-p-værdien

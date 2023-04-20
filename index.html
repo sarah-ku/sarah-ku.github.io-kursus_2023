@@ -51,6 +51,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -600,20 +601,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Man kan nemt lave sin egne ‘fake’ data ved at simulere det fra en fordeling, der typisk er normalfordelingen, da den er den mest almindelige fordeling i den virkelige verden (husk den klassiske klokkeform). I R kan funktionen rnorm bruges til at simulere data. Først angiver man antallet af observationer, og derefter den gennemsnitlige værdi og standardafvigelsen (sd), som er de to nødvendige parametre for at beskrive en normalfordeling.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="index.html#cb50-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="dv">1</span>) <span class="co">#standard normal distribution</span></span>
 <span id="cb50-2"><a href="index.html#cb50-2" aria-hidden="true" tabindex="-1"></a>x <span class="co">#så har vi 25 værdier fra en normal distribution med mean=0 og standard deviation=1.</span></span></code></pre></div>
-<pre><code>##  [1]  0.23103326 -0.28320927  1.07776927  0.37991838  0.81419237  1.26472532
-##  [7]  1.31077509 -0.33674180 -2.21652254  0.17843668  1.23238957  1.76789581
-## [13] -0.67587344 -0.47645171 -0.48116020 -0.70658031 -0.71713068  0.26509005
-## [19]  0.24371567  0.35405932 -2.27032605 -0.13284252 -0.01565377  0.13643116
-## [25] -0.28505482</code></pre>
+<pre><code>##  [1] -1.34509514  0.92718365  0.91822791 -0.17748196 -0.35150198  2.14170952
+##  [7]  2.48907432 -0.99510043  0.56938091  0.66266247  0.34346498 -0.18492079
+## [13]  0.95786632 -2.20857532 -1.75460387 -0.48362711 -1.77481895  0.48322735
+## [19] -0.16124323  0.06856167  0.36772541 -1.48012304  0.07435682 -0.08993569
+## [25]  0.43547623</code></pre>
 <p>I stedet for at kigge på alle værdier på én gang, vil vi måske hellere kigge kun på de første (eller sidste) værdier:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="index.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x) <span class="co">#første 6</span></span>
-<span id="cb52-2"><a href="index.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.2310333 -0.2832093  1.0777693  0.3799184  0.8141924  1.2647253</span></span>
+<span id="cb52-2"><a href="index.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -1.3450951  0.9271837  0.9182279 -0.1774820 -0.3515020  2.1417095</span></span>
 <span id="cb52-3"><a href="index.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(x) <span class="co">#sidste 6</span></span>
-<span id="cb52-4"><a href="index.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.35405932 -2.27032605 -0.13284252 -0.01565377  0.13643116 -0.28505482</span></span>
+<span id="cb52-4"><a href="index.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.06856167  0.36772541 -1.48012304  0.07435682 -0.08993569  0.43547623</span></span>
 <span id="cb52-5"><a href="index.html#cb52-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="co">#første værdi</span></span>
-<span id="cb52-6"><a href="index.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.2310333</span></span>
+<span id="cb52-6"><a href="index.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -1.345095</span></span>
 <span id="cb52-7"><a href="index.html#cb52-7" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">length</span>(x)] <span class="co">#sidste data point</span></span>
-<span id="cb52-8"><a href="index.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -0.2850548</span></span></code></pre></div>
+<span id="cb52-8"><a href="index.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.4354762</span></span></code></pre></div>
 <p>Bemærk, at i modsætning til Python og mange andre programmeringssprog, bruger R en 1-baseret indeksering. Det betyder, at den første værdi er x[1] og ikke x[0] som i Python.</p>
 </div>
 <div id="measures-of-central-tendency" class="section level3 hasAnchor" number="1.10.2">
@@ -664,11 +665,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb53-5"><a href="index.html#cb53-5" aria-hidden="true" tabindex="-1"></a>my_var <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
 <span id="cb53-6"><a href="index.html#cb53-6" aria-hidden="true" tabindex="-1"></a>my_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
 <span id="cb53-7"><a href="index.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_mean,my_median,my_max,my_min,my_var,my_sd) <span class="co">#print results</span></span></code></pre></div>
-<pre><code>## [1]  0.02635539  0.13643116  1.76789581 -2.27032605  0.94004955  0.96956152</code></pre>
+<pre><code>## [1] -0.02272440  0.06856167  2.48907432 -2.20857532  1.30806788  1.14370795</code></pre>
 <p>Man kan også lave et summary af dataen, som bestå af mange af de statistiker navnt ovenpå:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="index.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -2.27033 -0.47645  0.13643  0.02636  0.37992  1.76790</code></pre>
+## -2.20858 -0.48363  0.06856 -0.02272  0.56938  2.48907</code></pre>
 </div>
 <div id="tapply" class="section level3 hasAnchor" number="1.10.3">
 <h3><span class="header-section-number">1.10.3</span> <code>tapply()</code><a href="index.html#tapply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -711,16 +712,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="korrelation" class="section level3 hasAnchor" number="1.11.2">
 <h3><span class="header-section-number">1.11.2</span> Korrelation<a href="index.html#korrelation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Måler sammenhængen mellem to normalfordelte variabler:</p>
+<p>Korrelation måler styrken og retningen af den lineære sammenhæng mellem to kontinuerte variabler, som begge er normalfordelte:</p>
 <ul>
-<li><span class="math inline">\(&gt;0\)</span> betyder, at der er en postiv sammenhæng</li>
+<li><span class="math inline">\(&gt;0\)</span> betyder, at der er en positiv sammenhæng</li>
 <li><span class="math inline">\(&lt;0\)</span> betyder, at der er en negativ sammenhæng</li>
 <li><span class="math inline">\(=0\)</span> betyder, at der er ingen sammenhængen mellem de to variabler</li>
 </ul>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="index.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cars)</span>
 <span id="cb61-2"><a href="index.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist) </span></code></pre></div>
 <pre><code>## [1] 0.8068949</code></pre>
-<p>Man kan teste om korrelationen er signifikant ved at bruge <code>cor.test()</code></p>
+<p>Husk dog, at “Correlation does not equal causation” - dvs. at korrelation er bare en sammenhæng og ikke nødvendigvis angiver en årsagssammenhæng mellem de to variable.</p>
+<p>Funktionen <code>cor.test()</code> kan bruges til at teste, om korrelationen mellem to variable er statistisk signifikant. Null-hypotesen antager, at der ikke er nogen korrelation mellem de to variable i den population, som datasættet repræsenterer.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="index.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist) </span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
@@ -733,17 +735,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##       cor 
 ## 0.8068949</code></pre>
-<p>Så kan man se, at p-værdien er 0, der er under 0.05, så konkludere man, at der er en signifikant korrelation mellem de to variabler.</p>
-<!-- * Hypotesetest - hvad betyder 'nullhypotese' og 'alternativhypotese'? -->
-<!-- * t-test - funktionen i R. Hvad er forudsætningerne til at lave en t-test? -->
-<!-- * chi-sq test -->
-<!-- * correlations (sammenhænge) -->
-<!-- * linær regræssion, i den baserende omfang. -->
-<!-- Vi arbejder lidt med koncepterne i vores første opgaver, hvor jeg gå igennem, især i de steder hvor I få mest problemmer. Dermed sikre vi, at i har et stærkt grundlag til resten af kurset. -->
+<p>Så kan man se, at p-værdien er 0, der er under 0.05. Derfor konkluderer man, at der er en signifikant sammenhæng mellem de to variabler.</p>
 </div>
 <div id="test-for-uafhængighed-chi-sq-test" class="section level3 hasAnchor" number="1.11.3">
 <h3><span class="header-section-number">1.11.3</span> Test for uafhængighed (chi-sq test)<a href="index.html#test-for-uafhængighed-chi-sq-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Her undersøger man, om der er en sammenhæng mellem antal observationer i to forskellige kategorier. Se for eksempel følgende tabel, der viser antal kopi af en gen variant og to forskellige farver som phenotype (farve på en type blomst):</p>
+<p>En chi-squared test kan bruges til at undersøge, om der er en statistisk signifikant sammenhæng mellem antallet af observationer i to eller flere forskellige kategorier. For eksempel kan man teste for sammenhængen mellem antallet af kopier af en genvariant og to forskellige farver på blomster i en bestemt planteart.</p>
 <table>
 <thead>
 <tr class="header">
@@ -773,21 +769,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(H_{0}:\)</span> antal gen copi og phenotype er uafhængie af hinanden VS</li>
 <li><span class="math inline">\(H_{1}:\)</span> antal gen copi og phenotype er afhængie af hinanden</li>
 </ul>
-<p>Testen går ud på, at man beregner forventede værdier (baserende på de totals under nullhypotesen af de er uafængige) og sammenligne forventede værdier med observerede værdier. Man laver testen i R ved at benytte funktionen <code>chisq.test</code>:</p>
+<p>Testen går ud på, at man beregner forventede værdier under nulhypotesen om, at der ikke er nogen sammenhæng mellem de to kategorier, og sammenligner disse forventede værdier med observerede værdier. Man laver testen i R ved at benytte funktionen <code>chisq.test()</code>:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="index.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(dat)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  dat
 ## X-squared = 9.9516, df = 2, p-value = 0.006903</code></pre>
-<p>Her er p-værdien = 0.006903 &lt; 0.05, så vi forkaster nulhypotesen og konkluderer, at der er en afhængighed mellem de to variabler. Man kan også se fra rådatasættet, at der er langt flere røde blomster, der har ingen kopi af genet end der er røde blomster, der har to kopier af genet, og mønstret er omvendt i tilfældet af de lyserøde blomster.</p>
+<p>Her er p-værdien = 0.006903 &lt; 0.05, så vi forkaster nulhypotesen og konkluderer, at der er en signifikant sammenhæng mellem de to variabler. Ud fra rådatasættet kan man også observere, at der er flere røde blomster uden nogen kopi af genet sammenlignet med røde blomster med to kopier af genet, mens det modsatte er tilfældet for de lyserøde blomster.</p>
 </div>
 <div id="sample-t-test" class="section level3 hasAnchor" number="1.11.4">
 <h3><span class="header-section-number">1.11.4</span> 1 sample t-test<a href="index.html#sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For at vise en 1-sample t-test, simulerer jeg noget data fra den normal fordeling med <code>mean = 3</code>.</p>
+<p>For at vise en 1-sample t-test, simulerer jeg nogle data fra en normalfordeling med middelværdi på 3 ved hjælp af rnorm()-funktionen:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="index.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">290223</span>) <span class="co"># bare for at få den samme resultat hver gang</span></span>
 <span id="cb67-2"><a href="index.html#cb67-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean =</span> <span class="dv">3</span>,<span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p>Forestil dig, at du ikke helt stoler på funktionen <code>rnorm()</code> og gerne vil teste, om <code>x</code> virkelig kommer fra en normal fordeling med et gennemsnit (<span class="math inline">\(\mu\)</span>) på tre. Nulhypotesen og alternativ hypotesen (2-sidet test) er således:</p>
+<p>Forestil dig, at du ikke helt stoler på funktionen <code>rnorm()</code> og ønsker at teste, om <code>x</code> stammer fra en normalfordeling med en middelværdi på 3. Nulhypotesen og den alternative hypotese (to-sidet test) er derfor:</p>
 <ul>
 <li><span class="math inline">\(H_{0}: \mu = 3\)</span>, VS</li>
 <li><span class="math inline">\(H_{1}: \mu \neq 3\)</span></li>
@@ -805,13 +801,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  2.721099</code></pre>
-<p>Fra resultatet kan man se, at p-værdien er estimeret som 0.2818, og da den er &gt; 0.05 forkaster vi ikke nulhypotesen, og konkluderer at <span class="math inline">\(\mu = 3\)</span>.</p>
+<p>Fra resultatet kan man se, at p-værdien er estimeret til 0.2818, og da den er &gt; 0.05 kan vi ikke forkaste nulhypotesen, og vi konkluderer derfor, at middelværdien af x ikke adskiller sig signifikant fra 3.</p>
 <p><strong>Bemærkning</strong>: da vi simulerede vores data fra en normal fordeling med et gennemsnit på tre, vidste vi i forvejen at det korrekte svar er, at beholde nullhypotesen. Havde vi forkastet nullhypotesen, havde vi lavet en <strong>type I fejl</strong> - det vil sige, at vi forkaster nullhypotesen når det faktisk er sandt.</p>
-<!-- Hvis vi gentager testen mange gange (ved at første simulere tilfældige data og dernæst lave samme t-test) og tæller op, hvor mange gange vi lave en type I fejl ved at forkaste nulhypotesen, så vil der være omkring samme proportion som det fastlagt signifikans niveau (= 0.05 her). -->
 </div>
 <div id="sample-t-test-1" class="section level3 hasAnchor" number="1.11.5">
 <h3><span class="header-section-number">1.11.5</span> 2-sample t-test<a href="index.html#sample-t-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<!-- * Undersøge, om der er en forskellen i den gennemsnit Sepal.Length mellem de to arter * Kan de betragtes at være den samme, under den såkaldte null hypotese? -->
 <p>Undersøger om der er en forskel i de gennemsnitlige værdier mellem to grupper - kan de to grupper betragtes til at stammer fra den samme normale fordeling? Hypoteserne er således (to-sidet):</p>
 <ul>
 <li><span class="math inline">\(H_{0}: \mu_{1} = \mu_{2}\)</span>, VS</li>
@@ -899,11 +893,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb78-7"><a href="index.html#cb78-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(group1,group2,group3)</span>
 <span id="cb78-8"><a href="index.html#cb78-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;G1&quot;</span>,<span class="dv">50</span>),<span class="fu">rep</span>(<span class="st">&quot;G2&quot;</span>,<span class="dv">55</span>),<span class="fu">rep</span>(<span class="st">&quot;G3&quot;</span>,<span class="dv">48</span>))</span>
 <span id="cb78-9"><a href="index.html#cb78-9" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;group&quot;</span><span class="ot">=</span>x,<span class="st">&quot;value&quot;</span><span class="ot">=</span>y)</span></code></pre></div>
-<p>Til at udføre testen bruger man funktionen <code>lm</code>. Det er en forkortelse for “linear model” og kan bruges til at bygge op forskellige modeller. Her angiver vi en model, således at hver group (<code>G1</code>, <code>G2</code> og <code>G3</code> fra variablen <code>x</code>) har sin egen middelværdi (variablen <code>value</code>), hvilket er modellen under alternativhypotesen:</p>
+<p>For at udføre testen kan man bruge funktionen lm(), som står for “linear model” og kan bruges til at opbygge forskellige modeller. Her angiver vi en model, hvor hver gruppe (<code>G1</code>, <code>G2</code> og <code>G3</code> fra variablen <code>x</code>) har sin egen middelværdi (variablen value), hvilket er modellen under alternativhypotesen:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="index.html#cb79-1" aria-hidden="true" tabindex="-1"></a>mylm <span class="ot">&lt;-</span> <span class="fu">lm</span>(value<span class="sc">~</span>group,<span class="at">data=</span>mydf) <span class="co">#H1 model</span></span></code></pre></div>
-<p>Under nullhypotesen har alle grupper den samme middelværdi og vi behøver derfor ikke at have variablen <code>group</code> en del af modellen. Vi betegner situationen i modellen ved at skrive <code>1</code>, der betyder at de forventede værdier for den afhængige variabel <code>value</code> er bare dens middelværdi:</p>
+<p>Under nulhypotesen har alle grupper den samme middelværdi, og derfor behøver vi ikke at inkludere variablen <code>group</code> i modellen. Vi angiver situationen i modellen ved at skrive 1, som betyder, at forventede værdier for den afhængige variabel <code>value</code> blot er dens middelværdi:</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="index.html#cb80-1" aria-hidden="true" tabindex="-1"></a>mylm_null <span class="ot">&lt;-</span> <span class="fu">lm</span>(value<span class="sc">~</span><span class="dv">1</span>,<span class="at">data=</span>mydf) <span class="co">#H0 model</span></span></code></pre></div>
-<p>For at sammenligne de to modeller benytter vi funktionen <code>anova</code> (efter analysis of variance):</p>
+<p>For at sammenligne de to modeller benytter vi funktionen <code>anova()</code> (efter analysis of variance):</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="index.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mylm_null,mylm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
@@ -1054,20 +1048,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="problemstillinger" class="section level2 hasAnchor" number="1.12">
 <h2><span class="header-section-number">1.12</span> Problemstillinger<a href="index.html#problemstillinger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Lav quizzen og ellers vælg øvelser efter egen erfaring:</p>
+<p>Husk quizzen på Absalon, og lav gerne nogle øvelser for at øve dine færdigheder i R:</p>
 <ul>
-<li>2-8 er meget grundlæggende og de fleste kan springer over hvis nogenlunde tryg med base-R</li>
-<li>9-15 anbefaler jeg til alle som en god måde at tjekke viden på</li>
-<li>16-20 øver hvordan man andre statistiske teste i R - regression kommer jeg ind på igen senere men det hjælper hvis du er tryg med brugen af funktionen <code>lm</code> til at lave modeller i ANOVA/simpel lineær regression (se også video og problemstillingerne i morgen).</li>
+<li>Øvelse 2-8 er meget grundlæggende og i godt kan springes over, hvis man er nogenlunde fortrolig med base-R.</li>
+<li>Jeg vil anbefale øvelse 9-15 til alle som en god måde at teste deres viden på.</li>
+<li>Øvelse 16-20 fokuserer på andre statistiske test i R. Vi vil komme tilbage til regression flere gange i kurset, så det vil være en god idé at have kendskab til funktionen <code>lm()</code> til at opbygge modeller i ANOVA / simpel lineær regression (se også videoen og problemstillingerne til det næste emne R Markdown).</li>
 </ul>
 <div id="quiz---basics" class="section level3 hasAnchor" number="1.12.1">
 <h3><span class="header-section-number">1.12.1</span> Quiz - Basics<a href="index.html#quiz---basics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>1)</strong> Se quiz i Absalon, der hedder “Quiz - Basics”.</p>
+<p><strong>1)</strong> Lav quiz i Absalon, der hedder “Quiz - Basics”.</p>
 </div>
 <div id="grundlæggende-r" class="section level3 hasAnchor" number="1.12.2">
 <h3><span class="header-section-number">1.12.2</span> Grundlæggende R<a href="index.html#grundlæggende-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>2)</strong> (<strong>helt baserende viden</strong>) Åbn en ny fil i Rstudio ved at trykke på “File” &gt; “New File” &gt; “R script”. Køre følgende kode en linje ad gangen og tjek, du kan forstå outputtet.</p>
-<p>Husk at den nemmeste måde at køre kode er ved at trykke CMD+ENTER (Mac) eller WIN-KEY+ENTER (Windows).</p>
+<p><strong>2)</strong> (<strong>helt baserende viden</strong>) Åbn en ny fil i RStudio ved at klikke på “File” &gt; “New File” &gt; “R Script”. Kør følgende kode en linje ad gangen og tjek, om du forstår outputtet.</p>
+<p>Husk, at den nemmeste måde at køre kode på er ved at trykke på CMD+ENTER (Mac) eller WIN-KEY+ENTER (Windows).</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="index.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
 <span id="cb95-2"><a href="index.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span></span>
 <span id="cb95-3"><a href="index.html#cb95-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
@@ -1082,7 +1076,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb95-12"><a href="index.html#cb95-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y)</span>
 <span id="cb95-13"><a href="index.html#cb95-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(y)</span>
 <span id="cb95-14"><a href="index.html#cb95-14" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">13</span>,<span class="at">by=</span><span class="dv">3</span>)</span></code></pre></div>
-<p><strong>3)</strong> (<strong>helt baserende viden</strong>) Køre følgende kode til at åbne nogle af de indbygget datasæt, som vi bruger i kurset.
+<p><strong>3)</strong> (<strong>helt baserende viden</strong>) Kør følgende kode til at åbne nogle af de indbygget datasæt, som vi bruger i kurset.
 * Prøve <code>head()</code>, <code>nrow()</code>, <code>summary()</code> osv.
 * Prøve også fk. <code>?cars</code> for at se en beskrivelse.</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="index.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
@@ -1093,11 +1087,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb96-6"><a href="index.html#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(trees)</span>
 <span id="cb96-7"><a href="index.html#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="co">#se her for andre:</span></span>
 <span id="cb96-8"><a href="index.html#cb96-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">&quot;datasets&quot;</span>)</span></code></pre></div>
-<p><strong>4)</strong> (<strong>baserende plots</strong>) Jeg giver nogle muligheder for datasættet “iris”. Afprøve funktionerne for nogle af de andre ovenstående indbygget datasæt, som du indlæst.</p>
+<p><strong>4)</strong> (<strong>baserende plots</strong>) Jeg giver nogle muligheder for datasættet “iris”. Prøv også at bruge nogle af de andre indbyggede datasæt, som du har indlæst.</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="index.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris<span class="sc">$</span>Sepal.Length,iris<span class="sc">$</span>Sepal.Width)</span>
 <span id="cb97-2"><a href="index.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(iris<span class="sc">$</span>Sepal.Width)</span>
 <span id="cb97-3"><a href="index.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(iris<span class="sc">$</span>Sepal.Length<span class="sc">~</span>iris<span class="sc">$</span>Species)</span></code></pre></div>
-<p>Man kan også gøre plotterne lidt pænere ved at give dem en titel/aksen-navne osv. Prøve <code>?plot</code> for at se nogle muligheder, og tilføje <code>ylab</code>, <code>xlab</code>, <code>main</code> (titel) i én af plotterne. Leg også med <code>col</code> (farver). Bemærk dog, at vi kommer til at ændre måden at lave plotter på når vi starter <code>ggplot2</code>.</p>
+<p>Du kan også gøre plottene lidt pænere ved at give dem en titel og navne på akserne. Prøv at kigge på dokumentationen for plot() ved at skrive <code>?plot</code> i R-konsollen. Du kan tilføje <code>ylab</code>, <code>xlab</code> og <code>main</code> (titel) i én af plottene. Prøv også at eksperimentere med farver ved at bruge <code>col</code>. Bemærk dog, at vi vil ændre måden at lave plottene på, når vi begynder at bruge <code>ggplot2</code>.</p>
 <p><strong>5)</strong> (<strong>dataframes</strong>) Brug datasættet <code>cars</code> (<code>data(cars)</code>) til at:</p>
 <ul>
 <li>Lav et scatter plot med speed på x-aksen og dist på y-aksen</li>
@@ -1105,15 +1099,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="index.html#cb98-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>fast <span class="ot">&lt;-</span> cars<span class="sc">$</span>speed<span class="sc">&gt;</span><span class="dv">15</span></span></code></pre></div>
 <ul>
-<li>Brug <code>mean</code> på den nye variabel til at finde ud af proportionen af biler, der er hurtige</li>
+<li>Brug <code>mean</code> på den nye kolon <code>fast</code> for at finde ud af proportionen af biler, der er hurtige</li>
 <li>Beregn gennemsnitsværdien af variablen <code>dist</code> for hurtige biler og ikke-hurtige biler hver for sig (brug funktionen <code>tapply</code>). Gem resultatet med <code>&lt;-</code>.</li>
 <li>Brug <code>barplot</code> til at lave et plot af den gennemsnitlige <code>dist</code> for hurtige og ikke-hurtige biler.</li>
 </ul>
-<p><strong>6)</strong> (<strong>dataframes</strong>) Lav en ny dataframe (funktionen <code>data.frame()</code>) med tre kolonner som hedder “navn”, “alder” og “yndlings_farve” (find bare selv på værdierne). Sørge for, at den har 4 rækker.</p>
+<p><strong>6)</strong> (<strong>dataframes</strong>) En dataframe kan indeholde forskellige datatype (i modsætning til en matrix). Lav en ny dataframe (funktionen <code>data.frame()</code>) med tre kolonner, som hedder “navn”, “alder” og “yndlings_farve” (du kan finde på værdierne selv). Sørg for, at din dataframe har 4 rækker.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="index.html#cb99-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;navn&quot;</span><span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;alice&quot;</span>,<span class="st">&quot;freddy&quot;</span>, ... ), <span class="st">&quot;alder&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(...), ...) <span class="co">#not run, slette &quot;...&quot; og skrive videre</span></span>
 <span id="cb99-2"><a href="index.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mydf) <span class="co"># fire række og tre kolonner</span></span>
 <span id="cb99-3"><a href="index.html#cb99-3" aria-hidden="true" tabindex="-1"></a>mydf</span></code></pre></div>
-<p><strong>7)</strong> (<strong>dataframes</strong>) Tilføj en ny variabel <code>random</code> til ovenstående dataframe, hvor værdierne kommer fra en normal fordeling med et gennemsnit på 5 og sd på 1 (bruge funktionen <code>rnorm</code>).</p>
+<p><strong>7)</strong> (<strong>dataframes</strong>) Tilføj en ny kolon <code>random</code> til din oprettede dataframe - hvor værdierne kommer fra en normalfordeling med et gennemsnit på 5 og standardafvigelse på 1 (bruge funktionen <code>rnorm()</code>).</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="index.html#cb100-1" aria-hidden="true" tabindex="-1"></a>mydf<span class="sc">$</span>random <span class="ot">&lt;-</span> <span class="co">#??</span></span></code></pre></div>
 <!-- 5) (**dataframes**) Lav en `data.frame` (dataframe) med to kolonner og 12 observationer. Den ene varible skal være tilfældige data fra en normal fordeling (bruge funktionen `rnorm`) med et gennemsnit på 5 og varians på 1, den anden variable skal veksle mellem "blue" og "red" (bruge `rep(c("blue","red","yellow"),4)`). -->
 <!-- ```{r,eval=F} -->
@@ -1130,19 +1124,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="index.html#cb102-1" aria-hidden="true" tabindex="-1"></a>newdf <span class="ot">&lt;-</span> ToothGrowth[<span class="co">#skrive her til at lave subset af observationerne,]</span></span></code></pre></div>
 <ul>
-<li>Hvor mange rækker er der i den nye dataframe <code>newdf</code>?</li>
+<li>Hvor mange rækker er der i den nye data frame <code>newdf</code>?</li>
 <li>Hvor mange unikke værdier er der i variablen <code>dose</code> (brug funktionen <code>unique</code>) ?</li>
-<li>Find delmængden af datasættet <code>ToothGrowth</code>, hvor variablen <code>dose</code> er 0.5 eller 1.5 (hint: brug <code>%in%</code> eller <code>|</code>) og <code>supp</code> er “VC”.</li>
+<li>Find delmængden af datasættet <code>ToothGrowth</code>, hvor variablen <code>dose</code> er 0.5 eller 2.0 (hint: brug <code>%in%</code> eller <code>|</code>) og <code>supp</code> er “VC”.</li>
 <li>Beregn den gennemsnitlige længde for observationerne i delmængden.</li>
 </ul>
-<!-- Tag dataframe fra sidste problem og kalde den for `mydf`. Hvor mange rækker har gule farve? Starter med at lave en subset af `mydf` og bruge `nrow` til at tælle rækkerne. -->
-<!-- ```{r,eval=F} -->
-<!-- nrow(mydf[mydf$colour == "yellow", ]) -->
-<!-- ``` -->
-<!-- Hvor mange rækker har enten gule farve eller blå farve, samt har en `value` på mere en 4? Prøve med både `%in%` og `|` tegner når du subset efter farve. -->
-<!-- ```{r,eval=F} -->
-<!-- nrow(mydf[mydf$colour %in% c("blue","yellow") & mydf$value > 4, ]) -->
-<!-- ``` -->
 </div>
 <div id="kort-analyse-med-reaktionstider" class="section level3 hasAnchor" number="1.12.3">
 <h3><span class="header-section-number">1.12.3</span> Kort analyse med reaktionstider<a href="index.html#kort-analyse-med-reaktionstider" class="anchor-section" aria-label="Anchor link to header"></a></h3>
