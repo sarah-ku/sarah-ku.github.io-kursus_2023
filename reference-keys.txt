@@ -36,6 +36,7 @@ problemstillinger
 quiz---basics
 grundlæggende-r
 kort-analyse-med-reaktionstider
+øvelse-med-co2
 ekstra-øvelser-med-statistik-tests
 rmarkdown
 hvad-er-r-markdown
