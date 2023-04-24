@@ -13,7 +13,7 @@ beregninger-i-r
 vectorer
 datatyper
 dataframes
-delmægder-af-dataframes
+delmængder-af-dataframes
 ifelse
 loops
 descriptive-statistics
