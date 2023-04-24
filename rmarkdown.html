@@ -305,14 +305,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- YAML Header: Controls certain output settings that apply to the entire document. -->
 <div id="yaml" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> YAML<a href="rmarkdown.html#yaml" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Den første sektion af dokument skrives i hvad der kaldes for ‘YAML’. (Dette står for ‘YAML Ain’t Markup Language’).</p>
+<p>Den første sektion af dokument skrives i hvad der kaldes for ‘YAML’. (Dette står for ‘YAML Ain’t Markup Language’). YAML-sektionen bruges til at definere en række indstillinger og metadata for dokumentet, såsom titel, forfatter, dato og outputformat. Denne sektion indrammes typisk af tre bindestreger (—) øverst og nederst:</p>
 <div class="figure">
 <img src="plots/YAML.png" alt="" />
-<p class="caption">Hvordan man åbner et nyt R Markdown dokument</p>
+<p class="caption">YAML eksempel</p>
 </div>
-<p>Det indeholder oplysninger om dokumentet, og her kan man specificere forskellige muligheder - fk. titel, forfatter, output-type (fks. HTML eller PDF), dato, osv. I de fleste tilfælde nøjes vi med at bruge standard indstillinger, men hvis man gerne vil lære mere om de forskellige muligheder med YAML, kan man læse her:</p>
+<p>I dette eksempel angiver vi titlen på rapporten som “test”, forfatterens navn, datoen og outputformatet (HTML-dokument). Du kan tilføje yderligere indstillinger og tilpasse outputformatet ved at ændre eller udvide YAML-headeren. I de fleste tilfælde nøjes vi dog med at bruge standard indstillinger. Hvis man gerne vil lære mere om de forskellige muligheder med YAML, kan man læse her:</p>
 <p><a href="https://bookdown.org/yihui/rmarkdown/html-document.html" class="uri">https://bookdown.org/yihui/rmarkdown/html-document.html</a></p>
-<p>eller se en liste af muligheder her på dette cheatsheet:</p>
+<p>Man kan også se en liste af muligheder her på dette cheatsheet:</p>
 <p><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf</a></p>
 </div>
 <div id="globale-options" class="section level3 hasAnchor" number="2.4.2">
@@ -320,9 +320,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Der er også tekst som ser ud som følgende:</p>
 <div class="figure">
 <img src="plots/global_options.png" alt="" />
-<p class="caption">Hvordan man åbner et nyt R Markdown dokument</p>
+<p class="caption">Globale muligheder</p>
 </div>
-<p>Med funktionen <code>opts_chunk$set()</code> kan man specificere de globale indstillinger, som styrer hvordan det færdige dokument ser ud. I dette tilfælde er de fleste parametre angivet som ‘default’ (da de ikke er nævnt eksplicit), og <code>echo</code> er den eneste der har noget angivet. Hvis <code>echo</code> er <code>TRUE</code>, så betyder det, at når man “knitter” sin kode (processen, der få et HTML dokument frem, se nedenfor), så kan man også se koden, der blev kørt, samt dens output, i det færdige HTML dokument, der kommmer frem.</p>
+<p>Ved at bruge funktionen <code>opts_chunk$set()</code> kan du angive globale indstillinger, der styrer udseendet af det endelige dokument. I dette tilfælde er de fleste parametre sat til deres ‘default’ eller standardværdier (da de ikke nævnes eksplicit), og echo er den eneste parameter, der har en værdi angivet. Når echo er sat til <code>TRUE</code>, betyder det, at når du “knitter” din kode (processen der omdanner R Markdown-filen til et HTML-dokument, som beskrevet nedenfor), vil både den udførte kode og dens output blive vist i det genererede HTML-dokument.</p>
+<p>Funktionen <code>opts_chunk$set()</code> giver dig mulighed for at kontrollere adskillige aspekter af dit dokument på en global måde, såsom visning af advarsler og beskeder, cacheindstillinger og grafikindstillinger. For eksempel, advarsler og beskeder undertrykkes ved at sætte <code>warning = FALSE</code> og <code>message = FALSE</code> (du kan selv afprøve dette). Bemærk, at disse globale indstillinger kan overstyres for individuelle kodeblokke, hvis det er nødvendigt.</p>
 </div>
 </div>
 <div id="skrive-baseret-tekst" class="section level2 hasAnchor" number="2.5">
@@ -364,17 +365,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="knitte-kode" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Knitte kode<a href="rmarkdown.html#knitte-kode" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Man bruger <em>Knit</em> for at gengive filen i HTML form. Når man trykker på knappen <em>Knit</em>, bliver samtlige koder i filen kørt og et HTML dokument fremvises. Bemærk, at <strong>koderne bliver kørt på ny hver gang man knitter</strong>, uden hensyn til hvad du har i din nuværende workspace i RStudio. Det betyder, at hvis du eksempelvis har pakken <code>tidyverse</code> indlæst på din computer men har glemt at skrive <code>library(tidyverse)</code> eksplicit på toppen af dit dokument, så får du en fejlmeddelelse hvis du bruger tidyverse-baserede funktioner nogle steder.</p>
+<p>Du bruger <em>Knit</em> til at omdanne R Markdown-filen til HTML-format. Når du trykker på <em>Knit</em>-knappen, bliver alle kodeblokke i filen udført, og et HTML-dokument genereres og vises. Bemærk, at <strong>koden udføres på ny hver gang du knitter</strong>, uafhængigt af indholdet i dit aktuelle RStudio-workspace. Det betyder, at hvis du for eksempel har indlæst pakken <code>tidyverse</code> i dit RStudio-arbejdsområde, men har glemt at inkludere <code>library(tidyverse)</code> eksplicit i begyndelsen af dit R Markdown-dokument, vil du modtage en fejlmeddelelse, hvis du bruger funktioner fra tidyverse andre steder i dokumentet.</p>
 </div>
 <div id="kode-chunks" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> Kode chunks<a href="rmarkdown.html#kode-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Man skriver selve R kode indenfor hvad der kaldes for “chunks”. Man kan oprette en ny chunk på flere måder - enten ved at trykke på den <em>Insert a new code chunk</em> knap ovenpå, eller ved at trykke <em>Cmd+Option+I</em> på tastaturet (hvis man bruger MAC) eller <em>Ctrl+Alt+I</em> (hvis man bruger Windows). Det er værd at huske den keyboard-shortcut - det sparer meget tid efter egen erfaring!</p>
-<p>Her er et eksempel af en chunk:</p>
+<p>Du skriver R-kode inden for såkaldte “chunks” i R Markdown-dokumenter. Du kan oprette en ny kodeblok på flere måder - enten ved at klikke på knappen <em>Insert a new code chunk</em> øverst i RStudio, eller ved at trykke på <em>Cmd+Option+I</em> på tastaturet (hvis du bruger en Mac) eller <em>Ctrl+Alt+I</em> (hvis du bruger Windows). Det er værd at huske denne shortcut/genvej, da det kan spare dig meget tid i det lange løb!</p>
+<p>Her er et eksempel af en kodechunk:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="rmarkdown.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a chunk, let&#39;s write som R code</span></span>
 <span id="cb126-2"><a href="rmarkdown.html#cb126-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb126-3"><a href="rmarkdown.html#cb126-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<p>For at køre en chunk, trykker man på den grønne pile øverste i højre hjørne på selve chunk (der hedder <em>Run Current Chunk</em> når du holder musen over den). Resultatet kan ses lige nedenunder, som i ovenstående.</p>
+<p>For at køre en chunk skal du trykke på den grønne pil øverst i højre hjørne af selve chunk’en (der hedder <em>Run Current Chunk</em> når du holder musen over den). Resultatet kan ses lige nedenunder, som vist ovenfor.</p>
 <p>Bemærk, at når du arbejde med dit R Markdown dokument er det generelt hurtigere at bruge den grønne pile / <em>Run Current Chunk</em> i stedet for at knitte hele dokumentet hver gang man vil køre kode. Det er fordi her kører man kun den enkel chunk i stedet for hele dokumentet på ny (herunder indlæsning af pakker og eventuelle store filer), som er tilfældet med <em>Knit</em>.</p>
 <div id="et-godt-råd-når-man-arbejder-med-chunks" class="section level3 hasAnchor" number="2.7.1">
 <h3><span class="header-section-number">2.7.1</span> Et godt råd når man arbejder med chunks<a href="rmarkdown.html#et-godt-råd-når-man-arbejder-med-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
