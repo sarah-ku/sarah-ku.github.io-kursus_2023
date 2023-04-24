@@ -52,7 +52,7 @@ knitte-kode
 kode-chunks
 et-godt-råd-når-man-arbejder-med-chunks
 chunk-indstillinger
-r-beregninger-indenfor-teksten-i-dokument-inline-code
+r-beregninger-inden-for-teksten-i-dokumentet-inline-code
 working-directory-1
 matematik
 problemstillinger-1
