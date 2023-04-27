@@ -78,6 +78,7 @@ boxplot-geom_box
 barplot-geom_bar
 histogram-geom_histogram
 density-geom_density
+line-plot-geom_line
 troubleshooting
 problemstillinger-2
 næste-gang
