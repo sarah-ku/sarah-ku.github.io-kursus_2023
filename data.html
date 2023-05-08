@@ -1230,20 +1230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data.html#cb290-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="ot">&lt;-</span> titanic_clean <span class="sc">%&gt;%</span>  ... </span></code></pre></div>
 <hr />
-<p><strong>Problem 12)</strong> <em>pull() og t.test()</em> Betalt passagererne, der rejste alene (variablen <code>Solo</code> fra sidste opgave), i gennemsnit det samme for deres billet (variablen <code>Fare</code>) som passagererne, der ikke rejste alene? Lav en t-test (anvend <code>pull()</code> til at udtrække passende vektorer - se også eksempel i kursusnoterne).</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="data.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(titanic_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Solo<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Fare),</span>
-<span id="cb291-2"><a href="data.html#cb291-2" aria-hidden="true" tabindex="-1"></a>       titanic_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Solo<span class="sc">==</span><span class="st">&quot;No&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Fare) )</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  titanic_clean %&gt;% filter(Solo == &quot;Yes&quot;) %&gt;% pull(Fare) and titanic_clean %&gt;% filter(Solo == &quot;No&quot;) %&gt;% pull(Fare)
-## t = -6.9703, df = 573.64, p-value = 8.724e-12
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -35.57536 -19.93377
-## sample estimates:
-## mean of x mean of y 
-##  22.64421  50.39878</code></pre>
+<p><strong>Problem 12)</strong> <em>pull() og t.test()</em> Betalt passagererne, der rejste alene (variablen <code>Solo</code> fra sidste opgave), i gennemsnit det samme for deres billet (variablen <code>Fare</code>) som passagererne, der ikke rejste alene? Lav en t-test (anvend <code>filter()</code> og så <code>pull()</code> til at udtrække to passende vektorer - se også eksempel i kursusnoterne).</p>
 <p><strong>Problem 13</strong>) <em><code>Recode()</code></em> I variablen <code>Embarked</code>:</p>
 <ul>
 <li>C står for Cherbourg</li>
@@ -1284,9 +1271,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <hr />
 <p><strong>Problem 17</strong>) <em>Lave et plot</em>. Fra <code>titanic_clean</code> bruge <code>filter()</code> til at lave en ny dataramme kun med personer under 30 og bruge den til at lave et barplot som viser antallet af personer opdelt efter Pclass. Bruge følgende struktur for koden:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="data.html#cb294-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb294-2"><a href="data.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(...) <span class="sc">%&gt;%</span> <span class="co">#rediger linjen</span></span>
-<span id="cb294-3"><a href="data.html#cb294-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(...)) <span class="sc">+</span> .... <span class="co">#tilføj plot</span></span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="data.html#cb292-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb292-2"><a href="data.html#cb292-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(...) <span class="sc">%&gt;%</span> <span class="co">#rediger linjen</span></span>
+<span id="cb292-3"><a href="data.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(...)) <span class="sc">+</span> .... <span class="co">#tilføj plot</span></span></code></pre></div>
 <hr />
 <p><strong>Problem 18</strong>) <em>Lave et plot</em>. Fra <code>titanic_clean</code>, bruge <code>mutate()</code> til at lave et nyt kolon der hedder <code>with_siblings_spouses</code> der er <code>TRUE</code> hvis <code>SibSp</code> ikke er nul. Brug den til at lave boxplots som viser <code>Fare</code> på y-aksen og <code>with_siblings_spouses</code> på x-aksen.</p>
 <ul>
