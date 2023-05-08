@@ -337,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Analyse og visualisering af biologiske datasæt - 2023</h1>
 <p class="author"><em>Sarah Rennie</em></p>
-<p class="date"><em>Last updated: 2023-05-06</em></p>
+<p class="date"><em>Last updated: 2023-05-08</em></p>
 </div>
 <div id="baser" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Grundlæggende R<a href="index.html#baser" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -696,20 +696,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Man kan nemt lave sin egne ‘fake’ data ved at simulere det fra en fordeling, der typisk er normalfordelingen, da den er den mest almindelige fordeling i den virkelige verden (husk den klassiske klokkeform). I R kan funktionen rnorm bruges til at simulere data. Først angiver man antallet af observationer, og derefter den gennemsnitlige værdi og standardafvigelsen (sd), som er de to nødvendige parametre for at beskrive en normalfordeling.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="index.html#cb50-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="dv">1</span>) <span class="co">#standard normal distribution</span></span>
 <span id="cb50-2"><a href="index.html#cb50-2" aria-hidden="true" tabindex="-1"></a>x <span class="co">#så har vi 25 værdier fra en normal distribution med mean=0 og standard deviation=1.</span></span></code></pre></div>
-<pre><code>##  [1]  0.08845348  0.78987078  1.35531216  0.46334777 -1.75220500  0.26248978
-##  [7] -1.46153651 -1.40585698  1.66626334  0.39519086 -1.10345182 -0.45176140
-## [13] -0.96277623  0.73707310 -0.14992871 -1.99887938 -2.59472221 -0.13585009
-## [19] -2.08626920 -1.12260621 -1.26027363  0.67675935 -0.35818795 -0.87380456
-## [25] -0.58084598</code></pre>
+<pre><code>##  [1]  0.9282932 -0.1265091 -0.9336469  1.2941221 -0.6585053 -0.9208682
+##  [7] -1.5895030  0.1685615 -0.0417933 -1.4686611  2.5416339  0.2380775
+## [13] -0.3845414 -0.8580301  1.6497703  2.0544882 -0.4280411  0.1324976
+## [19]  0.9041788 -0.1243023  0.4736133 -0.5356483 -1.8912613 -1.0465018
+## [25]  0.6558270</code></pre>
 <p>I stedet for at kigge på alle værdier på én gang, vil vi måske hellere kigge kun på de første (eller sidste) værdier:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="index.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x) <span class="co">#første 6</span></span>
-<span id="cb52-2"><a href="index.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.08845348  0.78987078  1.35531216  0.46334777 -1.75220500  0.26248978</span></span>
+<span id="cb52-2"><a href="index.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  0.9282932 -0.1265091 -0.9336469  1.2941221 -0.6585053 -0.9208682</span></span>
 <span id="cb52-3"><a href="index.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(x) <span class="co">#sidste 6</span></span>
-<span id="cb52-4"><a href="index.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -1.1226062 -1.2602736  0.6767594 -0.3581879 -0.8738046 -0.5808460</span></span>
+<span id="cb52-4"><a href="index.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -0.1243023  0.4736133 -0.5356483 -1.8912613 -1.0465018  0.6558270</span></span>
 <span id="cb52-5"><a href="index.html#cb52-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="co">#første værdi</span></span>
-<span id="cb52-6"><a href="index.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.08845348</span></span>
+<span id="cb52-6"><a href="index.html#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.9282932</span></span>
 <span id="cb52-7"><a href="index.html#cb52-7" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">length</span>(x)] <span class="co">#sidste data point</span></span>
-<span id="cb52-8"><a href="index.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] -0.580846</span></span></code></pre></div>
+<span id="cb52-8"><a href="index.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.655827</span></span></code></pre></div>
 <p>Bemærk, at i modsætning til Python og mange andre programmeringssprog, bruger R en 1-baseret indeksering. Det betyder, at den første værdi er x[1] og ikke x[0] som i Python.</p>
 </div>
 <div id="measures-of-central-tendency" class="section level3 hasAnchor" number="1.10.2">
@@ -760,11 +760,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb53-5"><a href="index.html#cb53-5" aria-hidden="true" tabindex="-1"></a>my_var <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
 <span id="cb53-6"><a href="index.html#cb53-6" aria-hidden="true" tabindex="-1"></a>my_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
 <span id="cb53-7"><a href="index.html#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_mean,my_median,my_max,my_min,my_var,my_sd) <span class="co">#print results</span></span></code></pre></div>
-<pre><code>## [1] -0.4745678 -0.4517614  1.6662633 -2.5947222  1.2410995  1.1140465</code></pre>
+<pre><code>## [1]  0.0013300 -0.1243023  2.5416339 -1.8912613  1.2670785  1.1256458</code></pre>
 <p>Man kan også lave et summary af dataen, som består af mange af de statistiker navnt ovenpå:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="index.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## -2.5947 -1.2603 -0.4518 -0.4746  0.3952  1.6663</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -1.89126 -0.85803 -0.12430  0.00133  0.65583  2.54163</code></pre>
 </div>
 <div id="tapply" class="section level3 hasAnchor" number="1.10.3">
 <h3><span class="header-section-number">1.10.3</span> <code>tapply()</code><a href="index.html#tapply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
