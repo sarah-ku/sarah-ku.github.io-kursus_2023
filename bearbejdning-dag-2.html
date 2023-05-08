@@ -984,11 +984,11 @@ Figure 6.2: wide til long med Iris
 <span id="cb351-6"><a href="bearbejdning-dag-2.html#cb351-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>Cabin) <span class="sc">%&gt;%</span> </span>
 <span id="cb351-7"><a href="bearbejdning-dag-2.html#cb351-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>()</span></code></pre></div>
 <hr />
-<p><strong>Problem 2)</strong> Fra <code>titanic_clean</code> beregn den gennemsnitlige alder af alle passagerer ombord skibet.</p>
+<p><strong>Problem 2)</strong> Fra <code>titanic_clean</code> datasættet, beregn den gennemsnitlige alder af alle passagerer ombord på skibet.</p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="bearbejdning-dag-2.html#cb352-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="sc">%&gt;%</span></span>
 <span id="cb352-2"><a href="bearbejdning-dag-2.html#cb352-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(....) <span class="co">#rediger her</span></span></code></pre></div>
 <ul>
-<li>I samme kommando beregne også den maksimum alder og minimum alder, samt proportionen af passagerer, der er under 18 (for den sidste se mit eksempel med <code>Pclass</code> ovenpå i sektion-<code>6.2.2</code>). Dataframen skal ser sådan ud:</li>
+<li>I samme kommando, beregn også den maksimale alder og den minimale alder, samt proportionen af passagerer, der er under 18 (for den sidste, se mit eksempel med <code>Pclass</code> tidligere i sektion <strong>6.2.2</strong>). Dataframen skal se sådan ud:</li>
 </ul>
 <pre><code>## # A tibble: 1 × 4
 ##   mean_alder max_alder min_alder under_18p
@@ -996,76 +996,34 @@ Figure 6.2: wide til long med Iris
 ## 1       29.7        80      0.42     0.158</code></pre>
 <hr />
 <p><strong>Problem 3)</strong></p>
-<p><strong>a)</strong> Beregne samme summary statistics som i sidste problem men anvende <code>group_by()</code> til at først opdel efter variablen <code>Pclass</code>.</p>
-<p><strong>b)</strong> Brug din nye dataframe med dine summary statistikker til at lave et barplot med <code>stat="identity"</code> (i stedet for <code>stat="count"</code> som er standarden) som viser den gennemsnitlige alder på y-aksen, og plottet er opdelte efter <code>Pclass</code> på x-aksen (vær opmærksomme på datatypen på <code>Pclass</code> med hensyn til farverne/x-aksen)</p>
-<p><strong>c)</strong> Anvend <code>pivot_longer()</code> på din dataframe med dine summary statistikker (brug indstilling <code>cols = -Pclass</code> i funktionen)</p>
-<p><strong>d)</strong> Brug din long-form dataframe af dine summary statistikker til at lave plots af samtlige summary statistikker med én <code>ggplot</code> kommando (adskil dem ved at benytte <code>facet_wrap</code> og opdele efter <code>Pclass</code> indenfor hvert plot, ligesom i følgende).</p>
+<p><strong>a)</strong> Beregn samme opsummeringsstatistikker som i sidste problem, men brug <code>group_by()</code> til først at opdele efter variablen <code>Pclass</code>.</p>
+<p><strong>b)</strong> Brug din nye dataframe med dine opsummeringsstatistikker til at lave et søjlediagram med <code>stat="identity"</code> (i stedet for <code>stat="count"</code> som er standarden), der viser den gennemsnitlige alder på y-aksen og er opdelt efter <code>Pclass</code> på x-aksen (vær opmærksom på datatypen for <code>Pclass</code> med hensyn til farverne/x-aksen).</p>
+<p><strong>c)</strong> Anvend <code>pivot_longer()</code> på din dataframe med dine opsummeringsstatistikker (brug indstillingen <code>cols = -Pclass</code> i funktionen).</p>
+<p><strong>d)</strong> Brug din long-form dataframe af dine opsummeringsstatistikker til at lave plots af alle opsummeringsstatistikker med én <code>ggplot</code> kommando (adskil dem ved at benytte <code>facet_wrap</code> og opdele efter <code>Pclass</code> indenfor hvert plot, ligesom i følgende).</p>
 <p><img src="visualisering_22_files/figure-html/unnamed-chunk-351-1.png" width="480" /></p>
 <hr />
 <p><strong>Problem 4)</strong></p>
-<p><strong>a)</strong> Beregne samme summary statistics som i <strong>2</strong>) men anvende <code>group_by()</code> til at først opdele efter <strong>både</strong> variablerne <code>Pclass</code> og <code>Sex</code>.</p>
+<p><strong>a)</strong> Beregn de samme opsummeringsstatistikker som i <strong>2</strong>), men anvend <code>group_by()</code> for først at opdele efter <strong>både</strong> variablerne <code>Pclass</code> og <code>Sex</code>.</p>
 <ul>
-<li>OBS: Man får en advarsel “<code>summarise()</code> has grouped output by ‘Pclass’ …” fordi din dataframe er stadig betragtet som opdelte efter <code>Pclass</code>, som du skal tage i betragtning hvis du laver flere beregninger på den.</li>
-<li>Brug til sidste <code>ungroup()</code> på din nye dataframe for at være sikker på, at den ikke længere er opdelt efter en variabel.</li>
+<li>OBS: Du får en advarsel “<code>summarise()</code> has grouped output by ‘Pclass’ …”, fordi din dataframe stadig betragtes som opdelt efter <code>Pclass</code>. Dette skal tages i betragtning, hvis du foretager yderligere beregninger på den.</li>
+<li>Brug til sidst <code>ungroup()</code> på din nye dataframe for at sikre, at den ikke længere er opdelt efter nogen variabel.</li>
 </ul>
-<p><strong>b)</strong> Brug <code>pivot_longer</code> til at få datasættet i long form (tænk over hvilke variabler skal være i indstillingen <code>cols</code> - det kan hjælp at skrive dem i en vector med notationen <code>c()</code>). Nøglekolonnen skal hed <code>stat</code> og kolonnen med værdierne skal hed <code>values</code>.</p>
+<p><strong>b)</strong> Brug <code>pivot_longer()</code>-funktionen til at omdanne datasættet til long-form med dine opsummeringsstatistikker i en enkelt kolonne. Nøglekolonnen skal hedde <code>stat</code>, og kolonnen med værdierne skal hedde <code>values</code>.</p>
 <pre><code>## `summarise()` has grouped output by &#39;Pclass&#39;. You can override using the
 ## `.groups` argument.</code></pre>
-<p><strong>c)</strong> Lav et plot af samtlige summary statistikker, som er i long form og ser ud som følgende plot.</p>
+<p><strong>c)</strong> Lav et plot af alle opsummeringsstatistikker, som er i long-format og ligner følgende plot.</p>
 <p><img src="visualisering_22_files/figure-html/unnamed-chunk-354-1.png" width="480" /></p>
 <hr />
-<p><strong>Problem 5)</strong> <em><code>group_by()</code> med tre variabler og <code>summarise()</code></em>. Afprøv en kombination med tre forskellige variabler (vælg selv) indenfor <code>group_by()</code> og bruge <code>summarise()</code> til at beregne middelværdien for <code>Fare</code>.</p>
+<p><strong>Problem 5)</strong> <em><code>group_by()</code> med tre variabler og <code>summarise()</code></em>. Prøv en kombination med tre forskellige variabler (vælg selv) indenfor <code>group_by()</code> og brug <code>summarise()</code> til at beregne middelværdien for variablen <code>Fare</code>.</p>
 <ul>
-<li>Anvend <code>ungroup()</code> når du er færdig med summarise</li>
-<li>Lave et plot for at visualisere <code>meanFare</code>. Idé: som mulighed kan man tilføje variabler til <code>facet_grid()</code> - for eksempel <code>facet_grid(~Var1 + Var2)</code>.</li>
+<li>Anvend <code>ungroup()</code> når du er færdig med at opsummere</li>
+<li>Lav et plot for at visualisere <code>meanFare</code>. Idé: som en mulighed, kan man tilføje variabler til <code>facet_grid()</code> - for eksempel <code>facet_grid(~Var1 + Var2)</code>.</li>
 </ul>
 <hr />
-<p><strong>Problem 6)</strong> <em><code>pivot_longer()</code></em> Lav følgende plot</p>
-<ul>
-<li>Først lave to nye variabler fra <code>SibSp</code> og <code>Parch</code>, hvor der står “yes” hvis værdien er større end 0</li>
-<li><code>select</code> nødvendige variabler</li>
-<li>Lave om til long form (tænk over hvilke variabler skal være i en enkel kolon)</li>
-<li>Brug din long form dataframe til at lave plottet</li>
-</ul>
+<p><strong>Problem 6)</strong> <em><code>pivot_longer()</code></em> Først skal du lave to nye variabler ud fra <code>SibSp</code> og <code>Parch</code>, hvor der står “yes”, hvis værdien er større end 0. Anvend derefter <code>select()</code> på <code>Fare</code>, <code>Age</code> og dine to nye variabler. Lav derefter følgende plot:</p>
 <p><img src="visualisering_22_files/figure-html/unnamed-chunk-356-1.png" width="480" /></p>
-<!-- * Lave en ny dataramme fra `titanic_clean` der viser tre summary statistics opdelt efter Survived: den gennemsnitlige alder, den gennemsnitlige `Fare` og proportionen som er "male". -->
-<!-- ```{r,echo=FALSE,eval=FALSE} -->
-<!-- titanic_stats <- titanic_clean %>% -->
-<!--   group_by(Survived) %>% -->
-<!--   summarise(meanAge=mean(Age), -->
-<!--             propMal=sum(Sex=="male")/n(), -->
-<!--             meanFare=mean(Fare)) -->
-<!-- ``` -->
-<!-- * Benyt `pivot_longer()` til at få de resulterende dataramme i Long form. Husk at angiv `-Survived` da vi kun vil have vores beregnet værdier med. -->
-<!-- * Bruge resultatet til at lav et barplot med `Survived` på x-aksen og `value` på y-aksen (husk at angiv i plot, at `Survived` er en factor).  -->
-<!-- * Anvend `facet_wrap()` til at adskille efter `name` og bruger indstillingen `scales="free"`. -->
-<!-- ```{r,echo=FALSE,eval=FALSE} -->
-<!-- titanic_stats %>% pivot_longer(-Survived) %>% -->
-<!--   ggplot(aes(x=factor(Survived),y=value,fill=name)) +  -->
-<!--   geom_bar(stat="identity") +  -->
-<!--   theme_bw() +  -->
-<!--   facet_wrap(~name,ncol=3,scales = "free") -->
-<!-- ``` -->
-<!-- __Problem 2)__ *Mere øvelse med `pivot_longer()`* -->
-<!-- Her er nogle fiktiv data om hjerterytmene for seks forskellige patienter, efter at have taget fire forskellige lægemidler: -->
-<!-- ```{r} -->
-<!-- heart_rate <- tibble("patient"=c("George","Sally","Henry","Peter","Charlotte","Jason"),"drugA"=c(72,84,64,60,74,88),"drugB"=c(74,84,66,58,72,87),"drugC"=c(80,88,68,64,78,88),"drugD"=c(68,76,64,58,70,72)) -->
-<!-- heart_rate -->
-<!-- ``` -->
-<!-- * Bruge `pivot_longer()` til at få datasættet i Long form. Er der nogle kolonner som ikke skal med i den enkel kolon med værdier? Kalde den kolon med værdier "heartrate" og den nøgle kolon med variable-navne "drug". -->
-<!-- * Bruge `group_by()` og `summarise()` til at beregne den gennemsnitlige heartrate efter drug. -->
-<!-- * Lave et plot som viser den gennemsnitlige heartrate efter drug. -->
-<!-- ```{r,echo=FALSE,eval=FALSE} -->
-<!-- heart_rate %>%  -->
-<!--   pivot_longer(-patient,names_to="drug",values_to="heartrate") %>% -->
-<!--   group_by(drug) %>% -->
-<!--   summarise(mean_rate = mean(heartrate)) %>% -->
-<!--   ggplot(aes(x=drug,y=mean_rate,fill=drug)) +  -->
-<!--   geom_bar(stat="identity") +  -->
-<!--   theme_minimal() -->
-<!-- ``` -->
 <hr />
-<p><strong>Problem 7)</strong> <em><code>Pivot_wider()</code></em> Vi har en <code>tribble</code> som jeg har kopiret fra <a href="https://r4ds.had.co.nz/index.html" class="uri">https://r4ds.had.co.nz/index.html</a>.</p>
+<p><strong>Problem 7)</strong> <em><code>Pivot_wider()</code></em> Vi har en <code>tribble</code>, som jeg har kopieret fra <a href="https://r4ds.had.co.nz/index.html" class="uri">https://r4ds.had.co.nz/index.html</a>.</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="bearbejdning-dag-2.html#cb355-1" aria-hidden="true" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb355-2"><a href="bearbejdning-dag-2.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name,             <span class="sc">~</span>names,  <span class="sc">~</span>values,</span>
 <span id="cb355-3"><a href="bearbejdning-dag-2.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#-----------------|--------|------</span></span>
@@ -1076,7 +1034,7 @@ Figure 6.2: wide til long med Iris
 <span id="cb355-8"><a href="bearbejdning-dag-2.html#cb355-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Brady Smith&quot;</span>,     <span class="st">&quot;age&quot;</span>,       <span class="dv">23</span>,</span>
 <span id="cb355-9"><a href="bearbejdning-dag-2.html#cb355-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Brady Smith&quot;</span>,     <span class="st">&quot;height&quot;</span>,   <span class="dv">177</span></span>
 <span id="cb355-10"><a href="bearbejdning-dag-2.html#cb355-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Brug <code>pivot_wider()</code> på <code>people</code>. Vi er nødt til at specificer som minimum <code>names_from</code> og <code>values_from</code> indenfor <code>pivot_wider()</code> - prøv at angiv de relevante variabler</p>
+<p>Brug <code>pivot_wider()</code> på <code>people</code> for at får datasættet i wide-form således at <code>age</code> og <code>height</code> hver har deres egne kolonner.</p>
 <hr />
 <p><strong>Problem 8)</strong> <em><code>left_join()</code> øvelse</em>. Kør følgende kode med to tribbles:</p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="bearbejdning-dag-2.html#cb356-1" aria-hidden="true" tabindex="-1"></a>superheroes <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
@@ -1103,8 +1061,7 @@ Figure 6.2: wide til long med Iris
 <li>Benyt <code>full_join()</code> til at forbinde <code>publishers</code> til <code>superheroes</code> - hvor mange observationer få man med nu? Hvorfor?</li>
 </ul>
 <hr />
-<p><strong>Problem 9)</strong> <em><code>left_join()</code> øvelse</em>.</p>
-<p>Køre nedenstående kode, hvor der er to dataframes - <code>iris2</code> og <code>sample_table</code>. Dataframen <code>iris2</code> er ikke særlig informativ med hensyn til hvad de forskellige samples egentlige er, men oplysningerne om dem står i <code>sample_table</code>. Brug <code>left_join()</code> til at tilføje <code>sample_table</code> til <code>iris2</code> for at få en dataramme som indeholder både de data og de samples oplysninger.</p>
+<p><strong>Problem 9)</strong> <em><code>left_join()</code> øvelse</em>. Kør nedenstående kode, hvor der er to dataframes - <code>iris2</code> og <code>sample_table</code>. Dataframen <code>iris2</code> er ikke særlig informativ med hensyn til, hvad de forskellige prøver egentlig er, men oplysningerne om dem findes i <code>sample_table</code>. Brug <code>left_join()</code> til at tilføje <code>sample_table</code> til <code>iris2</code> for at få en dataramme, som indeholder både data og oplysninger om prøverne.</p>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="bearbejdning-dag-2.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
 <span id="cb357-2"><a href="bearbejdning-dag-2.html#cb357-2" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(iris)</span>
 <span id="cb357-3"><a href="bearbejdning-dag-2.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(iris2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>,<span class="st">&quot;sample4&quot;</span>,<span class="st">&quot;Species&quot;</span>)</span>
@@ -1136,11 +1093,16 @@ Figure 6.2: wide til long med Iris
 <hr />
 <p><strong>Problem 10)</strong> <em><code>Separate()</code> øvelse</em></p>
 <ul>
-<li>Tag udgangspunkt i datasættet <code>titanic_clean</code> og benyt funktionen <code>Separate()</code> til at opdele variablen <code>Name</code> ind til to variabler, “Surname” og “Rest” (Godt råd: brug <code>sep=", "</code> for at undgå, at man få en unødvendig mellemrum lige før “Rest”).</li>
-<li>Anvend <code>Separate()</code> en gang til, men for at opdele variablen <code>Rest</code> into to variabler, “Title” og “Names”. Hvad bruger man som <code>sep</code>? (Hint: brug “\\” foran en punktum).</li>
-<li>Beregn summary statistikker for hver “Title” - mange passagerer, gennemsnits alder, proportionen der overlevede, og proportionen der rejste i første klass.</li>
-<li>Arrange din ny dataframe efter hvor mange personer der er for hver “Title” - mest på toppen og mindst på bunden.</li>
+<li>Tag udgangspunkt i datasættet <code>titanic_clean</code> og benyt funktionen <code>separate()</code> til at opdele variablen <code>Name</code> i to variabler, “Surname” og “Rest” (Godt råd: brug <code>sep=", "</code> for at undgå, at man får et unødvendigt mellemrum lige før “Rest”).</li>
+<li>Anvend <code>separate()</code> en gang til, men for at opdele variablen <code>Rest</code> i to variabler, “Titel” og “Names”. Hvad bruger man som <code>sep</code>? (Hint: brug “\\” foran en punktum).</li>
+<li>Beregn opsummeringsstatistikker for hver “Titel” - antal passagerer, gennemsnitsalder, andelen der overlevede og andelen der rejste i første klasse.</li>
+<li>Arrangér din nye dataframe efter, hvor mange personer der er for hver “Titel” - flest øverst og færrest nederst.</li>
 </ul>
+<hr />
+<p><strong>Problem 7</strong> <em>Ekstra pivot_longer() øvelse</em> Åbn datasættet <code>airquality</code> (<code>data(airquality)</code>) og lav følgende plot:</p>
+<pre><code>## `summarise()` has grouped output by &#39;Month&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<p><img src="visualisering_22_files/figure-html/unnamed-chunk-368-1.png" width="480" /></p>
 <hr />
 <p><strong>Problem 11)</strong> Valgfri ekstra: lav en ny dataramme med alle passagerer, der hedder “Alice” eller “Elizabeth” (brug Google her).</p>
 <hr />
