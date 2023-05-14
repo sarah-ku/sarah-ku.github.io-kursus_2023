@@ -1099,29 +1099,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb452-3"><a href="functional-programming-med-purrr-pakken.html#cb452-3" aria-hidden="true" tabindex="-1"></a>iris_nested <span class="sc">%&gt;%</span> ???<span class="co">#anvend din funktion  </span></span></code></pre></div>
 <p><strong>c</strong>) Anvend <code>pluck()</code>-funktionen på kolonnerne <code>new_column_long</code> og <code>new_column_wide</code> til at kigge på den første datasæt for at se, om du har outputtet i long/wide form som forventede.</p>
 <hr />
-<!-- __Problem 6__) _group_by/nest + map_ på datasættet `mtcars` -->
-<!-- __a)__ Åbn `mtcars` med `data(mtcars)` og anvende `group_by()`/`nest()` for at opdele datasættet i tre efter variablen `cyl`. -->
-<!-- __b__) Lave nye kolonner med `map` og inddrage hensigtsmæssige funktioner, som beskriver dine tre datasæt, der er lagret i kolonne `data` (outputtet skal være `dbl`): -->
-<!--   * Antal observationer  -->
-<!--   * Korrelationskoefficient mellem `wt` og `drat` (funktionen `cor`) -->
-<!--   * Antal unikke værdier fra variablen `gear` -->
-<!-- __c__) Omsætte dine statistikke til et plot for at sammenligne de tre datasæt. -->
-<!-- ```{r,echo=F,eval=F} -->
-<!-- data(mtcars) -->
-<!-- mtcars %>%  -->
-<!--   group_by(cyl) %>%  -->
-<!--   nest() %>% -->
-<!--     mutate( "antal_biler" = map_dbl(data,nrow), -->
-<!--             "drat_wt_cor" = map_dbl(data,~cor(.x %>% pull(wt),.x %>% pull(drat))), -->
-<!--             "distinct_gear" = map_dbl(data,~(.x %>% pull(gear) %>% n_distinct)) -->
-<!--            ) %>% -->
-<!--       pivot_longer(cols=c("antal_biler","drat_wt_cor","distinct_gear")) %>% -->
-<!--         ggplot(aes(x=cyl,y=value,fill=name)) +  -->
-<!--            geom_bar(stat="identity") +  -->
-<!--            facet_wrap(~name,scales="free") +  -->
-<!--            theme_bw() -->
-<!-- ``` -->
-<!-- --- -->
 <p><strong>Problem 8</strong>) <em>Forberedelse til næste lektion</em> For at bedre kunne se værdien af at bruge <code>group_by()</code>/<code>nest()</code> + <code>map()</code> kan vi gennemgå en simpel eksampel som indledning til vores næste lektion.</p>
 <p><strong>a</strong>) Vi bruger følgende funktion:</p>
 <div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="functional-programming-med-purrr-pakken.html#cb453-1" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
@@ -1142,6 +1119,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Man får en pæn dataramme frem med alle de forskellige statistikker fra <code>t.test()</code>.</p></li>
 <li><p>Vælge en statistik og omsætte den til et plot.</p></li>
 </ul>
+<p><strong>Problem 9</strong> <em>Kun ekstra hvis du vil øve mere</em> <em>group_by/nest + map</em> på datasættet <code>mtcars</code> –&gt;</p>
+<p><strong>a)</strong> Åbn <code>mtcars</code> med <code>data(mtcars)</code> og anvende <code>group_by()</code>/<code>nest()</code> for at opdele datasættet i tre efter variablen <code>cyl</code>.</p>
+<p><strong>b</strong>) Lave nye kolonner med <code>map</code> og inddrage hensigtsmæssige funktioner, som beskriver dine tre datasæt, der er lagret i kolonne <code>data</code> (outputtet skal være <code>dbl</code>):</p>
+<ul>
+<li>Antal observationer</li>
+<li>Korrelationskoefficient mellem <code>wt</code> og <code>drat</code> (funktionen <code>cor</code>)</li>
+<li>Antal unikke værdier fra variablen <code>gear</code></li>
+</ul>
+<p><strong>c</strong>) Omsætte dine statistikke til et plot for at sammenligne de tre datasæt.</p>
+<!-- --- -->
 <!-- __Problem 11__ -->
 <!-- #nestby and map VS groupby and summarise -->
 <!-- ```{r} -->
