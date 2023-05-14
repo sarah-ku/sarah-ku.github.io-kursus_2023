@@ -1069,6 +1069,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>mutate(new_column_ratio = map(data,~(.x$Sepal.Width/.x$Sepal.Length)))</code></li>
 </ul></li>
 </ul>
+<hr />
 <p><strong>Problem 6</strong>) Åbn datasættet <code>msleep</code> ved at bruge <code>data(msleep)</code>.</p>
 <p><strong>a</strong>) Beregn gennemsnitsværdierne for de numeriske variabler i <code>msleep</code>-datasættet (<code>data(msleep)</code>). Husk at anvende parameteren <code>na.rm=T</code> i <code>mean()</code>-funktionen for at fjerne manglende værdier i beregningen.</p>
 <p><strong>b</strong>) Foretag samme beregning som i <strong>a</strong>), men kun for tilfælde, hvor variablen <code>vore</code> er “carni”.</p>
@@ -1081,24 +1082,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>e</strong>) Tag udgangspunkt i dit resultat fra <strong>d</strong>) og lav plots af dine opsummeringsstatistikker.</p>
 <p><strong>f</strong>) I dette tilfælde, kunne samme plots fra <strong>e</strong>) også opnås ved at bruge <code>group()</code> og <code>summarise()</code>-funktioner på den oprindelige datasæt <code>msleep</code>. Prøv det.</p>
+<hr />
 <p><strong>Problem 6</strong>) <strong>a</strong>) Anvend <code>group_by</code> og <code>nest()</code> for at opdel <code>msleep</code> efter variablen <code>vore</code> og brug følgende funktion sammen med <code>map()</code> for at oprette en ny kolonne i din nested dataframe, der hedder <code>my_plots</code>.</p>
 <p><strong>b</strong>) Brug funktionen <code>grid.arrange()</code> fra R-pakken <code>gridExtra</code> til at vise plottene fra din nye kolonne (angive at parameteren <code>grobs</code> skal være din nye kolonne). Gør din plots pænere ved at tilføje et tema/farver osv. til <code>my_plot_func</code> fra <strong>a</strong>).</p>
-<p><strong>Problem 7</strong>)</p>
-<p><strong>c</strong>) <em>Skift mellem long og wide form</em> Anvend <code>group_by</code> og <code>nest</code> til at</p>
-<ul>
-<li>Afprøv også følgende funktion med <code>map()</code>-funktionen på kolonnen <code>data</code> (angiv ny kolonnenavne <code>new_column_long</code> i <code>mutate()</code>).</li>
-</ul>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="functional-programming-med-purrr-pakken.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add an id and put data into long form</span></span>
-<span id="cb450-2"><a href="functional-programming-med-purrr-pakken.html#cb450-2" aria-hidden="true" tabindex="-1"></a>my_func_longer <span class="ot">&lt;-</span> <span class="er">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>id)</span></code></pre></div>
-<ul>
-<li>Skriv en funktion og anvend den på kolonnen <code>new_column_long</code>, der laver hvert datasæt i kolonnen om til wide-form igen (lav ny kolonne “new_column_wide”).</li>
-</ul>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="functional-programming-med-purrr-pakken.html#cb451-1" aria-hidden="true" tabindex="-1"></a>my_func_wider <span class="ot">&lt;-</span> ??? <span class="co">#lave long data om til wide form (husk at angiv names_from,values_from,id_cols)</span></span>
-<span id="cb451-2"><a href="functional-programming-med-purrr-pakken.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb451-3"><a href="functional-programming-med-purrr-pakken.html#cb451-3" aria-hidden="true" tabindex="-1"></a>iris_nested_stats <span class="sc">%&gt;%</span> ???<span class="co">#anvend din funktion  </span></span></code></pre></div>
-<ul>
-<li>Anvend <code>pluck</code> på kolonnerne <code>new_column_long</code> og <code>new_column_wide</code> til at kigge på den første datasæt for at se, om du har outputtet i long/wide form som forventede.</li>
-</ul>
+<hr />
+<p><strong>Problem 7</strong>) <em>Skift mellem long og wide form</em> Tag udgangspunkt i datasættet <code>iris</code>:</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="functional-programming-med-purrr-pakken.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb450-2"><a href="functional-programming-med-purrr-pakken.html#cb450-2" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris)) <span class="co">#tilføj en id</span></span></code></pre></div>
+<p>Vi tilføjer kolonnen <code>id</code> så at hver plante (række) kan identificeres når vi går fra long- til wide- form i <strong>b</strong>).</p>
+<p><strong>a</strong>) Anvend <code>group_by()</code> og <code>nest()</code> til at opdele datasættet efter <code>Species</code> og bruge følgende funktion med <code>map()</code> for at tilføje en ny kolonne med navnet <code>new_column_long</code>.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="functional-programming-med-purrr-pakken.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="co">#put data into long form</span></span>
+<span id="cb451-2"><a href="functional-programming-med-purrr-pakken.html#cb451-2" aria-hidden="true" tabindex="-1"></a>my_func_longer <span class="ot">&lt;-</span> <span class="er">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>id)</span></code></pre></div>
+<p><strong>b</strong>) Skriv en ny funktion og anvend den på kolonnen <code>new_column_long</code> (ikke <code>data</code>), der laver hvert (long-form) datasæt i kolonnen om til wide-form igen (lav ny kolonne <code>new_column_wide</code>). Her skal du bruge parameteren <code>id_cols=id</code> for at korrekte identificere de forskellige plante (uden <code>id</code> ved funktionen ikke, om eksempelvis en bestemt <code>Sepal.Length</code> værdi og en bestemt <code>Sepal.Width</code> værdi referere til precis samme plante og derefore skal have samme række i wide-form).</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="functional-programming-med-purrr-pakken.html#cb452-1" aria-hidden="true" tabindex="-1"></a>my_func_wider <span class="ot">&lt;-</span> ??? <span class="co">#lave long data om til wide form (husk at angiv names_from,values_from,id_cols)</span></span>
+<span id="cb452-2"><a href="functional-programming-med-purrr-pakken.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb452-3"><a href="functional-programming-med-purrr-pakken.html#cb452-3" aria-hidden="true" tabindex="-1"></a>iris_nested <span class="sc">%&gt;%</span> ???<span class="co">#anvend din funktion  </span></span></code></pre></div>
+<p><strong>c</strong>) Anvend <code>pluck()</code>-funktionen på kolonnerne <code>new_column_long</code> og <code>new_column_wide</code> til at kigge på den første datasæt for at se, om du har outputtet i long/wide form som forventede.</p>
 <hr />
 <!-- __Problem 6__) _group_by/nest + map_ på datasættet `mtcars` -->
 <!-- __a)__ Åbn `mtcars` med `data(mtcars)` og anvende `group_by()`/`nest()` for at opdele datasættet i tre efter variablen `cyl`. -->
@@ -1123,23 +1122,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!--            theme_bw() -->
 <!-- ``` -->
 <!-- --- -->
-<p><strong>Problem 8</strong>) <em>Forberedelse til næste lektion</em></p>
-<p>For at bedre kunne se værdien af at bruge <code>group_by()</code>/<code>nest()</code> + <code>map()</code> kan vi gennemgå en simpel eksampel som indledning til vores næste lektion.</p>
-<p>Tag funktionen:</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="functional-programming-med-purrr-pakken.html#cb452-1" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
+<p><strong>Problem 8</strong>) <em>Forberedelse til næste lektion</em> For at bedre kunne se værdien af at bruge <code>group_by()</code>/<code>nest()</code> + <code>map()</code> kan vi gennemgå en simpel eksampel som indledning til vores næste lektion.</p>
+<p><strong>a</strong>) Vi bruger følgende funktion:</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="functional-programming-med-purrr-pakken.html#cb453-1" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
 <ul>
 <li>anvend <code>group_by(Species)</code> og dernæst <code>nest()</code> på datasættet <code>iris</code>.</li>
 <li>tilføj <code>mutate()</code> til at lave en ny kolon som hedder <code>t_test</code> og bruge funktionen indenfor <code>map()</code> på kolonnen <code>data</code>.</li>
 <li>tilføj <code>pull(t_test)</code> til din kommando - man får de tre t-tests frem, som man lige har beregnet.</li>
 <li>prøv <code>unnest(t_test)</code> i stedet for <code>pull(t_test)</code> - man får en advarsel fordi de t-test resultater ikke er i en god form til at vise indenfor en dataramme. Vi vil gerne ændre deres output til tidy-form først.</li>
 </ul>
-<hr />
+<p><strong>b</strong>) Nu installer R-pakken <code>broom</code> (<code>install.packages("broom")</code>) og indlæs pakken. Vi vil gerne bruge funktionen <code>glance()</code>, der få statistikkerne fra <code>t.test()</code> ind i en pæn form.</p>
 <ul>
-<li>Nu installer R-pakken <code>broom</code> (<code>install.packages("broom")</code>)</li>
-<li>Lav samme som ovenstående men bruge følgende funktion i stedet for (<code>glance()</code> få statistikkerne fra <code>t.test()</code> ind i en pæn form (<strong>tidy</strong>))</li>
+<li>Lav samme som i <strong>a</strong>) men bruge følgende funktion i stedet for:</li>
 </ul>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="functional-programming-med-purrr-pakken.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb453-2"><a href="functional-programming-med-purrr-pakken.html#cb453-2" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length) <span class="sc">%&gt;%</span> <span class="fu">glance</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="functional-programming-med-purrr-pakken.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb454-2"><a href="functional-programming-med-purrr-pakken.html#cb454-2" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length) <span class="sc">%&gt;%</span> <span class="fu">glance</span>()</span></code></pre></div>
 <ul>
 <li><p>Tilføj <code>pull</code> eller <code>unnest</code> til din kommando som før og se på resultatet.</p></li>
 <li><p>Man får en pæn dataramme frem med alle de forskellige statistikker fra <code>t.test()</code>.</p></li>
