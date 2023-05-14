@@ -1009,21 +1009,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Brug <code>map()</code> funktioner til at beregne følgende:</p>
 <p><strong>a)</strong> Andvend <code>select</code> for at udvælge variabler <code>cut</code>, <code>color</code> og <code>clarity</code>, og dernæst beregn antallet af unikke værdier til hver (<code>n_distinct</code>-funktionen). Dit resultat skal være en list (<code>lst</code> - anvende standard <code>map()</code> funktion).</p>
 <p><strong>b)</strong> Udvalg variablerne som er numeriske og dernæst beregne gennemsnittet til hver. Dit resultat skal være en double (<code>dbl</code>).</p>
-<p><strong>c)</strong> Beregne datatypen (funktionen <code>typeof()</code>) til alle variabler. Resultatet skal være en dataframe.</p>
-<p><strong>d)</strong> Beregn variansen for hver numeriske variabel i <code>iris</code> datasættet ved hjælp af en passende <code>map()</code>-funktion.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="functional-programming-med-purrr-pakken.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
-<span id="cb441-2"><a href="functional-programming-med-purrr-pakken.html#cb441-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(var)</span></code></pre></div>
-<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
-##    0.6856935    0.1899794    3.1162779    0.5810063</code></pre>
+<p><strong>c)</strong> Beregne datatypen (anvend funktionen <code>typeof()</code>) til alle variabler. Resultatet skal være en dataframe.</p>
+<!-- __d)__ Beregn variansen for hver numeriske variabel i `iris` datasættet ved hjælp af en passende `map()`-funktion. -->
+<!-- ```{r} -->
+<!-- data(iris) -->
+<!-- iris %>% select(where(is.numeric)) %>% map_dbl(var) -->
+<!-- ``` -->
 <hr />
 <p><strong>Problem 3</strong>) <em><code>map()</code> øvelse med brugerdefinerede funktioner</em> Indlæse <code>diamonds</code> med <code>data(diamonds)</code>.</p>
 <p>Husk, at når man inddrager nogle data <code>.x</code>, for eksempel når man vil bruge en custom funktion eller specificer ikke-standard indstillinger såsom <code>na.rm=TRUE</code> (for at fjerne <code>NA</code> værdier i beregningen) i funktionen, skal man angiv <code>~</code> i starten:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="functional-programming-med-purrr-pakken.html#cb443-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(n_distinct) <span class="co">#specificere funktion unden instillinger</span></span>
-<span id="cb443-2"><a href="functional-programming-med-purrr-pakken.html#cb443-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">n_distinct</span>(.x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co">#custom funktion</span></span></code></pre></div>
-<p><strong>a</strong>) Afprøve følgende kode linjer og beskrive hvad der sker:</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="functional-programming-med-purrr-pakken.html#cb444-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(carat, depth, price) <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">mean</span>(.x,<span class="at">na.rm=</span>T))</span>
-<span id="cb444-2"><a href="functional-programming-med-purrr-pakken.html#cb444-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cut<span class="sc">==</span><span class="st">&quot;Ideal&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;color&quot;</span>,<span class="st">&quot;clarity&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">map</span>(<span class="sc">~</span><span class="fu">nth</span>(.x,<span class="dv">100</span>))</span>
-<span id="cb444-3"><a href="functional-programming-med-purrr-pakken.html#cb444-3" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(carat, depth, price) <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">ifelse</span>(.x<span class="sc">&gt;</span><span class="fu">mean</span>(.x),<span class="st">&quot;big_value&quot;</span>,<span class="st">&quot;small_value&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="functional-programming-med-purrr-pakken.html#cb441-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(n_distinct) <span class="co">#specificere funktion unden instillinger</span></span>
+<span id="cb441-2"><a href="functional-programming-med-purrr-pakken.html#cb441-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">n_distinct</span>(.x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co">#custom funktion - skal have ~ og .x</span></span></code></pre></div>
+<p><strong>a</strong>) Afprøve følgende kode linjer og beskrive hvad der sker (<code>nth(.x,1)</code> angiver den første værdi fra <code>.x</code>) :</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="functional-programming-med-purrr-pakken.html#cb442-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(carat, depth, price) <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">mean</span>(.x,<span class="at">na.rm=</span>T))</span>
+<span id="cb442-2"><a href="functional-programming-med-purrr-pakken.html#cb442-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(carat, depth, price) <span class="sc">%&gt;%</span> <span class="fu">map_df</span>(<span class="sc">~</span><span class="fu">ifelse</span>(.x<span class="sc">&gt;</span><span class="fu">mean</span>(.x),<span class="st">&quot;big_value&quot;</span>,<span class="st">&quot;small_value&quot;</span>))</span>
+<span id="cb442-3"><a href="functional-programming-med-purrr-pakken.html#cb442-3" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cut<span class="sc">==</span><span class="st">&quot;Ideal&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;color&quot;</span>,<span class="st">&quot;clarity&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">map</span>(<span class="sc">~</span><span class="fu">nth</span>(.x,<span class="dv">100</span>)) </span></code></pre></div>
 <p>Brug brugerdefinerede funktioner inden for <code>map()</code> til at beregne følgende:</p>
 <ul>
 <li>Vælg variablerne <code>carat</code>, <code>depth</code>, <code>table</code> og <code>price</code>, og for hver kolonne, læg tre til værdierne og kvadrer derefter resultatet (<code>^2</code>). Det endelige resultat skal være en dataramme.</li>
@@ -1033,28 +1033,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Problem 4)</strong> <em>Brug af map på forskellige datatyper</em> Vi har set, at når vi anvender <code>map()</code> på en dataframe, anvendes en funktion på hver kolonne. Lad os se, hvad der sker, når vi har forskellige datatyper:</p>
 <p><strong>a</strong>) (<em>En vektor af tal</em>)</p>
 <ul>
-<li>Kør det følgende - hvad sker der?</li>
+<li>Kør det følgende og bemærk, at funktionen i <code>map()</code> anvendes til hvert tal i vectoren.</li>
 </ul>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="functional-programming-med-purrr-pakken.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span>.x,<span class="at">sd=</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="functional-programming-med-purrr-pakken.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span>.x<span class="sc">*</span><span class="dv">2</span>)</span>
+<span id="cb443-2"><a href="functional-programming-med-purrr-pakken.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span>.x,<span class="at">sd=</span><span class="dv">1</span>))</span></code></pre></div>
 <ul>
 <li>Tag udgangspunkt i <code>c(1:10)</code> og brug <code>map_dbl</code> til at beregne <code>log()</code> for hvert tal i vektoren (angiv indstillingen <code>base=5</code>):</li>
 </ul>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="functional-programming-med-purrr-pakken.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> ???</span></code></pre></div>
-<p><strong>b</strong>) (<em>En liste af tibbles</em>)</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="functional-programming-med-purrr-pakken.html#cb447-1" aria-hidden="true" tabindex="-1"></a>my_list_of_tibbles <span class="ot">&lt;-</span> <span class="fu">list</span>( <span class="fu">tibble</span>(<span class="st">&quot;letter&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>), <span class="st">&quot;number&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)),</span>
-<span id="cb447-2"><a href="functional-programming-med-purrr-pakken.html#cb447-2" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">tibble</span>(<span class="st">&quot;letter&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>), <span class="st">&quot;number&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>)),</span>
-<span id="cb447-3"><a href="functional-programming-med-purrr-pakken.html#cb447-3" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">tibble</span>(<span class="st">&quot;letter&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>), <span class="st">&quot;number&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>)))</span></code></pre></div>
-<ul>
-<li>Kør følgende kode, der tager den første <code>tibble</code>, udvælger observationer hvor <code>letter</code> = “a”, og beregner dernæst middelværdien af “number”.</li>
-</ul>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="functional-programming-med-purrr-pakken.html#cb448-1" aria-hidden="true" tabindex="-1"></a>my_list_of_tibbles <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(letter<span class="sc">==</span><span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mn =</span> <span class="fu">mean</span>(number))</span></code></pre></div>
-<ul>
-<li>Nu hvor jeg kan se, at min kode virker for den første <code>tibble</code>, kan jeg ændre den til en funktion og anvende den med <code>map()</code> for at udføre samme proces på alle dataframes i listen. Prøv at køre følgende:</li>
-</ul>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="functional-programming-med-purrr-pakken.html#cb449-1" aria-hidden="true" tabindex="-1"></a>my_list_of_tibbles <span class="sc">%&gt;%</span> <span class="fu">map</span>(<span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">filter</span>(letter<span class="sc">==</span><span class="st">&quot;a&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mn =</span> <span class="fu">mean</span>(number)))</span></code></pre></div>
-<ul>
-<li>Tag udgangspunkt i <code>my_list_of_tibbles</code>, og for hver tibble, vælg alle tilfælde, hvor variablen <code>number</code> er 3, og tæl dernæst, hvor mange <code>a</code> der er tilbage i variablen <code>letter</code>. Du kan afprøve på den første <code>tibble</code>, hvis det hjælper.</li>
-</ul>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="functional-programming-med-purrr-pakken.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> ???</span></code></pre></div>
+<p><strong>b</strong>) Omdan <code>c(1:10)</code> til en liste ved at bruge <code>as.list(c(1:10))</code>. Anvend de samme funktioner som i <strong>a</strong>) på listen. Bemærk, at funktionerne denne gang anvendes på hvert element i listen. Disse elementer kan også være dataframes - ligesom i det næste spørgsmål.</p>
+<!-- __b__) (_En list af tibbles_)  -->
+<!-- ```{r,echo=T,eval=T} -->
+<!-- my_list_of_tibbles <- list( tibble("letter" = c("a","a","a"), "number" = c(1,3,3)), -->
+<!--                             tibble("letter" = c("a","b","b"), "number" = c(3,3,1)), -->
+<!--                             tibble("letter" = c("a","b","a"), "number" = c(2,3,3))) -->
+<!-- ``` -->
+<!-- * Kør følgende kode, der tager den første `tibble` i listen `my_list_of_tibbles`, udvælger observationer hvor `letter` = "a", og beregner dernæst middelværdien af "number". -->
+<!-- ```{r,echo=T,eval=F} -->
+<!-- my_list_of_tibbles %>% pluck(1) %>% filter(letter=="a") %>% summarise(mn = mean(number)) -->
+<!-- ``` -->
+<!-- * Da min kode virker for den første `tibble`, kan jeg ændre den til en funktion og anvende den med `map()` for at udføre samme proces på alle dataframes i listen. Prøv at køre følgende: -->
+<!-- ```{r,eval=F,echo=T} -->
+<!-- my_list_of_tibbles %>% map(~.x %>% filter(letter=="a") %>% summarise(mn = mean(number))) -->
+<!-- ``` -->
+<!-- ```{r,eval=F,echo=T} -->
+<!-- my_function <- ~.x %>% filter(letter=="a") %>% summarise(mn = mean(number)) -->
+<!-- my_list_of_tibbles %>% map(my_function) -->
+<!-- ``` -->
+<!-- * Tag udgangspunkt i `my_list_of_tibbles`, og for hver tibble, vælg alle tilfælde, hvor variablen `number` er 3, og tæl dernæst, hvor mange `a` der er tilbage i variablen `letter`. Du kan afprøve på den første `tibble`, hvis det hjælper. -->
+<!-- ```{r,echo=F,eval=F} -->
+<!-- my_list_of_tibbles %>% map(~.x %>% filter(number==3) %>% summarise("no_a"=sum(letter=="a"))) -->
+<!-- #my_list_of_tibbles %>% map(~.x %>% filter(number==3) %>% count(letter)) -->
+<!-- ``` -->
 <hr />
 <p><strong>Problem 5</strong>) <em>group_by/nest øvelse</em></p>
 <p><strong>a</strong>) For datasættet <code>iris</code>, anvend <code>group_by(Species)</code> og tilføj dernæst <code>nest()</code>, og kigger på resultatet.</p>
@@ -1071,37 +1081,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <hr />
 <p><strong>Problem 6</strong>) Åbn datasættet <code>msleep</code> ved at bruge <code>data(msleep)</code>.</p>
-<p><strong>a</strong>) Beregn gennemsnitsværdierne for de numeriske variabler i <code>msleep</code>-datasættet (<code>data(msleep)</code>). Husk at anvende parameteren <code>na.rm=T</code> i <code>mean()</code>-funktionen for at fjerne manglende værdier i beregningen.</p>
-<p><strong>b</strong>) Foretag samme beregning som i <strong>a</strong>), men kun for tilfælde, hvor variablen <code>vore</code> er “carni”.</p>
+<p><strong>a</strong>) Bruge <code>map()</code>-funktionen for at beregn gennemsnitsværdierne for de numeriske variabler i <code>msleep</code>-datasættet (<code>data(msleep)</code>). Husk at anvende parameteren <code>na.rm=T</code> i <code>mean()</code>-funktionen for at fjerne manglende værdier i beregningen.</p>
+<p><strong>b</strong>) Foretag samme beregning som i <strong>a</strong>), men kun for observationerne, hvor variablen <code>vore</code> er “carni”.</p>
 <p><strong>c</strong>) Brug funktionerne <code>group_by()</code> og <code>nest()</code> til at opdele datasættet efter variablen <code>vore</code>.</p>
 <p><strong>d</strong>) Tag udgangspunkt i din nestede dataframe fra <strong>c</strong>) og anvend <code>map()</code>-funktionen inden for <code>mutate()</code> for at oprette tre nye kolonner:</p>
 <ul>
-<li><code>num_rows</code> - antallet af rækker i hver delmængde</li>
-<li><code>unique_genus</code> - antallet af unikke værdier i variablen <code>genus</code> i hver delmængde</li>
-<li><code>mean_sleep</code> - gennemsnitlig søvn (variablen <code>sleep_total</code>) i hver delmængde</li>
+<li><code>num_rows</code> - antallet af rækker i hver delmængde (resultat skal være heltal)</li>
+<li><code>mean_sleep</code> - gennemsnitlig søvn (variablen <code>sleep_total</code>) i hver delmængde (bruge en brugerdefinerede funktion for at fjerne NA-værdierne i beregningen og an angiv resultat som en <code>dbl</code>)</li>
 </ul>
-<p><strong>e</strong>) Tag udgangspunkt i dit resultat fra <strong>d</strong>) og lav plots af dine opsummeringsstatistikker.</p>
+<p><strong>e</strong>) tilføj også en kolonne til din dataframe fra <strong>d</strong>), der hedder <code>unique_genus</code> - som viser antal unikke værdier i kolonne <code>genus</code> i hver delmængde (hint: brug funktionenerne <code>length()</code> og <code>unique()</code>, samt <code>pull</code> for at trækker variablen <code>genus</code> fra datasættet <code>.x</code>). Resultat skal være <code>int</code>.</p>
+<p><strong>e</strong>) Tag udgangspunkt i dit resultat fra <strong>d</strong>) + <strong>e</strong>) og lav plots af dine opsummeringsstatistikker.</p>
 <p><strong>f</strong>) I dette tilfælde, kunne samme plots fra <strong>e</strong>) også opnås ved at bruge <code>group()</code> og <code>summarise()</code>-funktioner på den oprindelige datasæt <code>msleep</code>. Prøv det.</p>
 <hr />
 <p><strong>Problem 7</strong>) <strong>a</strong>) Anvend <code>group_by</code> og <code>nest()</code> for at opdel <code>msleep</code> efter variablen <code>vore</code> og brug følgende funktion sammen med <code>map()</code> for at oprette en ny kolonne i din nested dataframe, der hedder <code>my_plots</code>.</p>
+<p>Funktionen er:</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="functional-programming-med-purrr-pakken.html#cb445-1" aria-hidden="true" tabindex="-1"></a>my_plot_func <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">ggplot</span>(.x,<span class="fu">aes</span>(brainwt,sleep_total)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="functional-programming-med-purrr-pakken.html#cb446-1" aria-hidden="true" tabindex="-1"></a>msleep_nested <span class="ot">&lt;-</span> msleep_nested <span class="sc">%&gt;%</span> </span>
+<span id="cb446-2"><a href="functional-programming-med-purrr-pakken.html#cb446-2" aria-hidden="true" tabindex="-1"></a>  ??? <span class="co">#opret ny kolonne her hvor du anvender funktionen</span></span></code></pre></div>
 <p><strong>b</strong>) Brug funktionen <code>grid.arrange()</code> fra R-pakken <code>gridExtra</code> til at vise plottene fra din nye kolonne (angive at parameteren <code>grobs</code> skal være din nye kolonne). Gør din plots pænere ved at tilføje et tema/farver osv. til <code>my_plot_func</code> fra <strong>a</strong>).</p>
 <hr />
-<p><strong>Problem 8</strong>) <em>Skift mellem long og wide form</em> Tag udgangspunkt i datasættet <code>iris</code>:</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="functional-programming-med-purrr-pakken.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
-<span id="cb450-2"><a href="functional-programming-med-purrr-pakken.html#cb450-2" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris)) <span class="co">#tilføj en id</span></span></code></pre></div>
-<p>Vi tilføjer kolonnen <code>id</code> så at hver plante (række) kan identificeres når vi går fra long- til wide- form i <strong>b</strong>).</p>
-<p><strong>a</strong>) Anvend <code>group_by()</code> og <code>nest()</code> til at opdele datasættet efter <code>Species</code> og bruge følgende funktion med <code>map()</code> for at tilføje en ny kolonne med navnet <code>new_column_long</code>.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="functional-programming-med-purrr-pakken.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="co">#put data into long form</span></span>
-<span id="cb451-2"><a href="functional-programming-med-purrr-pakken.html#cb451-2" aria-hidden="true" tabindex="-1"></a>my_func_longer <span class="ot">&lt;-</span> <span class="er">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>id)</span></code></pre></div>
-<p><strong>b</strong>) Skriv en ny funktion og anvend den på kolonnen <code>new_column_long</code> (ikke <code>data</code>), der laver hvert (long-form) datasæt i kolonnen om til wide-form igen (lav ny kolonne <code>new_column_wide</code>). Her skal du bruge parameteren <code>id_cols=id</code> for at korrekte identificere de forskellige plante (uden <code>id</code> ved funktionen ikke, om eksempelvis en bestemt <code>Sepal.Length</code> værdi og en bestemt <code>Sepal.Width</code> værdi referere til precis samme plante og derefore skal have samme række i wide-form).</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="functional-programming-med-purrr-pakken.html#cb452-1" aria-hidden="true" tabindex="-1"></a>my_func_wider <span class="ot">&lt;-</span> ??? <span class="co">#lave long data om til wide form (husk at angiv names_from,values_from,id_cols)</span></span>
-<span id="cb452-2"><a href="functional-programming-med-purrr-pakken.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb452-3"><a href="functional-programming-med-purrr-pakken.html#cb452-3" aria-hidden="true" tabindex="-1"></a>iris_nested <span class="sc">%&gt;%</span> ???<span class="co">#anvend din funktion  </span></span></code></pre></div>
-<p><strong>c</strong>) Anvend <code>pluck()</code>-funktionen på kolonnerne <code>new_column_long</code> og <code>new_column_wide</code> til at kigge på den første datasæt for at se, om du har outputtet i long/wide form som forventede.</p>
+<p><strong>Problem 8</strong>) <em>Skift mellem long og wide form</em> Tag udgangspunkt i datasættet <code>iris</code>. OBS: vi tilføjer kolonnen <code>id</code> så at hver plante (række) kan identificeres når vi går fra long- til wide- form i <strong>b</strong>).</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="functional-programming-med-purrr-pakken.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="co">#kør denne kode</span></span>
+<span id="cb447-2"><a href="functional-programming-med-purrr-pakken.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb447-3"><a href="functional-programming-med-purrr-pakken.html#cb447-3" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris)) <span class="co">#tilføj en id</span></span></code></pre></div>
+<p><strong>a</strong>) Anvend <code>group_by()</code> og <code>nest()</code> til at opdele datasættet efter <code>Species</code></p>
+<p><strong>b</strong>) Brug følgende funktion med <code>map()</code> for at tilføje en ny kolonne med navnet <code>new_column_long</code> til din nestede dataframe.</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="functional-programming-med-purrr-pakken.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="co">#put data into long form</span></span>
+<span id="cb448-2"><a href="functional-programming-med-purrr-pakken.html#cb448-2" aria-hidden="true" tabindex="-1"></a>my_func_longer <span class="ot">&lt;-</span> <span class="er">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>id)</span></code></pre></div>
+<p><strong>c</strong>) Skriv en ny funktion og anvend den på kolonnen <code>new_column_long</code> (ikke <code>data</code>), der laver hvert (long-form) datasæt i kolonnen om til wide-form igen (lav ny kolonne <code>new_column_wide</code>). Her skal du bruge parameteren <code>id_cols=id</code> for at korrekte identificere de forskellige plante (uden <code>id</code> ved funktionen ikke, om eksempelvis en bestemt <code>Sepal.Length</code> værdi og en bestemt <code>Sepal.Width</code> værdi referere til præcis samme plante og derfor skal have samme række i wide-form).</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="functional-programming-med-purrr-pakken.html#cb449-1" aria-hidden="true" tabindex="-1"></a>my_func_wider <span class="ot">&lt;-</span> ??? <span class="co">#lave long data om til wide form (husk at angiv names_from,values_from,id_cols)</span></span>
+<span id="cb449-2"><a href="functional-programming-med-purrr-pakken.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb449-3"><a href="functional-programming-med-purrr-pakken.html#cb449-3" aria-hidden="true" tabindex="-1"></a>iris_nested <span class="sc">%&gt;%</span> ???<span class="co">#anvend din funktion  </span></span></code></pre></div>
+<p><strong>d</strong>) Anvend <code>pluck()</code>-funktionen på kolonnerne <code>new_column_long</code> og <code>new_column_wide</code> til at kigge på den første datasæt for at se, om du har outputtet i long/wide form som forventede.</p>
 <hr />
 <p><strong>Problem 9</strong>) <em>Forberedelse til næste lektion</em> For at bedre kunne se værdien af at bruge <code>group_by()</code>/<code>nest()</code> + <code>map()</code> kan vi gennemgå en simpel eksampel som indledning til vores næste lektion.</p>
 <p><strong>a</strong>) Vi bruger følgende funktion:</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="functional-programming-med-purrr-pakken.html#cb453-1" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="functional-programming-med-purrr-pakken.html#cb450-1" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
 <ul>
 <li>anvend <code>group_by(Species)</code> og dernæst <code>nest()</code> på datasættet <code>iris</code>.</li>
 <li>tilføj <code>mutate()</code> til at lave en ny kolon som hedder <code>t_test</code> og bruge funktionen indenfor <code>map()</code> på kolonnen <code>data</code>.</li>
@@ -1112,13 +1127,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Lav samme som i <strong>a</strong>) men bruge følgende funktion i stedet for:</li>
 </ul>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="functional-programming-med-purrr-pakken.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb454-2"><a href="functional-programming-med-purrr-pakken.html#cb454-2" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length) <span class="sc">%&gt;%</span> <span class="fu">glance</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="functional-programming-med-purrr-pakken.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb451-2"><a href="functional-programming-med-purrr-pakken.html#cb451-2" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length) <span class="sc">%&gt;%</span> <span class="fu">glance</span>()</span></code></pre></div>
 <ul>
 <li><p>Tilføj <code>pull</code> eller <code>unnest</code> til din kommando som før og se på resultatet.</p></li>
 <li><p>Man får en pæn dataramme frem med alle de forskellige statistikker fra <code>t.test()</code>.</p></li>
-<li><p>Vælge en statistik og omsætte den til et plot.</p></li>
+<li><p>Vælg en statistik og omsætte den til et plot.</p></li>
 </ul>
+<hr />
 <p><strong>Problem 10</strong> <em>Kun ekstra hvis du vil øve mere</em> <em>group_by/nest + map</em> på datasættet <code>mtcars</code> –&gt;</p>
 <p><strong>a)</strong> Åbn <code>mtcars</code> med <code>data(mtcars)</code> og anvende <code>group_by()</code>/<code>nest()</code> for at opdele datasættet i tre efter variablen <code>cyl</code>.</p>
 <p><strong>b</strong>) Lave nye kolonner med <code>map</code> og inddrage hensigtsmæssige funktioner, som beskriver dine tre datasæt, der er lagret i kolonne <code>data</code> (outputtet skal være <code>dbl</code>):</p>
