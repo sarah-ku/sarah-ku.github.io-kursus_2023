@@ -1083,10 +1083,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>e</strong>) Tag udgangspunkt i dit resultat fra <strong>d</strong>) og lav plots af dine opsummeringsstatistikker.</p>
 <p><strong>f</strong>) I dette tilfælde, kunne samme plots fra <strong>e</strong>) også opnås ved at bruge <code>group()</code> og <code>summarise()</code>-funktioner på den oprindelige datasæt <code>msleep</code>. Prøv det.</p>
 <hr />
-<p><strong>Problem 6</strong>) <strong>a</strong>) Anvend <code>group_by</code> og <code>nest()</code> for at opdel <code>msleep</code> efter variablen <code>vore</code> og brug følgende funktion sammen med <code>map()</code> for at oprette en ny kolonne i din nested dataframe, der hedder <code>my_plots</code>.</p>
+<p><strong>Problem 7</strong>) <strong>a</strong>) Anvend <code>group_by</code> og <code>nest()</code> for at opdel <code>msleep</code> efter variablen <code>vore</code> og brug følgende funktion sammen med <code>map()</code> for at oprette en ny kolonne i din nested dataframe, der hedder <code>my_plots</code>.</p>
 <p><strong>b</strong>) Brug funktionen <code>grid.arrange()</code> fra R-pakken <code>gridExtra</code> til at vise plottene fra din nye kolonne (angive at parameteren <code>grobs</code> skal være din nye kolonne). Gør din plots pænere ved at tilføje et tema/farver osv. til <code>my_plot_func</code> fra <strong>a</strong>).</p>
 <hr />
-<p><strong>Problem 7</strong>) <em>Skift mellem long og wide form</em> Tag udgangspunkt i datasættet <code>iris</code>:</p>
+<p><strong>Problem 8</strong>) <em>Skift mellem long og wide form</em> Tag udgangspunkt i datasættet <code>iris</code>:</p>
 <div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="functional-programming-med-purrr-pakken.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
 <span id="cb450-2"><a href="functional-programming-med-purrr-pakken.html#cb450-2" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris)) <span class="co">#tilføj en id</span></span></code></pre></div>
 <p>Vi tilføjer kolonnen <code>id</code> så at hver plante (række) kan identificeres når vi går fra long- til wide- form i <strong>b</strong>).</p>
@@ -1099,7 +1099,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb452-3"><a href="functional-programming-med-purrr-pakken.html#cb452-3" aria-hidden="true" tabindex="-1"></a>iris_nested <span class="sc">%&gt;%</span> ???<span class="co">#anvend din funktion  </span></span></code></pre></div>
 <p><strong>c</strong>) Anvend <code>pluck()</code>-funktionen på kolonnerne <code>new_column_long</code> og <code>new_column_wide</code> til at kigge på den første datasæt for at se, om du har outputtet i long/wide form som forventede.</p>
 <hr />
-<p><strong>Problem 8</strong>) <em>Forberedelse til næste lektion</em> For at bedre kunne se værdien af at bruge <code>group_by()</code>/<code>nest()</code> + <code>map()</code> kan vi gennemgå en simpel eksampel som indledning til vores næste lektion.</p>
+<p><strong>Problem 9</strong>) <em>Forberedelse til næste lektion</em> For at bedre kunne se værdien af at bruge <code>group_by()</code>/<code>nest()</code> + <code>map()</code> kan vi gennemgå en simpel eksampel som indledning til vores næste lektion.</p>
 <p><strong>a</strong>) Vi bruger følgende funktion:</p>
 <div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="functional-programming-med-purrr-pakken.html#cb453-1" aria-hidden="true" tabindex="-1"></a>my_func <span class="ot">&lt;-</span> <span class="er">~</span> <span class="fu">t.test</span>(.x<span class="sc">$</span>Petal.Width,.x<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
 <ul>
@@ -1119,7 +1119,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Man får en pæn dataramme frem med alle de forskellige statistikker fra <code>t.test()</code>.</p></li>
 <li><p>Vælge en statistik og omsætte den til et plot.</p></li>
 </ul>
-<p><strong>Problem 9</strong> <em>Kun ekstra hvis du vil øve mere</em> <em>group_by/nest + map</em> på datasættet <code>mtcars</code> –&gt;</p>
+<p><strong>Problem 10</strong> <em>Kun ekstra hvis du vil øve mere</em> <em>group_by/nest + map</em> på datasættet <code>mtcars</code> –&gt;</p>
 <p><strong>a)</strong> Åbn <code>mtcars</code> med <code>data(mtcars)</code> og anvende <code>group_by()</code>/<code>nest()</code> for at opdele datasættet i tre efter variablen <code>cyl</code>.</p>
 <p><strong>b</strong>) Lave nye kolonner med <code>map</code> og inddrage hensigtsmæssige funktioner, som beskriver dine tre datasæt, der er lagret i kolonne <code>data</code> (outputtet skal være <code>dbl</code>):</p>
 <ul>
