@@ -991,8 +991,9 @@ FALSE 3 Chinstrap r^2 = 0.26, p-værdi = 7.5e-06</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="visualisering-af-trends.html#cb67-1" aria-hidden="true" tabindex="-1"></a>msleep_nest <span class="sc">%&gt;%</span></span>
 <span id="cb67-2"><a href="visualisering-af-trends.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;n_rows&quot;</span> <span class="ot">=</span> <span class="fu">map</span>(???,???)) <span class="co">#erstat ??? her</span></span></code></pre></div>
 <ul>
-<li><h2 id="i-dette-tilfælde-kan-du-ændre-map-til-map_dbl---gør-det." class="hasAnchor">I dette tilfælde kan du ændre <code>map</code> til <code>map_dbl</code> - gør det.<a href="visualisering-af-trends.html#i-dette-tilfælde-kan-du-ændre-map-til-map_dbl---gør-det." class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+<li>I dette tilfælde kan du ændre <code>map</code> til <code>map_dbl</code> - gør det.</li>
 </ul>
+<hr />
 <p><strong>Problem 4)</strong> <em>Multiple korrelation</em></p>
 <p>Vi vil gerne beregne korrelationen mellem variablerne <code>sleep_total</code> og <code>sleep_rem</code> for hvert af de fire datasæt lagret i <code>msleep_nest</code>.</p>
 <ul>
@@ -1007,10 +1008,10 @@ FALSE 3 Chinstrap r^2 = 0.26, p-værdi = 7.5e-06</code></pre>
 <li><p>Prøv også at tilføje <code>%&gt;% pluck("estimate",1)</code> til din <code>cor_test</code> funktion og se på resultatet.</p></li>
 </ul>
 <hr />
-<p><strong>Problem 5)</strong> <em>Linear regression øvelse</em></p>
-<p>Åbn <code>LungCapData</code> (herunder <code>Age.Groups</code>):</p>
+<p><strong>Problem 5)</strong> <em>Lineær regressionsøvelse</em></p>
+<p>Åbn <code>LungCapData</code> (inklusiv <code>Age.Groups</code>):</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="visualisering-af-trends.html#cb69-1" aria-hidden="true" tabindex="-1"></a>LungCapData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/ke27fs5d37ks1hm/LungCapData.csv?dl=1&quot;</span>)</span>
-<span id="cb69-2"><a href="visualisering-af-trends.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(LungCapData) <span class="co">#se variabler navne</span></span></code></pre></div>
+<span id="cb69-2"><a href="visualisering-af-trends.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(LungCapData) <span class="co">#se variabelnavne</span></span></code></pre></div>
 <pre><code>## Rows: 725
 ## Columns: 6
 ## $ LungCap   &lt;dbl&gt; 6.475, 10.125, 9.550, 11.125, 4.800, 6.225, 4.950, 7.325, 8.…
@@ -1020,33 +1021,33 @@ FALSE 3 Chinstrap r^2 = 0.26, p-værdi = 7.5e-06</code></pre>
 ## $ Gender    &lt;chr&gt; &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;…
 ## $ Caesarean &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;…</code></pre>
 <ul>
-<li><p>Anvende <code>lm()</code> med <code>LungCap</code> som afhængig variabel og <code>Age</code> som uafhængig variabel.</p></li>
-<li><p>Hvad er den intercept og slope af den beregnede linje?</p></li>
-<li><p>Prøv at tilføj funktionen <code>glance()</code> til din <code>lm</code> funktion og angive værdier <code>r.squared</code> og <code>p.value</code>.</p></li>
+<li><p>Anvend <code>lm()</code> med <code>LungCap</code> som den afhængige variabel og <code>Age</code> som den uafhængige variabel.</p></li>
+<li><p>Hvad er skæringstidspunktet og hældningen af den beregnede linje?</p></li>
+<li><p>Prøv at tilføje funktionen <code>glance()</code> til din <code>lm</code> funktion og angiv værdierne for <code>r.squared</code> og <code>p.value</code>.</p></li>
 </ul>
 <hr />
-<p><strong>Problem 6</strong>) Lave et scatter plot af Age på x-aksen og LungCap på y-aksen.</p>
+<p><strong>Problem 6</strong>) Lav et scatterplot med Age på x-aksen og LungCap på y-aksen.</p>
 <ul>
 <li>Ændre linjen til <code>geom_smooth(method="lm")</code></li>
 <li>Ændre linjen til <code>geom_smooth(method="lm",se=FALSE)</code></li>
-<li>Nu specificer en forskellige farve efter <code>Gender</code>. Hvordan er de to linje forskellige?</li>
-<li>Nu specificer en forskellige farve efter <code>Smoke</code>. Hvordan er de to linje forskellige?</li>
+<li>Specificer nu en forskellig farve baseret på <code>Gender</code>. Hvordan adskiller de to linjer sig?</li>
+<li>Specificer nu en forskellig farve baseret på <code>Smoke</code>. Hvordan adskiller de to linjer sig?</li>
 </ul>
 <hr />
-<p><strong>Problem 7</strong>) <em>Lineær regression øvelse over multiple datasæt</em></p>
-<p>Vi vil gerne udføre lineær regression med LungCap og Age men opdelte efter variablen <code>Smoke</code>. <em>OBS: Vi følger sammen process som i kursus notaterne men med LungCapData i stedet for Penguins - tjek gerne kursusnotaterne for inspiration</em>.</p>
-<p><strong>a</strong>) Anvende <code>group_by()</code> og <code>nest()</code> for at opdele dit datsasæt efter <code>Smoke</code></p>
-<p><strong>b</strong>) Lav en funktion, <code>lm_model_func</code>, som beregner en lineær regression med <code>LungCap</code> som afhængig variabel og <code>Age</code> som uafhængig variabel. Tilføj <code>glance()</code> til <code>lm_model_func</code>.</p>
-<p><strong>c</strong>) Anvende <code>map()</code> med din funktion indenfor <code>mutate()</code> til at tilføje en ny kolon som hedder <code>lm_stats</code> til din dataramme. Husk at <code>unnest</code> kolonnen <code>lm_stats</code> for at kunne se statistikker.</p>
-<p><strong>d</strong>) Fortolkning - er variablen <code>lungCap</code> bedre forklaret er variablen <code>Age</code> i rygere eller ikke-rygere?</p>
+<p><strong>Problem 7</strong>) <em>Øvelse i lineær regression på flere datasæt</em></p>
+<p>Vi vil gerne udføre lineær regression med LungCap og Age, men opdelt efter variablen <code>Smoke</code>. <em>BEMÆRK: Vi følger den samme proces som i kursusnoterne, men med LungCapData i stedet for Penguins - se gerne kursusnoterne for inspiration</em>.</p>
+<p><strong>a</strong>) Brug <code>group_by()</code> og <code>nest()</code> for at opdele dit datasæt efter <code>Smoke</code></p>
+<p><strong>b</strong>) Lav en funktion, <code>lm_model_func</code>, som beregner en lineær regression med <code>LungCap</code> som den afhængige variabel og <code>Age</code> som den uafhængige variabel. Tilføj <code>glance()</code> til <code>lm_model_func</code>.</p>
+<p><strong>c</strong>) Brug <code>map()</code> med din funktion inden i <code>mutate()</code> for at tilføje en ny kolonne kaldet <code>lm_stats</code> til din dataframe. Husk at <code>unnest</code> kolonnen <code>lm_stats</code> for at kunne se statistikkerne.</p>
+<p><strong>d</strong>) Fortolkning - er variablen <code>LungCap</code> bedre forklaret af variablen <code>Age</code> hos rygere eller ikke-rygere?</p>
 <hr />
 <p><strong>Problem 8)</strong></p>
-<p>I nedenstående er tre modeller, alle med <code>LungCap</code> som afhængig variabel alle som tager højde for <code>Age</code>:</p>
+<p>Her er tre modeller, alle med <code>LungCap</code> som den afhængige variabel, og alle tager højde for <code>Age</code>:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="visualisering-af-trends.html#cb71-1" aria-hidden="true" tabindex="-1"></a>my_lm_func1 <span class="ot">&lt;-</span>  <span class="er">~</span><span class="fu">lm</span>(LungCap <span class="sc">~</span> Age                  ,<span class="at">data=</span>.x)</span>
 <span id="cb71-2"><a href="visualisering-af-trends.html#cb71-2" aria-hidden="true" tabindex="-1"></a>my_lm_func2 <span class="ot">&lt;-</span>  <span class="er">~</span><span class="fu">lm</span>(LungCap <span class="sc">~</span> Age <span class="sc">+</span> Gender         ,<span class="at">data=</span>.x)</span>
 <span id="cb71-3"><a href="visualisering-af-trends.html#cb71-3" aria-hidden="true" tabindex="-1"></a>my_lm_func3 <span class="ot">&lt;-</span>  <span class="er">~</span><span class="fu">lm</span>(LungCap <span class="sc">~</span> Age <span class="sc">+</span> Gender <span class="sc">+</span> Height,<span class="at">data=</span>.x)</span></code></pre></div>
-<p><strong>a</strong>) Anvend <code>map</code> til at lave tre nye kolonner i <code>LungCapData_nest</code>, en til hver af de tre modeller (uden <code>glance()</code> her, så vi kan brug vores <code>lm</code> objekts senere).</p>
-<p><strong>b</strong>) Skriv en funktion <code>my_r2_func</code>, der udtrækker “r.squared” værdierne fra dine modeller (her refererer <code>.x</code> i funktionen ikke til en dataframe men til en beregnet model - hvad er det, der skal tilføjes?). Lav tre yderligere kolonner i <code>LungCapData_nest</code>, hvor du køre din funktion på dine modeller med <code>map</code> (outputtet skal være dbl).</p>
+<p><strong>a</strong>) Brug <code>map</code> til at lave tre nye kolonner i <code>LungCapData_nest</code>, én til hver af de tre modeller (uden <code>glance()</code> her, så vi kan bruge vores <code>lm</code> objekter senere).</p>
+<p><strong>b</strong>) Skriv en funktion <code>my_r2_func</code>, der udtrækker “r.squared” værdierne fra dine modeller (her refererer <code>.x</code> i funktionen ikke til en dataframe, men til en beregnet model - hvad skal tilføjes?). Lav tre yderligere kolonner i <code>LungCapData_nest</code>, hvor du kører din funktion på dine modeller med <code>map</code> (outputtet skal være dbl).</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="visualisering-af-trends.html#cb72-1" aria-hidden="true" tabindex="-1"></a>my_r2_func <span class="ot">&lt;-</span> ...</span></code></pre></div>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="visualisering-af-trends.html#cb73-1" aria-hidden="true" tabindex="-1"></a>LungCapData_nest <span class="ot">&lt;-</span> LungCapData_nest <span class="sc">%&gt;%</span></span>
 <span id="cb73-2"><a href="visualisering-af-trends.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;Age_only_R2&quot;</span> <span class="ot">=</span> ...,</span>
