@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Bearbejdning dag 1 | Analyse og visualisering af biologiske datasæt - 2023</title>
   <meta name="description" content="Course materials for Analyse og visualisering af biologiske datasæt 2022" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Bearbejdning dag 1 | Analyse og visualisering af biologiske datasæt - 2023" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,6 +411,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="visualisering-af-trends.html"><a href="visualisering-af-trends.html#problemstillinger-7"><i class="fa fa-check"></i><b>8.6</b> Problemstillinger</a></li>
 <li class="chapter" data-level="8.7" data-path="visualisering-af-trends.html"><a href="visualisering-af-trends.html#ekstra"><i class="fa fa-check"></i><b>8.7</b> Ekstra</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>9</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="clustering.html"><a href="clustering.html#indledning-og-læringsmål-1"><i class="fa fa-check"></i><b>9.1</b> Indledning og læringsmål</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="clustering.html"><a href="clustering.html#læringsmål-2"><i class="fa fa-check"></i><b>9.1.1</b> Læringsmål</a></li>
+<li class="chapter" data-level="9.1.2" data-path="clustering.html"><a href="clustering.html#indledning-til-kapitel"><i class="fa fa-check"></i><b>9.1.2</b> Indledning til kapitel</a></li>
+<li class="chapter" data-level="9.1.3" data-path="clustering.html"><a href="clustering.html#video-ressourcer-3"><i class="fa fa-check"></i><b>9.1.3</b> Video ressourcer</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="clustering.html"><a href="clustering.html#method-1-k-means-clustering"><i class="fa fa-check"></i><b>9.2</b> Method 1: K-means clustering</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="clustering.html"><a href="clustering.html#hvordan-fungerer-kmeans"><i class="fa fa-check"></i><b>9.2.1</b> Hvordan fungerer kmeans?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="clustering.html"><a href="clustering.html#withinbetween-sum-of-squares"><i class="fa fa-check"></i><b>9.2.2</b> Within/between sum of squares</a></li>
+<li class="chapter" data-level="9.2.3" data-path="clustering.html"><a href="clustering.html#kør-k-means-i-r"><i class="fa fa-check"></i><b>9.2.3</b> Kør k-means i R</a></li>
+<li class="chapter" data-level="9.2.4" data-path="clustering.html"><a href="clustering.html#ryd-op-i-k-means-resultaterne-med-pakken-broom"><i class="fa fa-check"></i><b>9.2.4</b> Ryd op i k-means resultaterne med pakken <code>broom</code></a></li>
+<li class="chapter" data-level="9.2.5" data-path="clustering.html"><a href="clustering.html#plotcentroids"><i class="fa fa-check"></i><b>9.2.5</b> Plot cluster centroids</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="clustering.html"><a href="clustering.html#kmeans-hvor-mange-clusters"><i class="fa fa-check"></i><b>9.3</b> Kmeans: hvor mange clusters?</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="clustering.html"><a href="clustering.html#få-broom-output-for-forskellige-antal-clusters"><i class="fa fa-check"></i><b>9.3.1</b> Få Broom output for forskellige antal clusters</a></li>
+<li class="chapter" data-level="9.3.2" data-path="clustering.html"><a href="clustering.html#elbow-plot-glance"><i class="fa fa-check"></i><b>9.3.2</b> Elbow plot (glance)</a></li>
+<li class="chapter" data-level="9.3.3" data-path="clustering.html"><a href="clustering.html#automatisk-beslutning-med-pakken-nbclust"><i class="fa fa-check"></i><b>9.3.3</b> Automatisk beslutning med pakken <code>NbClust</code></a></li>
+<li class="chapter" data-level="9.3.4" data-path="clustering.html"><a href="clustering.html#visualisering-af-de-forskellige-antal-clusters-augment"><i class="fa fa-check"></i><b>9.3.4</b> Visualisering af de forskellige antal clusters (augment)</a></li>
+<li class="chapter" data-level="9.3.5" data-path="clustering.html"><a href="clustering.html#nestmap-ramme-fra-sidste-gang"><i class="fa fa-check"></i><b>9.3.5</b> Nest/map-ramme fra sidste gang</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="clustering.html"><a href="clustering.html#metode-2-hierarchical-clustering"><i class="fa fa-check"></i><b>9.4</b> Metode 2: Hierarchical clustering</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="clustering.html"><a href="clustering.html#vælge-ønsket-antal-clusters"><i class="fa fa-check"></i><b>9.4.1</b> Vælge ønsket antal clusters</a></li>
+<li class="chapter" data-level="9.4.2" data-path="clustering.html"><a href="clustering.html#lav-et-pænt-plot-af-dendrogrammet-med-ggplot2"><i class="fa fa-check"></i><b>9.4.2</b> Lav et pænt plot af dendrogrammet med ggplot2</a></li>
+<li class="chapter" data-level="9.4.3" data-path="clustering.html"><a href="clustering.html#ekstra-valgfri-afprøve-andre-metoder-på-hierachical-clustering"><i class="fa fa-check"></i><b>9.4.3</b> Ekstra (valgfri): afprøve andre metoder på hierachical clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="clustering.html"><a href="clustering.html#problemstillinger-8"><i class="fa fa-check"></i><b>9.5</b> Problemstillinger</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -611,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8          5           3.4          1.5         0.2 setosa 
 ##  9          4.4         2.9          1.4         0.2 setosa 
 ## 10          4.9         3.1          1.5         0.1 setosa 
-## # … with 140 more rows</code></pre>
+## # ℹ 140 more rows</code></pre>
 </div>
 <div id="transition-fra-base-r-til-tidyverse" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Transition fra base-R til tidyverse<a href="data.html#transition-fra-base-r-til-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -872,7 +908,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8           9      3     2
 ##  9          10      2     0
 ## 10          11      3     1
-## # … with 704 more rows</code></pre>
+## # ℹ 704 more rows</code></pre>
 <p>Specielt brugbar i statistiske metoder, der kræver kun numeriske variabler, er <code>where()</code>, når den kombineres med <code>is.numeric</code>. For eksempel, i følgende kode udvælger man kun numeriske variabler fra datasættet <code>titanic_clean</code>:</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="data.html#cb249-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span></code></pre></div>
 <pre><code>## # A tibble: 714 × 7
@@ -888,7 +924,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8           9        1      3    27     0     2 11.1 
 ##  9          10        1      2    14     1     0 30.1 
 ## 10          11        1      3     4     1     1 16.7 
-## # … with 704 more rows</code></pre>
+## # ℹ 704 more rows</code></pre>
 </div>
 </div>
 <div id="dplyr-verbs-filter" class="section level3 hasAnchor" number="5.7.2">
@@ -915,29 +951,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb253-2"><a href="data.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Age <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb253-3"><a href="data.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
-##   PassengerId Survived Pclass Name  Sex     Age SibSp Parch Ticket  Fare Embar…¹
-##         &lt;int&gt;    &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  
-## 1           7        0      1 &quot;McC… male     54     0     0 17463  51.9  S      
-## 2          12        1      1 &quot;Bon… fema…    58     0     0 113783 26.6  S      
-## 3          16        1      2 &quot;Hew… fema…    55     0     0 248706 16    S      
-## 4          95        0      3 &quot;Cox… male     59     0     0 364500  7.25 S      
-## 5         125        0      1 &quot;Whi… male     54     0     1 35281  77.3  S      
-## 6         151        0      2 &quot;Bat… male     51     0     0 S.O.P… 12.5  S      
-## # … with abbreviated variable name ¹​Embarked</code></pre>
+##   PassengerId Survived Pclass Name          Sex     Age SibSp Parch Ticket  Fare
+##         &lt;int&gt;    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1           7        0      1 &quot;McCarthy, M… male     54     0     0 17463  51.9 
+## 2          12        1      1 &quot;Bonnell, Mi… fema…    58     0     0 113783 26.6 
+## 3          16        1      2 &quot;Hewlett, Mr… fema…    55     0     0 248706 16   
+## 4          95        0      3 &quot;Coxon, Mr. … male     59     0     0 364500  7.25
+## 5         125        0      1 &quot;White, Mr. … male     54     0     1 35281  77.3 
+## 6         151        0      2 &quot;Bateman, Re… male     51     0     0 S.O.P… 12.5 
+## # ℹ 1 more variable: Embarked &lt;chr&gt;</code></pre>
 <p>Man kan også kombinere betingelser fra forskellige kolonner, for eksempel i nedenstående eksempel vælger vi alle personer, som er kvinder <strong>og</strong> som rejste i første klasse.</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="data.html#cb255-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb255-2"><a href="data.html#cb255-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span> <span class="sc">&amp;</span> Pclass <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb255-3"><a href="data.html#cb255-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
-##   PassengerId Survived Pclass Name  Sex     Age SibSp Parch Ticket  Fare Embar…¹
-##         &lt;int&gt;    &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  
-## 1           2        1      1 Cumi… fema…    38     1     0 PC 17…  71.3 &quot;C&quot;    
-## 2           4        1      1 Futr… fema…    35     1     0 113803  53.1 &quot;S&quot;    
-## 3          12        1      1 Bonn… fema…    58     0     0 113783  26.6 &quot;S&quot;    
-## 4          53        1      1 Harp… fema…    49     1     0 PC 17…  76.7 &quot;C&quot;    
-## 5          62        1      1 Icar… fema…    38     0     0 113572  80   &quot;&quot;     
-## 6          89        1      1 Fort… fema…    23     3     2 19950  263   &quot;S&quot;    
-## # … with abbreviated variable name ¹​Embarked</code></pre>
+##   PassengerId Survived Pclass Name          Sex     Age SibSp Parch Ticket  Fare
+##         &lt;int&gt;    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1           2        1      1 Cumings, Mrs… fema…    38     1     0 PC 17…  71.3
+## 2           4        1      1 Futrelle, Mr… fema…    35     1     0 113803  53.1
+## 3          12        1      1 Bonnell, Mis… fema…    58     0     0 113783  26.6
+## 4          53        1      1 Harper, Mrs.… fema…    49     1     0 PC 17…  76.7
+## 5          62        1      1 Icard, Miss.… fema…    38     0     0 113572  80  
+## 6          89        1      1 Fortune, Mis… fema…    23     3     2 19950  263  
+## # ℹ 1 more variable: Embarked &lt;chr&gt;</code></pre>
 <p>Vi kan også kombinere flere betingelser med forskellige symboler. For eksempel i nedenstående eksempel vælger vi personer, som er kvinder <strong>og</strong> som rejste i <strong>enten</strong> første eller anden klasse <strong>og</strong> som er <strong>i</strong> trediverne. Husk at tilføje runde parenteser omkring de to <code>Pclass</code> - prøv selv at fjerne dem og se, hvad der sker.</p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data.html#cb257-1" aria-hidden="true" tabindex="-1"></a>titanic_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb257-2"><a href="data.html#cb257-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span> <span class="sc">&amp;</span> (Pclass <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Pclass <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">&amp;</span> Age <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">30</span><span class="sc">:</span><span class="dv">39</span>)) <span class="sc">%&gt;%</span></span>

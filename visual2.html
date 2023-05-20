@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Visualisering - ggplot2 dag 2 | Analyse og visualisering af biologiske datasæt - 2023</title>
   <meta name="description" content="Course materials for Analyse og visualisering af biologiske datasæt 2022" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Visualisering - ggplot2 dag 2 | Analyse og visualisering af biologiske datasæt - 2023" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -406,6 +410,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="visualisering-af-trends.html"><a href="visualisering-af-trends.html#problemstillinger-7"><i class="fa fa-check"></i><b>8.6</b> Problemstillinger</a></li>
 <li class="chapter" data-level="8.7" data-path="visualisering-af-trends.html"><a href="visualisering-af-trends.html#ekstra"><i class="fa fa-check"></i><b>8.7</b> Ekstra</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>9</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="clustering.html"><a href="clustering.html#indledning-og-læringsmål-1"><i class="fa fa-check"></i><b>9.1</b> Indledning og læringsmål</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="clustering.html"><a href="clustering.html#læringsmål-2"><i class="fa fa-check"></i><b>9.1.1</b> Læringsmål</a></li>
+<li class="chapter" data-level="9.1.2" data-path="clustering.html"><a href="clustering.html#indledning-til-kapitel"><i class="fa fa-check"></i><b>9.1.2</b> Indledning til kapitel</a></li>
+<li class="chapter" data-level="9.1.3" data-path="clustering.html"><a href="clustering.html#video-ressourcer-3"><i class="fa fa-check"></i><b>9.1.3</b> Video ressourcer</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="clustering.html"><a href="clustering.html#method-1-k-means-clustering"><i class="fa fa-check"></i><b>9.2</b> Method 1: K-means clustering</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="clustering.html"><a href="clustering.html#hvordan-fungerer-kmeans"><i class="fa fa-check"></i><b>9.2.1</b> Hvordan fungerer kmeans?</a></li>
+<li class="chapter" data-level="9.2.2" data-path="clustering.html"><a href="clustering.html#withinbetween-sum-of-squares"><i class="fa fa-check"></i><b>9.2.2</b> Within/between sum of squares</a></li>
+<li class="chapter" data-level="9.2.3" data-path="clustering.html"><a href="clustering.html#kør-k-means-i-r"><i class="fa fa-check"></i><b>9.2.3</b> Kør k-means i R</a></li>
+<li class="chapter" data-level="9.2.4" data-path="clustering.html"><a href="clustering.html#ryd-op-i-k-means-resultaterne-med-pakken-broom"><i class="fa fa-check"></i><b>9.2.4</b> Ryd op i k-means resultaterne med pakken <code>broom</code></a></li>
+<li class="chapter" data-level="9.2.5" data-path="clustering.html"><a href="clustering.html#plotcentroids"><i class="fa fa-check"></i><b>9.2.5</b> Plot cluster centroids</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="clustering.html"><a href="clustering.html#kmeans-hvor-mange-clusters"><i class="fa fa-check"></i><b>9.3</b> Kmeans: hvor mange clusters?</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="clustering.html"><a href="clustering.html#få-broom-output-for-forskellige-antal-clusters"><i class="fa fa-check"></i><b>9.3.1</b> Få Broom output for forskellige antal clusters</a></li>
+<li class="chapter" data-level="9.3.2" data-path="clustering.html"><a href="clustering.html#elbow-plot-glance"><i class="fa fa-check"></i><b>9.3.2</b> Elbow plot (glance)</a></li>
+<li class="chapter" data-level="9.3.3" data-path="clustering.html"><a href="clustering.html#automatisk-beslutning-med-pakken-nbclust"><i class="fa fa-check"></i><b>9.3.3</b> Automatisk beslutning med pakken <code>NbClust</code></a></li>
+<li class="chapter" data-level="9.3.4" data-path="clustering.html"><a href="clustering.html#visualisering-af-de-forskellige-antal-clusters-augment"><i class="fa fa-check"></i><b>9.3.4</b> Visualisering af de forskellige antal clusters (augment)</a></li>
+<li class="chapter" data-level="9.3.5" data-path="clustering.html"><a href="clustering.html#nestmap-ramme-fra-sidste-gang"><i class="fa fa-check"></i><b>9.3.5</b> Nest/map-ramme fra sidste gang</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="clustering.html"><a href="clustering.html#metode-2-hierarchical-clustering"><i class="fa fa-check"></i><b>9.4</b> Metode 2: Hierarchical clustering</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="clustering.html"><a href="clustering.html#vælge-ønsket-antal-clusters"><i class="fa fa-check"></i><b>9.4.1</b> Vælge ønsket antal clusters</a></li>
+<li class="chapter" data-level="9.4.2" data-path="clustering.html"><a href="clustering.html#lav-et-pænt-plot-af-dendrogrammet-med-ggplot2"><i class="fa fa-check"></i><b>9.4.2</b> Lav et pænt plot af dendrogrammet med ggplot2</a></li>
+<li class="chapter" data-level="9.4.3" data-path="clustering.html"><a href="clustering.html#ekstra-valgfri-afprøve-andre-metoder-på-hierachical-clustering"><i class="fa fa-check"></i><b>9.4.3</b> Ekstra (valgfri): afprøve andre metoder på hierachical clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="clustering.html"><a href="clustering.html#problemstillinger-8"><i class="fa fa-check"></i><b>9.5</b> Problemstillinger</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -804,15 +840,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb210-4"><a href="visual2.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb210-5"><a href="visual2.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
 <pre><code>FALSE # A tibble: 6 × 8
-FALSE   species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
-FALSE   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-FALSE 1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
-FALSE 2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
-FALSE 3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
-FALSE 4 Adelie  Torgersen           NA            NA            NA      NA &lt;NA&gt;   2007
-FALSE 5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
-FALSE 6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
-FALSE # … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
+FALSE   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+FALSE   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+FALSE 1 Adelie  Torgersen           39.1          18.7               181        3750
+FALSE 2 Adelie  Torgersen           39.5          17.4               186        3800
+FALSE 3 Adelie  Torgersen           40.3          18                 195        3250
+FALSE 4 Adelie  Torgersen           NA            NA                  NA          NA
+FALSE 5 Adelie  Torgersen           36.7          19.3               193        3450
+FALSE 6 Adelie  Torgersen           39.3          20.6               190        3650
+FALSE # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>Man kan altid anvende <code>?penguins</code> for at se flere detaljer om variablenavner.</p>
 <p><em>Vi skal starte med at rydde op lidt i datasættet. Køre følgende for at fjerne al rækker som har <code>NA</code> (manglende) værdier (her skal man have tidyverse-pakken indlæste):</em></p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="visual2.html#cb212-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(penguins)</span></code></pre></div>
