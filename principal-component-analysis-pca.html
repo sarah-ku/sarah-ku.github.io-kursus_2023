@@ -741,7 +741,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.5</span> Problemstillinger<a href="principal-component-analysis-pca.html#problemstillinger-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Problem 1</strong>) Quiz på Absalon</p>
 <hr />
-<p>Download følgende datasæt ved at køre følgende kode chunk:</p>
+<p>Vi arbejder med en breast cancer datasæt. Download følgende datasæt ved at køre følgende kode chunk og læs beskrivelsen bagefter:</p>
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="principal-component-analysis-pca.html#cb595-1" aria-hidden="true" tabindex="-1"></a>cancer <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">url</span>(<span class="st">&quot;https://www.dropbox.com/s/4qa37itw9wtwtjg/breast-cancer.csv?dl=1&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>id)</span>
 <span id="cb595-2"><a href="principal-component-analysis-pca.html#cb595-2" aria-hidden="true" tabindex="-1"></a>cancer <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
 <pre><code>## Rows: 569
@@ -777,25 +777,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ concave.points_worst    &lt;dbl&gt; 0.26540, 0.18600, 0.24300, 0.25750, 0.16250, 0…
 ## $ symmetry_worst          &lt;dbl&gt; 0.4601, 0.2750, 0.3613, 0.6638, 0.2364, 0.3985…
 ## $ fractal_dimension_worst &lt;dbl&gt; 0.11890, 0.08902, 0.08758, 0.17300, 0.07678, 0…</code></pre>
-<p><strong>Problem 2</strong>) Anvend funktionen <code>ggscatmat</code> fra pakken <code>GGally</code> til at lave et plot hvor man sammenligne fem af de variabler.</p>
+<p>_Here is the description from Kaggle <a href="https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset" class="uri">https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset</a>:</p>
+<p>Breast cancer is the most common cancer amongst women in the world. It accounts for 25% of all cancer cases, and affected over 2.1 Million people in 2015 alone. It starts when cells in the breast begin to grow out of control. These cells usually form tumors that can be seen via X-ray or felt as lumps in the breast area.</p>
+<p>The key challenges against it’s detection is how to classify tumors into malignant (cancerous) or benign(non cancerous). We ask you to complete the analysis of classifying these tumors using machine learning (with SVMs) and the Breast Cancer Wisconsin (Diagnostic) Dataset._</p>
+<p>I variablen <code>diagnosis</code>: M betyder ‘Malignant’ og B betyder ‘Benign’ - du kan overveje at ændre på variablen i dit indlæste datasæt for at gøre det mere klart.</p>
+<p><strong>Problem 2</strong>) Anvend funktionen <code>ggscatmat</code> fra pakken <code>GGally</code> til at lave et plot, hvor man sammenligne fem af variablerne.</p>
 <ul>
-<li>Man kan lave en tilfældig sample af fem variabler med at angive <code>columns = sample(2:31,5)</code> indenfor funktionen <code>ggscatmat</code>(husk at installere <code>GGally</code>-pakken).</li>
-<li>Give farver efter factor variablen <code>diagnosis</code> og vælger “pearson” som <code>corMethod</code>.</li>
-<li>Opfatter du, at der er en del redundans i datasættet (dvs. er der stærke korrelationer mellem de forskellige variabler)?</li>
+<li>Man kan lave en tilfældig sample af fem variabler med at angive <code>columns = sample(2:31,5)</code> som parameter indenfor funktionen <code>ggscatmat</code>(husk at installere og indlæse <code>GGally</code>-pakken).</li>
+<li>Giv farver efter factor variablen <code>diagnosis</code> og vælger “pearson” som parameteren <code>corMethod</code>.</li>
+<li>Opfatter du, at der er en del redundans i datasættet (dvs., er der stærke korrelationer mellem de forskellige variabler, der gør det muligt at forudsige den ene ud fra den anden)? Prøv at køre din kode igen, så du får forskellige samplings af fem variabler.</li>
 </ul>
 <hr />
-<p><strong>Problem 3</strong>) Benyt funktionen <code>prcomp</code> til at beregne en principal component analysis af datasættet.</p>
+<p><strong>Problem 3</strong>) Benyt funktionen <code>prcomp()</code> til at beregne en principal component analysis af datasættet.</p>
 <ul>
-<li>Husk at det skal kun være numeriske variabler og angiv <code>scale=TRUE</code> indenfor selve funktion.</li>
-<li>Lav et <code>summary</code> af resultaterne. Hvad er proportionen af variansen, som er forklaret af den første principal component?</li>
+<li>Husk at det skal kun være numeriske variabler og angiv <code>scale=TRUE</code> inde i funktionen.</li>
+<li>Lav et <code>summary</code> af resultaterne. Hvad er proportionen af variansen, der er forklaret af den første principal component?</li>
 <li>Hvad er proportionen af variansen, som er forklaret af de første to principal components tilsammen?</li>
 </ul>
 <hr />
-<p><strong>Problem 4</strong>) <em>Augment og plot</em> Anvend <code>augment</code> til at tilføje dit rå datasæt til ovenstående resultater fra <code>prcomp</code>.</p>
+<p><strong>Problem 4</strong>) <em>Augment og plot</em> Anvend <code>augment()</code>-funktionen til at tilføje dit rå datasæt til ovenstående resultater fra <code>prcomp</code>.</p>
 <ul>
 <li>Brug den til at lave et scatter plot af de første to principal components</li>
-<li>Giv farver efter <code>diagnosis</code></li>
-<li>Skriv kort om man kan skelne imellem “M” og “B” fra variablen <code>diagnosis</code> ud fra de første to principal components.</li>
+<li>Giv farver efter variablen <code>diagnosis</code></li>
+<li>Skriv kort om man kan skelne imellem “M” og “B” (variablen <code>diagnosis</code>) ud fra de første to principal components.</li>
+<li>Skriv også kort - hvilke af de to components er bedre til at skelne i mellem “M” og “B”?</li>
 </ul>
 <hr />
 <p><strong>Problem 5</strong>) <em>Integrere kmeans clustering</em>. Lav et clustering med <code>kmeans</code> på datasættet, med to clusters (husk at udvælge numeriske variabler og scale inden du anvender funktionen <code>kmeans</code>).</p>
@@ -816,8 +821,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Lav et scatter plot som viser de forskellige variabler relativ til hinanden</li>
 <li>Anvend <code>geom_text_repel</code> til at give labels til de variabler (kan være en god idé at anvend <code>show.legend=F</code>)</li>
 </ul>
+<p>Værdierne i den rotation matrix fortæller, hvordan en givet variabel bidrager til den endelige principal component beregning (dvs. værdierne som er plottet i <strong>Problem 5</strong>). Fk. variablen <code>radius_mean</code> har en positiv værdi i PC2, som gøre, at en højere værdi af <code>radius_mean</code> vil resultatere i en højere værdi på PC2 for en givet observation.</p>
+<ul>
+<li>Kig på placeringen af variablen <code>compactness_mean</code> på plottet. Bidrager den negativ eller positiv værdi til PC1?</li>
+<li>Kig på dit plot i <strong>Problem 5</strong>) - hvad effekt ville en høj værdi af <code>compactness_mean</code> have på den PC1 værdi af en givet tumour? Ville det gøre det mindre eller mere sandsynligt, at den er “benign”?</li>
+</ul>
 <hr />
-<p><strong>Problem 8)</strong> <em>Ekstra</em> Udvidelse af <strong>Problem 5)</strong>: Fra din augmented resultater med både dine principal components og clusters: Beregne middelværdierne af din første to principal components for hver af de to clusters. Tilføj dine beregnede middelværdierne til plottet som “x”.</p>
+<p><strong>Problem 8)</strong> Udvidelse af <strong>Problem 5)</strong>: Fra din augmented resultater med både dine principal components og clusters: Beregne middelværdierne af din første to principal components for hver af de to clusters. Tilføj dine beregnede middelværdierne til plottet som “x”.</p>
 </div>
 <div id="ekstra-læsning" class="section level2 hasAnchor" number="10.6">
 <h2><span class="header-section-number">10.6</span> Ekstra læsning<a href="principal-component-analysis-pca.html#ekstra-læsning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
