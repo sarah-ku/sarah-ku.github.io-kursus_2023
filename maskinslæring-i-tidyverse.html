@@ -541,10 +541,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="maskinslæring-i-tidyverse" class="section level1 hasAnchor" number="12">
 <h1><span class="header-section-number">Chapter 12</span> Maskinslæring i tidyverse<a href="maskinslæring-i-tidyverse.html#maskinslæring-i-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="plots/hex-tidyverse.png" width="15%" /><img src="plots/ggplot2_logo.jpeg" width="15%" /><img src="plots/purrr.png" width="15%" /><img src="plots/pipe_logo.png" width="15%" /><img src="plots/rsample_logo.png" width="15%" /><img src="plots/tidymodels_logo.png" width="15%" /></p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="maskinslæring-i-tidyverse.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample) <span class="co">#install this</span></span>
-<span id="cb638-2"><a href="maskinslæring-i-tidyverse.html#cb638-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb638-3"><a href="maskinslæring-i-tidyverse.html#cb638-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ranger) <span class="co">#install this, random forest</span></span>
-<span id="cb638-4"><a href="maskinslæring-i-tidyverse.html#cb638-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="maskinslæring-i-tidyverse.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample) <span class="co">#install this</span></span>
+<span id="cb1-2"><a href="maskinslæring-i-tidyverse.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="maskinslæring-i-tidyverse.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ranger) <span class="co">#install this, random forest</span></span>
+<span id="cb1-4"><a href="maskinslæring-i-tidyverse.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div>
 <p>“Absorber hvad der er nyttigt, afvis det, der er ubrugeligt, tilføj det, der specifikt er dit eget.” - Bruce Lee</p>
 <div id="indledning-og-læringsmål-3" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Indledning og læringsmål<a href="maskinslæring-i-tidyverse.html#indledning-og-læringsmål-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -570,6 +570,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Video 1: Data splitting and cross-fold validation i en regression kontekst</li>
 </ul>
+<pre><code>## 
+## Vedhæfter pakke: &#39;vembedr&#39;</code></pre>
+<pre><code>## Det følgende objekt er maskeret fra &#39;package:lubridate&#39;:
+## 
+##     hms</code></pre>
 <div class="vembedr">
 <div>
 <iframe class="vimeo-embed" src="https://player.vimeo.com/video/714090516" width="533" height="300" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" data-external="1"></iframe>
@@ -597,20 +602,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="regressionsmodeller" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Regressionsmodeller<a href="maskinslæring-i-tidyverse.html#regressionsmodeller" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Vi starter med at opbygge processen i en kontekst, som vi allerede er bekendt med - en lineær regressionsmodel. Til dette formål bruger vi endnu engang datasættet ‘penguins’, og målet er at forudsige variablen ‘body_mass_g’ for de forskellige pingviner.</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="maskinslæring-i-tidyverse.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb639-2"><a href="maskinslæring-i-tidyverse.html#cb639-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="maskinslæring-i-tidyverse.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb4-2"><a href="maskinslæring-i-tidyverse.html#cb4-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div>
 <div id="oprettelse-af-test--og-træningssæt" class="section level3 hasAnchor" number="12.3.1">
 <h3><span class="header-section-number">12.3.1</span> Oprettelse af test- og træningssæt<a href="maskinslæring-i-tidyverse.html#oprettelse-af-test--og-træningssæt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Hvordan kan vi vide, om en model er god til at forudsige, hvad der vil ske med nye observationer? Med andre ord, fungerer modellen kun godt på de observationer, der blev brugt til at opbygge modellen (kaldet “overfitting”), eller kan modellen generalisere til andre lignende situationer? For at få svar på dette overvejer vi at opdele datasættet, inden vi opbygger modellen. Det betyder, at vi har et datasæt, som vi bruger til at opbygge modellen, og et andet datasæt, som vi kan bruge som “nye observationer” til at teste, hvor godt modellen faktisk er (fordi i dette datasæt kender vi de faktiske værdier, som vi kan sammenligne med vores forudsigelser fra modellen).</p>
 <p><img src="plots/machine_step1.png" width="90%" /></p>
 <p>Pakken <code>rsample</code> har funktionen <code>initial_split</code>, der opdeler datasættet, således at 75% af observationerne tilhører træningssættet og 25% tilhører testssættet:</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="maskinslæring-i-tidyverse.html#cb640-1" aria-hidden="true" tabindex="-1"></a>penguins_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(penguins, <span class="at">prop =</span> <span class="fl">0.75</span>)</span>
-<span id="cb640-2"><a href="maskinslæring-i-tidyverse.html#cb640-2" aria-hidden="true" tabindex="-1"></a>penguins_split</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="maskinslæring-i-tidyverse.html#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(penguins, <span class="at">prop =</span> <span class="fl">0.75</span>)</span>
+<span id="cb5-2"><a href="maskinslæring-i-tidyverse.html#cb5-2" aria-hidden="true" tabindex="-1"></a>penguins_split</span></code></pre></div>
 <pre><code>## &lt;Training/Testing/Total&gt;
 ## &lt;249/84/333&gt;</code></pre>
 <p>Det betyder, at ud af de 333 observationer bliver 249 brugt til træning, og 84 er tilbageholdt som et testsæt. Derefter udtrækker jeg de to sæt for at få “penguins_training” og “penguins_test” som følger:</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="maskinslæring-i-tidyverse.html#cb642-1" aria-hidden="true" tabindex="-1"></a>penguins_training <span class="ot">&lt;-</span> penguins_split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
-<span id="cb642-2"><a href="maskinslæring-i-tidyverse.html#cb642-2" aria-hidden="true" tabindex="-1"></a>penguins_test <span class="ot">&lt;-</span> penguins_split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="maskinslæring-i-tidyverse.html#cb7-1" aria-hidden="true" tabindex="-1"></a>penguins_training <span class="ot">&lt;-</span> penguins_split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
+<span id="cb7-2"><a href="maskinslæring-i-tidyverse.html#cb7-2" aria-hidden="true" tabindex="-1"></a>penguins_test <span class="ot">&lt;-</span> penguins_split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span></code></pre></div>
 <p>Jeg vil gerne bruge ‘penguins_training’ til at opbygge modellen og derefter kun kigge på ‘penguins_test’ senere for at evaluere modellens evne til at lave forudsigelser.</p>
 </div>
 <div id="krydsvalidering-cross-fold-validation" class="section level3 hasAnchor" number="12.3.2">
@@ -621,8 +626,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- * Man kan få en fornemmelse af hvor meget hvors evne til at forudsige på nye data variare afhængig af observatiorene der ligger i enten testing eller træning sæt. -->
 <!-- * Minimire "overfitting" modellen - det vil sige, at modellen er meget godt til at forstå hvad der sker i datasættet men dårlig til at forudsige hvad der forgår med hensyn til nye observationer. -->
 <p>Der er en nem funktion man kan bruge i <code>rsample</code>-pakken, der hedder <code>vfold_cv()</code> til at lave krydsvalidering. Her angiver jeg <code>v=5</code> for at vise, at jeg gerne vil have 5 folds.</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="maskinslæring-i-tidyverse.html#cb643-1" aria-hidden="true" tabindex="-1"></a>cv_split <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(penguins_training, <span class="at">v =</span> <span class="dv">5</span>)</span>
-<span id="cb643-2"><a href="maskinslæring-i-tidyverse.html#cb643-2" aria-hidden="true" tabindex="-1"></a>cv_split</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="maskinslæring-i-tidyverse.html#cb8-1" aria-hidden="true" tabindex="-1"></a>cv_split <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(penguins_training, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="maskinslæring-i-tidyverse.html#cb8-2" aria-hidden="true" tabindex="-1"></a>cv_split</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation 
 ## # A tibble: 5 × 2
 ##   splits           id   
@@ -633,12 +638,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 &lt;split [199/50]&gt; Fold4
 ## 5 &lt;split [200/49]&gt; Fold5</code></pre>
 <p>Så kan man se, at vi får en dataframe med 5 datasæt, som er lagret i kolonnen ‘splits’. Jeg vil gerne udtrække de forskellige “træning” og “testning” (/ “validering”) sæt og placere dem i deres egne kolonner ved at bruge ‘map’ inden for ‘mutate’, som vist nedenfor:</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="maskinslæring-i-tidyverse.html#cb645-1" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> cv_split <span class="sc">%&gt;%</span> </span>
-<span id="cb645-2"><a href="maskinslæring-i-tidyverse.html#cb645-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb645-3"><a href="maskinslæring-i-tidyverse.html#cb645-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">train =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> training), <span class="co">#extract training datasets</span></span>
-<span id="cb645-4"><a href="maskinslæring-i-tidyverse.html#cb645-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">validate =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> testing) <span class="co">#extract validation datasets</span></span>
-<span id="cb645-5"><a href="maskinslæring-i-tidyverse.html#cb645-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb645-6"><a href="maskinslæring-i-tidyverse.html#cb645-6" aria-hidden="true" tabindex="-1"></a>cv_data</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="maskinslæring-i-tidyverse.html#cb10-1" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> cv_split <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="maskinslæring-i-tidyverse.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="maskinslæring-i-tidyverse.html#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">train =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> training), <span class="co">#extract training datasets</span></span>
+<span id="cb10-4"><a href="maskinslæring-i-tidyverse.html#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">validate =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> testing) <span class="co">#extract validation datasets</span></span>
+<span id="cb10-5"><a href="maskinslæring-i-tidyverse.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-6"><a href="maskinslæring-i-tidyverse.html#cb10-6" aria-hidden="true" tabindex="-1"></a>cv_data</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation 
 ## # A tibble: 5 × 4
 ##   splits           id    train              validate         
@@ -652,12 +657,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="opbygning-af-modellen-og-lave-forudsigelser" class="section level3 hasAnchor" number="12.3.3">
 <h3><span class="header-section-number">12.3.3</span> Opbygning af modellen og lave forudsigelser<a href="maskinslæring-i-tidyverse.html#opbygning-af-modellen-og-lave-forudsigelser" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vi ønsker at opbygge en model for hvert af vores datasæt i kolonnen <code>train</code> individuelt og forudsige <code>body_mass_g</code> i hvert tilknyttet valideringssæt. Dette kan gøres ved hjælp af en brugerdefineret funktion som vist nedenfor:</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="maskinslæring-i-tidyverse.html#cb647-1" aria-hidden="true" tabindex="-1"></a>my_lm_func <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> ., <span class="at">data =</span> .x) <span class="co"># . betyder alle variabler i .x er uafhængige untaget body_mass_g</span></span>
-<span id="cb647-2"><a href="maskinslæring-i-tidyverse.html#cb647-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb647-3"><a href="maskinslæring-i-tidyverse.html#cb647-3" aria-hidden="true" tabindex="-1"></a>cv_models_lm <span class="ot">&lt;-</span> cv_data <span class="sc">%&gt;%</span> </span>
-<span id="cb647-4"><a href="maskinslæring-i-tidyverse.html#cb647-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(train, my_lm_func))</span>
-<span id="cb647-5"><a href="maskinslæring-i-tidyverse.html#cb647-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb647-6"><a href="maskinslæring-i-tidyverse.html#cb647-6" aria-hidden="true" tabindex="-1"></a>cv_models_lm</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="maskinslæring-i-tidyverse.html#cb12-1" aria-hidden="true" tabindex="-1"></a>my_lm_func <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> ., <span class="at">data =</span> .x) <span class="co"># . betyder alle variabler i .x er uafhængige untaget body_mass_g</span></span>
+<span id="cb12-2"><a href="maskinslæring-i-tidyverse.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="maskinslæring-i-tidyverse.html#cb12-3" aria-hidden="true" tabindex="-1"></a>cv_models_lm <span class="ot">&lt;-</span> cv_data <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="maskinslæring-i-tidyverse.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(train, my_lm_func))</span>
+<span id="cb12-5"><a href="maskinslæring-i-tidyverse.html#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="maskinslæring-i-tidyverse.html#cb12-6" aria-hidden="true" tabindex="-1"></a>cv_models_lm</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation 
 ## # A tibble: 5 × 5
 ##   splits           id    train              validate          model 
@@ -668,40 +673,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 &lt;split [199/50]&gt; Fold4 &lt;tibble [199 × 8]&gt; &lt;tibble [50 × 8]&gt; &lt;lm&gt;  
 ## 5 &lt;split [200/49]&gt; Fold5 &lt;tibble [200 × 8]&gt; &lt;tibble [49 × 8]&gt; &lt;lm&gt;</code></pre>
 <p>Nu vil vi gerne bruge datasættet i kolonnen <code>validate</code> til at lave en forudsigelse for hver af vores modeller. Til dette formål kan man bruge funktionen <code>predict()</code>. Man tager en model og et nyt datasæt (dvs. det tilsvarende datasæt i kolonnen <code>validate</code>), og får nogle forventede <code>body_mass_g</code> værdier ud fra modellen, anvendt på de nye data. I det følgende bliver disse forventede “predicted” værdier af <code>body_mass_g</code> gemt i kolonnen <code>validate_predicted</code>. Da vi faktisk kender de virkelige værdier af <code>body_mass_g</code> i vores valideringsdatasæt, laver jeg også en kolonne <code>validate_actual</code>, der indeholder disse virkelige værdier, som jeg kan sammenligne med mine forventede værdier.</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="maskinslæring-i-tidyverse.html#cb649-1" aria-hidden="true" tabindex="-1"></a>cv_prep_lm <span class="ot">&lt;-</span> cv_models_lm <span class="sc">%&gt;%</span> </span>
-<span id="cb649-2"><a href="maskinslæring-i-tidyverse.html#cb649-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb649-3"><a href="maskinslæring-i-tidyverse.html#cb649-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">actual_mass =</span> <span class="fu">map</span>(validate, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pull</span>(body_mass_g)), <span class="co">#actual body_mass_g values for validation set</span></span>
-<span id="cb649-4"><a href="maskinslæring-i-tidyverse.html#cb649-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted_mass =</span> <span class="fu">map2</span>(<span class="at">.x =</span> model, <span class="at">.y =</span> validate, <span class="sc">~</span><span class="fu">predict</span>(.x, .y)) <span class="co">#predicted body_mass_g values for validation set</span></span>
-<span id="cb649-5"><a href="maskinslæring-i-tidyverse.html#cb649-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="maskinslæring-i-tidyverse.html#cb14-1" aria-hidden="true" tabindex="-1"></a>cv_prep_lm <span class="ot">&lt;-</span> cv_models_lm <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="maskinslæring-i-tidyverse.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-3"><a href="maskinslæring-i-tidyverse.html#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">actual_mass =</span> <span class="fu">map</span>(validate, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pull</span>(body_mass_g)), <span class="co">#actual body_mass_g values for validation set</span></span>
+<span id="cb14-4"><a href="maskinslæring-i-tidyverse.html#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted_mass =</span> <span class="fu">map2</span>(<span class="at">.x =</span> model, <span class="at">.y =</span> validate, <span class="sc">~</span><span class="fu">predict</span>(.x, .y)) <span class="co">#predicted body_mass_g values for validation set</span></span>
+<span id="cb14-5"><a href="maskinslæring-i-tidyverse.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <div id="evaluering-af-resultater-på-valideringssættet" class="section level3 hasAnchor" number="12.3.4">
 <h3><span class="header-section-number">12.3.4</span> Evaluering af resultater på valideringssættet<a href="maskinslæring-i-tidyverse.html#evaluering-af-resultater-på-valideringssættet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Jeg vil gerne sammenligne mine nye forudsigelser direkte med de virkelige værdier for <code>body_mass_g</code>, hvilket kan give os en indikation af, hvor gode vores modeller faktisk er. I det følgende udvælger jeg <code>id</code>, <code>actual_mass</code> og <code>predicted_mass</code> fra dataframen <code>cv_prep_lm</code> og kombinerer dem i en ny dataframe <code>prediction_df</code>:</p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="maskinslæring-i-tidyverse.html#cb650-1" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="ot">&lt;-</span> cv_prep_lm <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, actual_mass, predicted_mass) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(actual_mass, predicted_mass))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="maskinslæring-i-tidyverse.html#cb15-1" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="ot">&lt;-</span> cv_prep_lm <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, actual_mass, predicted_mass) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(actual_mass, predicted_mass))</span></code></pre></div>
 <p>For hver af de fem folds beregner jeg statistikken “mean absolute error”, der tager afstanden mellem de forventede værdier (<code>predicted_mass</code>) og de virkelige værdier (<code>actual_mass</code>) og tager herefter middelværdien (over deres absolutte værdier dvs. uden minus tegn). Jo mindre “mae” er, jo bedre er modellen.</p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="maskinslæring-i-tidyverse.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindre mae = bedre model</span></span>
-<span id="cb651-2"><a href="maskinslæring-i-tidyverse.html#cb651-2" aria-hidden="true" tabindex="-1"></a>mae_df <span class="ot">&lt;-</span> prediction_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&quot;mae&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(actual_mass <span class="sc">-</span> predicted_mass)))</span></code></pre></div>
-<p>Her er et plot af statistikken “mae” for de forskellige folds. I gennemsnit er det 237.2478545, hvilket betyder, at vores forudsigelser i gennemsnit er ude/forkerte med knap 300 g - ikke dårligt, når den gennemsnitlige pingvin vejer 4207.06 g.</p>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="maskinslæring-i-tidyverse.html#cb652-1" aria-hidden="true" tabindex="-1"></a>mae_df <span class="sc">%&gt;%</span> </span>
-<span id="cb652-2"><a href="maskinslæring-i-tidyverse.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>mae,<span class="at">x=</span>id,<span class="at">fill=</span>id)) <span class="sc">+</span> </span>
-<span id="cb652-3"><a href="maskinslæring-i-tidyverse.html#cb652-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb652-4"><a href="maskinslæring-i-tidyverse.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="visualisering_22_files/figure-html/unnamed-chunk-682-1.png" width="480" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="maskinslæring-i-tidyverse.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindre mae = bedre model</span></span>
+<span id="cb16-2"><a href="maskinslæring-i-tidyverse.html#cb16-2" aria-hidden="true" tabindex="-1"></a>mae_df <span class="ot">&lt;-</span> prediction_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&quot;mae&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(actual_mass <span class="sc">-</span> predicted_mass)))</span></code></pre></div>
+<p>Her er et plot af statistikken “mae” for de forskellige folds. I gennemsnit er det 225.7309707, hvilket betyder, at vores forudsigelser i gennemsnit er ude/forkerte med knap 300 g - ikke dårligt, når den gennemsnitlige pingvin vejer 4207.06 g.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="maskinslæring-i-tidyverse.html#cb17-1" aria-hidden="true" tabindex="-1"></a>mae_df <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="maskinslæring-i-tidyverse.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>mae,<span class="at">x=</span>id,<span class="at">fill=</span>id)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="maskinslæring-i-tidyverse.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="maskinslæring-i-tidyverse.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="visualisering_22_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="test-og-evaluering-af-final-model" class="section level3 hasAnchor" number="12.3.5">
 <h3><span class="header-section-number">12.3.5</span> Test og evaluering af “final” model<a href="maskinslæring-i-tidyverse.html#test-og-evaluering-af-final-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vi har lavet forudsigelser på de forskellige dele af vores træningssæt, men vi har endnu ikke lavet forudsigelser på vores testsæt <code>penguins_test</code>, som blev holdt ude af hele træningsprocessen. Efter cross-validation-processen skal man lave en “final” model, der bruger alle træningsdata på én gang (dvs. ikke bare én enkelt fold), da vi gerne vil opbygge den endelige model fra så mange data som muligt. Bemærk, at når det kun er ét datasæt, behøver vi ikke at bruge en brugerdefineret funktion.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="maskinslæring-i-tidyverse.html#cb653-1" aria-hidden="true" tabindex="-1"></a>model_final <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> ., <span class="at">data =</span> penguins_training)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="maskinslæring-i-tidyverse.html#cb18-1" aria-hidden="true" tabindex="-1"></a>model_final <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> ., <span class="at">data =</span> penguins_training)</span></code></pre></div>
 <p>Nu kan vi endelig anvende vores testdata (som vi holdt ude før cross-validation-processen): her anvender jeg min “final model” til at forudsige <code>body_mass_g</code> for pingvinerne i datasættet <code>penguins_test</code>. Dernæst sammenligner vi vores forudsigelser med de virkelige værdier, ligesom i det ovenstående (men her har jeg ikke forskellige folds at tage i betragtning).</p>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="maskinslæring-i-tidyverse.html#cb654-1" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">&quot;actual_mass&quot;</span><span class="ot">=</span>penguins_test <span class="sc">%&gt;%</span> <span class="fu">pull</span>(body_mass_g),</span>
-<span id="cb654-2"><a href="maskinslæring-i-tidyverse.html#cb654-2" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;predicted_mass&quot;</span><span class="ot">=</span><span class="fu">predict</span>(model_final,penguins_test))</span>
-<span id="cb654-3"><a href="maskinslæring-i-tidyverse.html#cb654-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb654-4"><a href="maskinslæring-i-tidyverse.html#cb654-4" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&quot;mae&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(actual_mass<span class="sc">-</span>predicted_mass)))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="maskinslæring-i-tidyverse.html#cb19-1" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">&quot;actual_mass&quot;</span><span class="ot">=</span>penguins_test <span class="sc">%&gt;%</span> <span class="fu">pull</span>(body_mass_g),</span>
+<span id="cb19-2"><a href="maskinslæring-i-tidyverse.html#cb19-2" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;predicted_mass&quot;</span><span class="ot">=</span><span class="fu">predict</span>(model_final,penguins_test))</span>
+<span id="cb19-3"><a href="maskinslæring-i-tidyverse.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="maskinslæring-i-tidyverse.html#cb19-4" aria-hidden="true" tabindex="-1"></a>prediction_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&quot;mae&quot;</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">abs</span>(actual_mass<span class="sc">-</span>predicted_mass)))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##     mae
 ##   &lt;dbl&gt;
-## 1  239.</code></pre>
-<p>Man kan se, at vores endelige model laver forudsigelser, som i gennemsnit er 238.9 g væk fra pingvinernes virkelige vægt (det vil sige, at forudsigelsen kan være over eller under den virkelige værdi, men i gennemsnit er afstanden fra den virkelige værdi 230 g).</p>
+## 1  256.</code></pre>
+<p>Man kan se, at vores endelige model laver forudsigelser, som i gennemsnit er 256.4 g væk fra pingvinernes virkelige vægt (det vil sige, at forudsigelsen kan være over eller under den virkelige værdi, men i gennemsnit er afstanden fra den virkelige værdi 230 g).</p>
 </div>
 </div>
 <div id="klassifikationsmodeller" class="section level2 hasAnchor" number="12.4">
@@ -709,20 +714,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>I den ovenstående proces lavede vi en regressionsmodel, hvor den afhængige variabel er kontinuerlig (<code>body_mass_g</code>). I en klassifikationsmodel er den afhængige variabel kategorisk (fx “yes” eller “no” i forhold til variablen <code>Survived</code> i datasættet <code>titanic</code>). Vi viser her, at det er meget nemt at skifte fra den ene type model til en anden, og vi bruger stort set den samme kode (med kun små ændringer).</p>
 <p>Den ovenstående ramme giver os også muligheden for at opbygge modeller, hvor der faktisk er forskellige parametre, der skal vælges. I det ovenstående eksempel med pingviner var der faktisk ikke meget “tuning”, vi skulle gøre for at udvikle modellen. Jeg viser her, hvordan man kan “tune” en parameter inden for samme ramme i vores klassifikationsmodel.</p>
 <p>Jeg åbner først Titanic-datasættet. Datasættet i <code>titanic</code>-pakken er allerede blevet opdelt efter træning og test, men lad os bare ignorere det og følge samme ramme som i det ovenstående.</p>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="maskinslæring-i-tidyverse.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(titanic)</span>
-<span id="cb656-2"><a href="maskinslæring-i-tidyverse.html#cb656-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb656-3"><a href="maskinslæring-i-tidyverse.html#cb656-3" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic_train</span>
-<span id="cb656-4"><a href="maskinslæring-i-tidyverse.html#cb656-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb656-5"><a href="maskinslæring-i-tidyverse.html#cb656-5" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb656-6"><a href="maskinslæring-i-tidyverse.html#cb656-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">mutate</span>(<span class="at">Survived =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(Survived <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>),<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb656-7"><a href="maskinslæring-i-tidyverse.html#cb656-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">recode</span>(Pclass, <span class="st">`</span><span class="at">1</span><span class="st">`</span><span class="ot">=</span><span class="st">&quot;first&quot;</span>,<span class="st">`</span><span class="at">2</span><span class="st">`</span><span class="ot">=</span><span class="st">&quot;second&quot;</span>,<span class="st">`</span><span class="at">3</span><span class="st">`</span><span class="ot">=</span><span class="st">&quot;third&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb656-8"><a href="maskinslæring-i-tidyverse.html#cb656-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">as_factor</span>(Pclass),</span>
-<span id="cb656-9"><a href="maskinslæring-i-tidyverse.html#cb656-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Sex =</span> <span class="fu">as_factor</span>(Sex),</span>
-<span id="cb656-10"><a href="maskinslæring-i-tidyverse.html#cb656-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Port =</span> <span class="fu">as_factor</span>(Embarked),</span>
-<span id="cb656-11"><a href="maskinslæring-i-tidyverse.html#cb656-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Solo =</span> <span class="fu">if_else</span>(SibSp <span class="sc">+</span> Parch <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb656-12"><a href="maskinslæring-i-tidyverse.html#cb656-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(Survived, Pclass, Sex, Age, Solo, Port, Fare)</span>
-<span id="cb656-13"><a href="maskinslæring-i-tidyverse.html#cb656-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb656-14"><a href="maskinslæring-i-tidyverse.html#cb656-14" aria-hidden="true" tabindex="-1"></a>titanic</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="maskinslæring-i-tidyverse.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(titanic)</span>
+<span id="cb21-2"><a href="maskinslæring-i-tidyverse.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="maskinslæring-i-tidyverse.html#cb21-3" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic_train</span>
+<span id="cb21-4"><a href="maskinslæring-i-tidyverse.html#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="maskinslæring-i-tidyverse.html#cb21-5" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="maskinslæring-i-tidyverse.html#cb21-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">mutate</span>(<span class="at">Survived =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(Survived <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>),<span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="maskinslæring-i-tidyverse.html#cb21-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">recode</span>(Pclass, <span class="st">`</span><span class="at">1</span><span class="st">`</span><span class="ot">=</span><span class="st">&quot;first&quot;</span>,<span class="st">`</span><span class="at">2</span><span class="st">`</span><span class="ot">=</span><span class="st">&quot;second&quot;</span>,<span class="st">`</span><span class="at">3</span><span class="st">`</span><span class="ot">=</span><span class="st">&quot;third&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href="maskinslæring-i-tidyverse.html#cb21-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">as_factor</span>(Pclass),</span>
+<span id="cb21-9"><a href="maskinslæring-i-tidyverse.html#cb21-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Sex =</span> <span class="fu">as_factor</span>(Sex),</span>
+<span id="cb21-10"><a href="maskinslæring-i-tidyverse.html#cb21-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Port =</span> <span class="fu">as_factor</span>(Embarked),</span>
+<span id="cb21-11"><a href="maskinslæring-i-tidyverse.html#cb21-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Solo =</span> <span class="fu">if_else</span>(SibSp <span class="sc">+</span> Parch <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-12"><a href="maskinslæring-i-tidyverse.html#cb21-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(Survived, Pclass, Sex, Age, Solo, Port, Fare)</span>
+<span id="cb21-13"><a href="maskinslæring-i-tidyverse.html#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="maskinslæring-i-tidyverse.html#cb21-14" aria-hidden="true" tabindex="-1"></a>titanic</span></code></pre></div>
 <pre><code>## # A tibble: 714 × 7
 ##    Survived Pclass Sex      Age Solo  Port   Fare
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;fct&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;
@@ -743,21 +748,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>I følgende steps forklarer jeg processen med <code>titanic</code> i flere detaljer:</p>
 <div id="splitte-datasættet-og-lave-cross-validation-dataframe" class="section level3 hasAnchor" number="12.4.1">
 <h3><span class="header-section-number">12.4.1</span> Splitte datasættet og lave cross-validation dataframe<a href="maskinslæring-i-tidyverse.html#splitte-datasættet-og-lave-cross-validation-dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="maskinslæring-i-tidyverse.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
-<span id="cb658-2"><a href="maskinslæring-i-tidyverse.html#cb658-2" aria-hidden="true" tabindex="-1"></a>titanic_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(titanic, <span class="at">prop =</span> <span class="fl">0.75</span>)</span>
-<span id="cb658-3"><a href="maskinslæring-i-tidyverse.html#cb658-3" aria-hidden="true" tabindex="-1"></a>titanic_training <span class="ot">&lt;-</span> titanic_split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
-<span id="cb658-4"><a href="maskinslæring-i-tidyverse.html#cb658-4" aria-hidden="true" tabindex="-1"></a>titanic_test <span class="ot">&lt;-</span> titanic_split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="maskinslæring-i-tidyverse.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
+<span id="cb23-2"><a href="maskinslæring-i-tidyverse.html#cb23-2" aria-hidden="true" tabindex="-1"></a>titanic_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(titanic, <span class="at">prop =</span> <span class="fl">0.75</span>)</span>
+<span id="cb23-3"><a href="maskinslæring-i-tidyverse.html#cb23-3" aria-hidden="true" tabindex="-1"></a>titanic_training <span class="ot">&lt;-</span> titanic_split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
+<span id="cb23-4"><a href="maskinslæring-i-tidyverse.html#cb23-4" aria-hidden="true" tabindex="-1"></a>titanic_test <span class="ot">&lt;-</span> titanic_split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span></code></pre></div>
 <p>Vi anvender 5-fold cross validation på datasættet <code>titanic_training</code> og udtrækker de træning og testing sæt til de forskellige folds (og lagrer dem i henholdvis <code>train</code> og <code>validate</code> i dataframen <code>cv_data</code>):</p>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="maskinslæring-i-tidyverse.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
-<span id="cb659-2"><a href="maskinslæring-i-tidyverse.html#cb659-2" aria-hidden="true" tabindex="-1"></a>cv_split <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(titanic_training, <span class="at">v =</span> <span class="dv">5</span>)</span>
-<span id="cb659-3"><a href="maskinslæring-i-tidyverse.html#cb659-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb659-4"><a href="maskinslæring-i-tidyverse.html#cb659-4" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> cv_split <span class="sc">%&gt;%</span> </span>
-<span id="cb659-5"><a href="maskinslæring-i-tidyverse.html#cb659-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb659-6"><a href="maskinslæring-i-tidyverse.html#cb659-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">train =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">training</span>()), </span>
-<span id="cb659-7"><a href="maskinslæring-i-tidyverse.html#cb659-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">validate =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">testing</span>())</span>
-<span id="cb659-8"><a href="maskinslæring-i-tidyverse.html#cb659-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb659-9"><a href="maskinslæring-i-tidyverse.html#cb659-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb659-10"><a href="maskinslæring-i-tidyverse.html#cb659-10" aria-hidden="true" tabindex="-1"></a>cv_data</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="maskinslæring-i-tidyverse.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
+<span id="cb24-2"><a href="maskinslæring-i-tidyverse.html#cb24-2" aria-hidden="true" tabindex="-1"></a>cv_split <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(titanic_training, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb24-3"><a href="maskinslæring-i-tidyverse.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="maskinslæring-i-tidyverse.html#cb24-4" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> cv_split <span class="sc">%&gt;%</span> </span>
+<span id="cb24-5"><a href="maskinslæring-i-tidyverse.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-6"><a href="maskinslæring-i-tidyverse.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">train =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">training</span>()), </span>
+<span id="cb24-7"><a href="maskinslæring-i-tidyverse.html#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">validate =</span> <span class="fu">map</span>(splits, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">testing</span>())</span>
+<span id="cb24-8"><a href="maskinslæring-i-tidyverse.html#cb24-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-9"><a href="maskinslæring-i-tidyverse.html#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="maskinslæring-i-tidyverse.html#cb24-10" aria-hidden="true" tabindex="-1"></a>cv_data</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation 
 ## # A tibble: 5 × 4
 ##   splits            id    train              validate          
@@ -773,10 +778,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Dernæst vil vi gerne anvende en model på de fem træningssæt. Et godt eksempel på en klassifikationsmetode, der både er nem at bruge og meget kraftfuld, er “random forest”. Her er det ikke nødvendigt at forstå alle detaljer, men helt kort - man opbygger beslutningstræer baseret på tilfældigt udvalgte delmængder af data. I et beslutningstræ laver man “splits” over de forskellige variable, som man bruger til at bestemme, om en passager overlevede eller ej (se billede). Når man gentager denne proces flere gange, for eksempel over 100 træer, der involverer 100 tilfældige delmængder af data, kan man tage et gennemsnit, som udgør de endelige beslutninger (forudsigelser eller predictions).</p>
 <p><img src="plots/random_forest_titanic.png" width="70%" /></p>
 <p>I det følgende anvender jeg funktionen <code>ranger()</code> (installer pakken <code>ranger</code>), der passer en random forest i R på datasættet.</p>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="maskinslæring-i-tidyverse.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
-<span id="cb661-2"><a href="maskinslæring-i-tidyverse.html#cb661-2" aria-hidden="true" tabindex="-1"></a>ranger_model <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">ranger</span>(<span class="at">formula =</span> Survived <span class="sc">~</span> . ,  <span class="co"># . betyder alle variabler i datasættet er uafhængige</span></span>
-<span id="cb661-3"><a href="maskinslæring-i-tidyverse.html#cb661-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">data =</span> .x,</span>
-<span id="cb661-4"><a href="maskinslæring-i-tidyverse.html#cb661-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="maskinslæring-i-tidyverse.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
+<span id="cb26-2"><a href="maskinslæring-i-tidyverse.html#cb26-2" aria-hidden="true" tabindex="-1"></a>ranger_model <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">ranger</span>(<span class="at">formula =</span> Survived <span class="sc">~</span> . ,  <span class="co"># . betyder alle variabler i datasættet er uafhængige</span></span>
+<span id="cb26-3"><a href="maskinslæring-i-tidyverse.html#cb26-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">data =</span> .x,</span>
+<span id="cb26-4"><a href="maskinslæring-i-tidyverse.html#cb26-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span></code></pre></div>
 <p>Lidt om <code>ranger</code>-modellens parametre:</p>
 <ul>
 <li>Jeg angiver en formel - variablen <code>Survived</code> er afhængig, og alle andre variabler er uafhængige (betegnet ved “.” for at spare tid).</li>
@@ -787,9 +792,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="anvende-modellen-og-lave-predictions" class="section level3 hasAnchor" number="12.4.3">
 <h3><span class="header-section-number">12.4.3</span> Anvende modellen og lave predictions<a href="maskinslæring-i-tidyverse.html#anvende-modellen-og-lave-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Jeg laver mine modeller ved at oprette en ny kolonne <code>model</code> i dataframe <code>cv_data</code>, hvor jeg anvender min custom funktion med <code>map</code>:</p>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="maskinslæring-i-tidyverse.html#cb662-1" aria-hidden="true" tabindex="-1"></a>cv_models_rf <span class="ot">&lt;-</span> cv_data <span class="sc">%&gt;%</span> </span>
-<span id="cb662-2"><a href="maskinslæring-i-tidyverse.html#cb662-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(train, ranger_model))</span>
-<span id="cb662-3"><a href="maskinslæring-i-tidyverse.html#cb662-3" aria-hidden="true" tabindex="-1"></a>cv_models_rf</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="maskinslæring-i-tidyverse.html#cb27-1" aria-hidden="true" tabindex="-1"></a>cv_models_rf <span class="ot">&lt;-</span> cv_data <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="maskinslæring-i-tidyverse.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(train, ranger_model))</span>
+<span id="cb27-3"><a href="maskinslæring-i-tidyverse.html#cb27-3" aria-hidden="true" tabindex="-1"></a>cv_models_rf</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation 
 ## # A tibble: 5 × 5
 ##   splits            id    train              validate           model   
@@ -800,16 +805,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 &lt;split [428/107]&gt; Fold4 &lt;tibble [428 × 7]&gt; &lt;tibble [107 × 7]&gt; &lt;ranger&gt;
 ## 5 &lt;split [428/107]&gt; Fold5 &lt;tibble [428 × 7]&gt; &lt;tibble [107 × 7]&gt; &lt;ranger&gt;</code></pre>
 <p>Næste skridt er at lave forudsigelser over de fem <code>validate</code> datasæt med funktionen <code>predict()</code>. Det fungerer på samme måde som i ovenstående regressionsmodel, men med <code>ranger</code> er man nødt til at udtrække selve forudsigelserne ved at tilføje <code>$predictions</code>, ligesom i den følgende funktion <code>my_prediction_function</code>:</p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="maskinslæring-i-tidyverse.html#cb664-1" aria-hidden="true" tabindex="-1"></a>my_prediction_function <span class="ot">&lt;-</span>  <span class="er">~</span><span class="fu">predict</span>(.x, .y)<span class="sc">$</span>predictions</span>
-<span id="cb664-2"><a href="maskinslæring-i-tidyverse.html#cb664-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb664-3"><a href="maskinslæring-i-tidyverse.html#cb664-3" aria-hidden="true" tabindex="-1"></a>cv_prep_rf <span class="ot">&lt;-</span> cv_models_rf <span class="sc">%&gt;%</span> </span>
-<span id="cb664-4"><a href="maskinslæring-i-tidyverse.html#cb664-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb664-5"><a href="maskinslæring-i-tidyverse.html#cb664-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">actual =</span> <span class="fu">map</span>(validate, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Survived)), <span class="co">#de faktiske &quot;yes&quot; eller &quot;no&quot;</span></span>
-<span id="cb664-6"><a href="maskinslæring-i-tidyverse.html#cb664-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted =</span> <span class="fu">map2</span>(<span class="at">.x =</span> model, <span class="at">.y =</span> validate, my_prediction_function) <span class="co">#forudsigelserne af &quot;yes&quot; eller &quot;no&quot;</span></span>
-<span id="cb664-7"><a href="maskinslæring-i-tidyverse.html#cb664-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="maskinslæring-i-tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a>my_prediction_function <span class="ot">&lt;-</span>  <span class="er">~</span><span class="fu">predict</span>(.x, .y)<span class="sc">$</span>predictions</span>
+<span id="cb29-2"><a href="maskinslæring-i-tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="maskinslæring-i-tidyverse.html#cb29-3" aria-hidden="true" tabindex="-1"></a>cv_prep_rf <span class="ot">&lt;-</span> cv_models_rf <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href="maskinslæring-i-tidyverse.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-5"><a href="maskinslæring-i-tidyverse.html#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">actual =</span> <span class="fu">map</span>(validate, <span class="sc">~</span>.x <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Survived)), <span class="co">#de faktiske &quot;yes&quot; eller &quot;no&quot;</span></span>
+<span id="cb29-6"><a href="maskinslæring-i-tidyverse.html#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted =</span> <span class="fu">map2</span>(<span class="at">.x =</span> model, <span class="at">.y =</span> validate, my_prediction_function) <span class="co">#forudsigelserne af &quot;yes&quot; eller &quot;no&quot;</span></span>
+<span id="cb29-7"><a href="maskinslæring-i-tidyverse.html#cb29-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Nu lad os kigge på vores forudsigelser (“yes” eller “no”) sammenlignet med de virkelige værdier (“yes” eller “no”) i variablen <code>Survived</code>, for hver af de fem valideringssæt:</p>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="maskinslæring-i-tidyverse.html#cb665-1" aria-hidden="true" tabindex="-1"></a>predictions_df <span class="ot">&lt;-</span> cv_prep_rf <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, actual, predicted) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(actual, predicted)) </span>
-<span id="cb665-2"><a href="maskinslæring-i-tidyverse.html#cb665-2" aria-hidden="true" tabindex="-1"></a>predictions_df</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="maskinslæring-i-tidyverse.html#cb30-1" aria-hidden="true" tabindex="-1"></a>predictions_df <span class="ot">&lt;-</span> cv_prep_rf <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, actual, predicted) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(actual, predicted)) </span>
+<span id="cb30-2"><a href="maskinslæring-i-tidyverse.html#cb30-2" aria-hidden="true" tabindex="-1"></a>predictions_df</span></code></pre></div>
 <pre><code>## # A tibble: 535 × 3
 ##    id    actual predicted
 ##    &lt;chr&gt; &lt;fct&gt;  &lt;fct&gt;    
@@ -828,11 +833,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beregne-nøjagtighed" class="section level3 hasAnchor" number="12.4.4">
 <h3><span class="header-section-number">12.4.4</span> Beregne nøjagtighed<a href="maskinslæring-i-tidyverse.html#beregne-nøjagtighed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Hvor mange fik vi rigtige? Vi beregner “accuracy”, som måler andelen af korrekte forudsigelser (både <code>actual</code> og <code>predicted</code> er enige om, hvem der overlevede eller ikke overlevede). Da jeg har forudsigelser for 5 forskellige datasæt (valideringssæt for hver “fold”), anvender jeg <code>group_by(id)</code>, og dernæst <code>summarise</code> til at beregne andelen af tilfælde, hvor variablen <code>actual</code> er den samme som <code>predicted</code>.</p>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="maskinslæring-i-tidyverse.html#cb667-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="ot">&lt;-</span> predictions_df <span class="sc">%&gt;%</span> </span>
-<span id="cb667-2"><a href="maskinslæring-i-tidyverse.html#cb667-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span> </span>
-<span id="cb667-3"><a href="maskinslæring-i-tidyverse.html#cb667-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;accuracy&quot;</span> <span class="ot">=</span> <span class="fu">sum</span>(actual<span class="sc">==</span>predicted)<span class="sc">/</span><span class="fu">n</span>())</span>
-<span id="cb667-4"><a href="maskinslæring-i-tidyverse.html#cb667-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb667-5"><a href="maskinslæring-i-tidyverse.html#cb667-5" aria-hidden="true" tabindex="-1"></a>my_accuracies</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="maskinslæring-i-tidyverse.html#cb32-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="ot">&lt;-</span> predictions_df <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="maskinslæring-i-tidyverse.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="maskinslæring-i-tidyverse.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;accuracy&quot;</span> <span class="ot">=</span> <span class="fu">sum</span>(actual<span class="sc">==</span>predicted)<span class="sc">/</span><span class="fu">n</span>())</span>
+<span id="cb32-4"><a href="maskinslæring-i-tidyverse.html#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="maskinslæring-i-tidyverse.html#cb32-5" aria-hidden="true" tabindex="-1"></a>my_accuracies</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 2
 ##   id    accuracy
 ##   &lt;chr&gt;    &lt;dbl&gt;
@@ -842,21 +847,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Fold4    0.822
 ## 5 Fold5    0.813</code></pre>
 <p>Jeg kan omsætte tallene til et plot:</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="maskinslæring-i-tidyverse.html#cb669-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="sc">%&gt;%</span> </span>
-<span id="cb669-2"><a href="maskinslæring-i-tidyverse.html#cb669-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>id,<span class="at">y=</span>accuracy,<span class="at">fill=</span>id)) <span class="sc">+</span>  </span>
-<span id="cb669-3"><a href="maskinslæring-i-tidyverse.html#cb669-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb669-4"><a href="maskinslæring-i-tidyverse.html#cb669-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="visualisering_22_files/figure-html/unnamed-chunk-695-1.png" width="480" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="maskinslæring-i-tidyverse.html#cb34-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="maskinslæring-i-tidyverse.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>id,<span class="at">y=</span>accuracy,<span class="at">fill=</span>id)) <span class="sc">+</span>  </span>
+<span id="cb34-3"><a href="maskinslæring-i-tidyverse.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb34-4"><a href="maskinslæring-i-tidyverse.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="visualisering_22_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="parameterjustering" class="section level3 hasAnchor" number="12.4.5">
 <h3><span class="header-section-number">12.4.5</span> Parameterjustering<a href="maskinslæring-i-tidyverse.html#parameterjustering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I funktionen <code>ranger</code> var der faktisk nogle parametre, der kan have indflydelse på modellens forudsigelser til sidst - én af dem er for eksempel <code>num.trees</code> - hvis man bruger fx. 100 træer, får man sandsynligvis bedre resultater end hvis man anvender kun et træ. En anden parameter, som vi angav som “default” i ovenstående analyse, er <code>mtry</code>. Den angiver hvor mange variabler vi skal inddrage i en enkelt beregning i træerne (det inddrager mere tilfældighed i algoritmen og undgår, at 1-2 variabler har for meget indflydelse på resultaterne).
 Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og se, hvilken værdi der giver de bedste resultater. I <code>tidyr</code>-pakken er der en nyttig funktion <code>crossing</code>, der laver kopier af de forskellige folds datasæt, én til hver mulig værdi af <code>mtry</code>:</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="maskinslæring-i-tidyverse.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forbered justering af dine cross validation folds ved at variere mtry</span></span>
-<span id="cb670-2"><a href="maskinslæring-i-tidyverse.html#cb670-2" aria-hidden="true" tabindex="-1"></a>cv_tune <span class="ot">&lt;-</span> cv_data <span class="sc">%&gt;%</span></span>
-<span id="cb670-3"><a href="maskinslæring-i-tidyverse.html#cb670-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">crossing</span>(<span class="at">mtry =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>))</span>
-<span id="cb670-4"><a href="maskinslæring-i-tidyverse.html#cb670-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb670-5"><a href="maskinslæring-i-tidyverse.html#cb670-5" aria-hidden="true" tabindex="-1"></a>cv_tune</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="maskinslæring-i-tidyverse.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forbered justering af dine cross validation folds ved at variere mtry</span></span>
+<span id="cb35-2"><a href="maskinslæring-i-tidyverse.html#cb35-2" aria-hidden="true" tabindex="-1"></a>cv_tune <span class="ot">&lt;-</span> cv_data <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="maskinslæring-i-tidyverse.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">crossing</span>(<span class="at">mtry =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>))</span>
+<span id="cb35-4"><a href="maskinslæring-i-tidyverse.html#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="maskinslæring-i-tidyverse.html#cb35-5" aria-hidden="true" tabindex="-1"></a>cv_tune</span></code></pre></div>
 <pre><code>## # A tibble: 25 × 5
 ##    splits            id    train              validate            mtry
 ##    &lt;list&gt;            &lt;chr&gt; &lt;list&gt;             &lt;list&gt;             &lt;int&gt;
@@ -872,22 +877,22 @@ Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og 
 ## 10 &lt;split [428/107]&gt; Fold2 &lt;tibble [428 × 7]&gt; &lt;tibble [107 × 7]&gt;     6
 ## # ℹ 15 more rows</code></pre>
 <p>Nu kan jeg bygge en model op til hver kombination af fold (variablen <code>id</code>) og mtry (variablen <code>mtry</code>). Bemærk, at jeg bruger <code>map2</code> her, fordi jeg gerne vil bruge to kolonner af min nestede dataframe - <code>mtry</code> (betegnet som .y i funktionen) og <code>train</code> (betegnet som .x i funktionen).</p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="maskinslæring-i-tidyverse.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a model for each fold &amp; mtry combination</span></span>
-<span id="cb672-2"><a href="maskinslæring-i-tidyverse.html#cb672-2" aria-hidden="true" tabindex="-1"></a>my_ranger_func <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">ranger</span>(<span class="at">formula =</span> Survived<span class="sc">~</span>., <span class="at">data =</span> .x, </span>
-<span id="cb672-3"><a href="maskinslæring-i-tidyverse.html#cb672-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mtry =</span> .y,</span>
-<span id="cb672-4"><a href="maskinslæring-i-tidyverse.html#cb672-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span>
-<span id="cb672-5"><a href="maskinslæring-i-tidyverse.html#cb672-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb672-6"><a href="maskinslæring-i-tidyverse.html#cb672-6" aria-hidden="true" tabindex="-1"></a>cv_models_rf <span class="ot">&lt;-</span> cv_tune <span class="sc">%&gt;%</span> </span>
-<span id="cb672-7"><a href="maskinslæring-i-tidyverse.html#cb672-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map2</span>(train, mtry, my_ranger_func))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="maskinslæring-i-tidyverse.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a model for each fold &amp; mtry combination</span></span>
+<span id="cb37-2"><a href="maskinslæring-i-tidyverse.html#cb37-2" aria-hidden="true" tabindex="-1"></a>my_ranger_func <span class="ot">&lt;-</span> <span class="er">~</span><span class="fu">ranger</span>(<span class="at">formula =</span> Survived<span class="sc">~</span>., <span class="at">data =</span> .x, </span>
+<span id="cb37-3"><a href="maskinslæring-i-tidyverse.html#cb37-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">mtry =</span> .y,</span>
+<span id="cb37-4"><a href="maskinslæring-i-tidyverse.html#cb37-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span>
+<span id="cb37-5"><a href="maskinslæring-i-tidyverse.html#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="maskinslæring-i-tidyverse.html#cb37-6" aria-hidden="true" tabindex="-1"></a>cv_models_rf <span class="ot">&lt;-</span> cv_tune <span class="sc">%&gt;%</span> </span>
+<span id="cb37-7"><a href="maskinslæring-i-tidyverse.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map2</span>(train, mtry, my_ranger_func))</span></code></pre></div>
 <p>Og udtrækker predictions med <code>predict</code> ligesom i ovenstående:</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="maskinslæring-i-tidyverse.html#cb673-1" aria-hidden="true" tabindex="-1"></a>cv_prep_rf <span class="ot">&lt;-</span> cv_models_rf <span class="sc">%&gt;%</span> </span>
-<span id="cb673-2"><a href="maskinslæring-i-tidyverse.html#cb673-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb673-3"><a href="maskinslæring-i-tidyverse.html#cb673-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">actual =</span> <span class="fu">map</span>(validate, <span class="sc">~</span>.x<span class="sc">$</span>Survived),</span>
-<span id="cb673-4"><a href="maskinslæring-i-tidyverse.html#cb673-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted =</span> <span class="fu">map2</span>(<span class="at">.x =</span> model, <span class="at">.y =</span> validate, <span class="sc">~</span><span class="fu">predict</span>(.x, .y)<span class="sc">$</span>predictions)</span>
-<span id="cb673-5"><a href="maskinslæring-i-tidyverse.html#cb673-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="maskinslæring-i-tidyverse.html#cb38-1" aria-hidden="true" tabindex="-1"></a>cv_prep_rf <span class="ot">&lt;-</span> cv_models_rf <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="maskinslæring-i-tidyverse.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb38-3"><a href="maskinslæring-i-tidyverse.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">actual =</span> <span class="fu">map</span>(validate, <span class="sc">~</span>.x<span class="sc">$</span>Survived),</span>
+<span id="cb38-4"><a href="maskinslæring-i-tidyverse.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted =</span> <span class="fu">map2</span>(<span class="at">.x =</span> model, <span class="at">.y =</span> validate, <span class="sc">~</span><span class="fu">predict</span>(.x, .y)<span class="sc">$</span>predictions)</span>
+<span id="cb38-5"><a href="maskinslæring-i-tidyverse.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Nu laver jeg en dataframe ligesom i ovenstående som viser mine predictions - men denne gange har jeg predictions over både min folds og de forskellige værdier for “mtry”:</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="maskinslæring-i-tidyverse.html#cb674-1" aria-hidden="true" tabindex="-1"></a>predictions_df <span class="ot">&lt;-</span> cv_prep_rf <span class="sc">%&gt;%</span> <span class="fu">select</span>(id,mtry,actual,predicted) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="at">cols=</span><span class="fu">c</span>(actual,predicted))</span>
-<span id="cb674-2"><a href="maskinslæring-i-tidyverse.html#cb674-2" aria-hidden="true" tabindex="-1"></a>predictions_df</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="maskinslæring-i-tidyverse.html#cb39-1" aria-hidden="true" tabindex="-1"></a>predictions_df <span class="ot">&lt;-</span> cv_prep_rf <span class="sc">%&gt;%</span> <span class="fu">select</span>(id,mtry,actual,predicted) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="at">cols=</span><span class="fu">c</span>(actual,predicted))</span>
+<span id="cb39-2"><a href="maskinslæring-i-tidyverse.html#cb39-2" aria-hidden="true" tabindex="-1"></a>predictions_df</span></code></pre></div>
 <pre><code>## # A tibble: 2,675 × 4
 ##    id     mtry actual predicted
 ##    &lt;chr&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt;    
@@ -903,30 +908,30 @@ Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og 
 ## 10 Fold1     2 yes    yes      
 ## # ℹ 2,665 more rows</code></pre>
 <p>Jeg anvender <code>group_by</code> efter både <code>mtry</code> og <code>id</code> for at beregne accuracy:</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="maskinslæring-i-tidyverse.html#cb676-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="ot">&lt;-</span> predictions_df <span class="sc">%&gt;%</span> </span>
-<span id="cb676-2"><a href="maskinslæring-i-tidyverse.html#cb676-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mtry,id) <span class="sc">%&gt;%</span> </span>
-<span id="cb676-3"><a href="maskinslæring-i-tidyverse.html#cb676-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;accuracy&quot;</span> <span class="ot">=</span> <span class="fu">sum</span>(actual<span class="sc">==</span>predicted)<span class="sc">/</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb676-4"><a href="maskinslæring-i-tidyverse.html#cb676-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>(mtry)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="maskinslæring-i-tidyverse.html#cb41-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="ot">&lt;-</span> predictions_df <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="maskinslæring-i-tidyverse.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mtry,id) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="maskinslæring-i-tidyverse.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&quot;accuracy&quot;</span> <span class="ot">=</span> <span class="fu">sum</span>(actual<span class="sc">==</span>predicted)<span class="sc">/</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-4"><a href="maskinslæring-i-tidyverse.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>(mtry)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;mtry&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <p>I det følgende plot visualiseres den samlede nøjagtighed over alle folds, for hver mulige værdi af “mtry”-parameteren. Man kan se, at det ikke gør stor forskel, hvilken værdi af “mtry” jeg vælger i min endelige model, men den højeste samlede søjle hører til “mtry=3” - så jeg vælger 3 som min “mtry” parameter i min “endelige” model.</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="maskinslæring-i-tidyverse.html#cb678-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>id,<span class="at">x=</span>mtry,<span class="at">y=</span>accuracy)) <span class="sc">+</span> </span>
-<span id="cb678-2"><a href="maskinslæring-i-tidyverse.html#cb678-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb678-3"><a href="maskinslæring-i-tidyverse.html#cb678-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;total nøjagtighed over alle folds&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Samlet nøjagtighed stablet op over de 5 folds&quot;</span>) <span class="sc">+</span></span>
-<span id="cb678-4"><a href="maskinslæring-i-tidyverse.html#cb678-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="visualisering_22_files/figure-html/unnamed-chunk-701-1.png" width="384" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="maskinslæring-i-tidyverse.html#cb43-1" aria-hidden="true" tabindex="-1"></a>my_accuracies <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>id,<span class="at">x=</span>mtry,<span class="at">y=</span>accuracy)) <span class="sc">+</span> </span>
+<span id="cb43-2"><a href="maskinslæring-i-tidyverse.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="maskinslæring-i-tidyverse.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;total nøjagtighed over alle folds&quot;</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;Samlet nøjagtighed stablet op over de 5 folds&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="maskinslæring-i-tidyverse.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="visualisering_22_files/figure-html/unnamed-chunk-36-1.png" width="384" /></p>
 </div>
 <div id="oprette-endelig-model-med-titanic-datasæt" class="section level3 hasAnchor" number="12.4.6">
 <h3><span class="header-section-number">12.4.6</span> Oprette endelig model med titanic datasæt<a href="maskinslæring-i-tidyverse.html#oprette-endelig-model-med-titanic-datasæt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I min endelige model anvender jeg de parametre, jeg valgte i min cross-validation proces, og træner jeg min model over hele <code>titanic_training</code> datasættet på én gang.</p>
-<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="maskinslæring-i-tidyverse.html#cb679-1" aria-hidden="true" tabindex="-1"></a>final_RF <span class="ot">&lt;-</span> <span class="fu">ranger</span>(<span class="at">formula =</span> Survived <span class="sc">~</span> . ,  <span class="at">data =</span> titanic_training,</span>
-<span id="cb679-2"><a href="maskinslæring-i-tidyverse.html#cb679-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">mtry =</span> <span class="dv">3</span>, </span>
-<span id="cb679-3"><a href="maskinslæring-i-tidyverse.html#cb679-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="maskinslæring-i-tidyverse.html#cb44-1" aria-hidden="true" tabindex="-1"></a>final_RF <span class="ot">&lt;-</span> <span class="fu">ranger</span>(<span class="at">formula =</span> Survived <span class="sc">~</span> . ,  <span class="at">data =</span> titanic_training,</span>
+<span id="cb44-2"><a href="maskinslæring-i-tidyverse.html#cb44-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">mtry =</span> <span class="dv">3</span>, </span>
+<span id="cb44-3"><a href="maskinslæring-i-tidyverse.html#cb44-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span></code></pre></div>
 <p>Nu kan jeg endelig anvende modellen til at lave forudsigelser over mit <code>titanic_test</code> datasæt. Så kan jeg få en “endelig” nøjagtighed, som fortæller hvor god min model er til at finde ud af, hvem der overlevede tragedien, baseret på de andre variable.</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="maskinslæring-i-tidyverse.html#cb680-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">&quot;actual&quot;</span><span class="ot">=</span>titanic_test<span class="sc">$</span>Survived,</span>
-<span id="cb680-2"><a href="maskinslæring-i-tidyverse.html#cb680-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;predicted&quot;</span><span class="ot">=</span><span class="fu">predict</span>(final_RF,titanic_test)<span class="sc">$</span>predictions)</span>
-<span id="cb680-3"><a href="maskinslæring-i-tidyverse.html#cb680-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb680-4"><a href="maskinslæring-i-tidyverse.html#cb680-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&quot;accuracy&quot;</span><span class="ot">=</span><span class="fu">sum</span>(actual<span class="sc">==</span>predicted)<span class="sc">/</span><span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="maskinslæring-i-tidyverse.html#cb45-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="st">&quot;actual&quot;</span><span class="ot">=</span>titanic_test<span class="sc">$</span>Survived,</span>
+<span id="cb45-2"><a href="maskinslæring-i-tidyverse.html#cb45-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;predicted&quot;</span><span class="ot">=</span><span class="fu">predict</span>(final_RF,titanic_test)<span class="sc">$</span>predictions)</span>
+<span id="cb45-3"><a href="maskinslæring-i-tidyverse.html#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="maskinslæring-i-tidyverse.html#cb45-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">&quot;accuracy&quot;</span><span class="ot">=</span><span class="fu">sum</span>(actual<span class="sc">==</span>predicted)<span class="sc">/</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   accuracy
 ##      &lt;dbl&gt;
@@ -936,15 +941,15 @@ Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og 
 <div id="variable-importance" class="section level3 hasAnchor" number="12.4.7">
 <h3><span class="header-section-number">12.4.7</span> Variable importance<a href="maskinslæring-i-tidyverse.html#variable-importance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Det allersidste, som kan være nyttigt at vide, er hvilke variabler der var mest betydningsfulde for at kunne lave en nøjagtig forudsigelse af, hvem der overlevede. Man kan tilføje en indstilling kaldet <code>importance = "impurity"</code> til kommandoen i funktionen <code>ranger</code>, som i det følgende:</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="maskinslæring-i-tidyverse.html#cb682-1" aria-hidden="true" tabindex="-1"></a>final_RF <span class="ot">&lt;-</span> <span class="fu">ranger</span>(<span class="at">formula =</span> Survived <span class="sc">~</span> . ,  <span class="at">data =</span> titanic_training,</span>
-<span id="cb682-2"><a href="maskinslæring-i-tidyverse.html#cb682-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">importance =</span> <span class="st">&quot;impurity&quot;</span>,</span>
-<span id="cb682-3"><a href="maskinslæring-i-tidyverse.html#cb682-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">mtry =</span> <span class="dv">3</span>, </span>
-<span id="cb682-4"><a href="maskinslæring-i-tidyverse.html#cb682-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="maskinslæring-i-tidyverse.html#cb47-1" aria-hidden="true" tabindex="-1"></a>final_RF <span class="ot">&lt;-</span> <span class="fu">ranger</span>(<span class="at">formula =</span> Survived <span class="sc">~</span> . ,  <span class="at">data =</span> titanic_training,</span>
+<span id="cb47-2"><a href="maskinslæring-i-tidyverse.html#cb47-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">importance =</span> <span class="st">&quot;impurity&quot;</span>,</span>
+<span id="cb47-3"><a href="maskinslæring-i-tidyverse.html#cb47-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">mtry =</span> <span class="dv">3</span>, </span>
+<span id="cb47-4"><a href="maskinslæring-i-tidyverse.html#cb47-4" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">num.trees =</span> <span class="dv">100</span>)</span></code></pre></div>
 <p>Til sidst vil vi gerne vide, bidraget fra de forskellige variabler i modellen:</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="maskinslæring-i-tidyverse.html#cb683-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">t</span>(final_RF<span class="sc">$</span>variable.importance) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
-<span id="cb683-2"><a href="maskinslæring-i-tidyverse.html#cb683-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> mod <span class="sc">%&gt;%</span></span>
-<span id="cb683-3"><a href="maskinslæring-i-tidyverse.html#cb683-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>())</span>
-<span id="cb683-4"><a href="maskinslæring-i-tidyverse.html#cb683-4" aria-hidden="true" tabindex="-1"></a>mod</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="maskinslæring-i-tidyverse.html#cb48-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">t</span>(final_RF<span class="sc">$</span>variable.importance) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb48-2"><a href="maskinslæring-i-tidyverse.html#cb48-2" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> mod <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="maskinslæring-i-tidyverse.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>())</span>
+<span id="cb48-4"><a href="maskinslæring-i-tidyverse.html#cb48-4" aria-hidden="true" tabindex="-1"></a>mod</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   name   value
 ##   &lt;chr&gt;  &lt;dbl&gt;
@@ -955,12 +960,12 @@ Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og 
 ## 5 Port    5.78
 ## 6 Fare   68.1</code></pre>
 <p>Jo højere værdien er, jo vigtigere er variablen:</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="maskinslæring-i-tidyverse.html#cb685-1" aria-hidden="true" tabindex="-1"></a>mod <span class="sc">%&gt;%</span></span>
-<span id="cb685-2"><a href="maskinslæring-i-tidyverse.html#cb685-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>name,<span class="at">y=</span>value,<span class="at">fill=</span>name)) <span class="sc">+</span> </span>
-<span id="cb685-3"><a href="maskinslæring-i-tidyverse.html#cb685-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb685-4"><a href="maskinslæring-i-tidyverse.html#cb685-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span>mod <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(value)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(name)) <span class="sc">+</span> </span>
-<span id="cb685-5"><a href="maskinslæring-i-tidyverse.html#cb685-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="visualisering_22_files/figure-html/unnamed-chunk-706-1.png" width="480" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="maskinslæring-i-tidyverse.html#cb50-1" aria-hidden="true" tabindex="-1"></a>mod <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="maskinslæring-i-tidyverse.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>name,<span class="at">y=</span>value,<span class="at">fill=</span>name)) <span class="sc">+</span> </span>
+<span id="cb50-3"><a href="maskinslæring-i-tidyverse.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>,<span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb50-4"><a href="maskinslæring-i-tidyverse.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span>mod <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(value)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(name)) <span class="sc">+</span> </span>
+<span id="cb50-5"><a href="maskinslæring-i-tidyverse.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="visualisering_22_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Så kan man se, at variablen Fare er meget vigtig for at bestemme, hvem der overlevede, hvilket er i overensstemmelse med vores undersøgelser af Titanic fra tidligere emner!</p>
 </div>
 </div>
@@ -969,55 +974,55 @@ Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og 
 <p><strong>Problem 1)</strong>: Quiz - maskinslæring</p>
 <hr />
 <p><strong>Classification med penguins</strong></p>
-<p><em>I datasættet “penguins” vil vi gerne anvende en classification model for at forudsige “male” og “female” pengvinger (variablen <code>sex</code>) ud fra de andre variabler i datasættet. Første åbne datasættet:</em></p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="maskinslæring-i-tidyverse.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb686-2"><a href="maskinslæring-i-tidyverse.html#cb686-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div>
-<p>OBS: <strong>Vi tilpasser koden tæt fra ovenstående eksempel med datasættet <code>titanic</code> - i følgende spørgsmål følg med koden fra Section 12.4</strong></p>
+<p>I datasættet “penguins” vil vi gerne anvende en klassifikationsmodel for at forudsige “male” og “female” pingviner (variablen <code>sex</code>) baseret på de andre variabler i datasættet. Først åbner vi datasættet:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="maskinslæring-i-tidyverse.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb51-2"><a href="maskinslæring-i-tidyverse.html#cb51-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div>
+<p>OBS: <strong>Vi tilpasser koden tæt til ovenstående eksempel med datasættet <code>titanic</code> - i de følgende spørgsmål, følg koden fra Sektion 12.4</strong></p>
 <hr />
-<p><em>Lad os begynde med at opdele datasættet i to og brug testing data til at lave en “nested” dataframe som vi kan bruge til at lave 5-fold-cross-validation.</em></p>
-<p><strong>Problem 2)</strong> <em>Set up cross-validation framework</em></p>
-<p><strong>a)</strong> Opdel datasættet “penguins” i to, således at 80 procent af observationerne hører til det træning datasæt (og 20 procent hører til det testing datasæt). Kald dit resultat <code>penguins_split</code>. Hvor mange observationer er blevet allokeret til træning og testing datasæt?</p>
-<p><strong>b)</strong> Udtræk de to datasæt fra <code>penguins_split</code> og kalder dem for <code>penguins_training</code> og <code>penguins_test</code>.</p>
-<p><em>Vi lægger datasættet <code>penguins_test</code> til siden (vi får bruge for det senere), og arbejder kun med datasættet <code>penguins_training</code> for at udvikle vores model.</em></p>
-<p><strong>c</strong>) Anvend <code>penguins_training</code> til at lave en 5-fold-cross-validation dataframe, der hedder <code>cv_split</code>.</p>
-<p><strong>d</strong>) Udtræk de fem testing og training datasæt fra kolonnen <code>splits</code> og lagr dem i egne kolonner (kald deres kolonner for henholdvis <code>validate</code> og <code>train</code>). Kald din nye “nested” dataframe for <code>cv_data</code>.</p>
+<p>Lad os begynde med at opdele datasættet i to, og bruge testdata til at lave en “nested” dataframe, som vi kan bruge til at lave 5-fold-cross-validation.</p>
+<p><strong>Problem 2)</strong> <em>Oprettelse af cross-validation rammer</em></p>
+<p><strong>a)</strong> Opdel datasættet “penguins” i to, således at 80 procent af observationerne er i træningsdatasættet (og 20 procent er i testdatasættet). Kald dit resultat <code>penguins_split</code>. Hvor mange observationer er blevet tildelt trænings- og testdatasættene?</p>
+<p><strong>b)</strong> Uddrag de to datasæt fra <code>penguins_split</code> og kald dem <code>penguins_training</code> og <code>penguins_test</code>.</p>
+<p>Vi sætter datasættet <code>penguins_test</code> til side (vi får brug for det senere) og arbejder kun med datasættet <code>penguins_training</code> for at udvikle vores model.</p>
+<p><strong>c</strong>) Anvend <code>penguins_training</code> til at lave en 5-fold-cross-validation dataframe kaldet <code>cv_split</code>.</p>
+<p><strong>d)</strong> Uddrag de fem test- og træningsdatasæt fra kolonnen <code>splits</code> og gem dem i egne kolonner (kald deres kolonner henholdsvis <code>validate</code> og <code>train</code>). Kald din nye “nested” dataframe for <code>cv_data</code>.</p>
 <hr />
-<p><em>Nu vil vi gerne lave samme model 5 gange - en gang til hvert datasæt i kolonnen <code>train</code> i vores nye <code>cv_data</code> dataframe. Den model skal være en ‘classification’ model, når vi gerne vil forudsige “male” eller “female” pingviner (vores afhængig variabel er <code>sex</code> som er kategorisk med to mulige værdier).</em></p>
-<p><strong>Problem 3)</strong> <em>Set-up modellen</em></p>
-<p><strong>a</strong>) Lad os starte med det første datasæt og generaliser bagefter til en custom funktion i <strong>b</strong>). Anvend <code>pluck</code> for at få frem til det første datasæt i kolonnen <code>train</code>, og dernæst anvende funktionen <code>ranger</code> for at lave en classifikation model med variablen <code>sex</code> som afhængig variable, og med alle de andre variabler som uafhængige variabler (betegnet med <code>~ .</code> i modellen). Angiv <code>num.trees=100</code> (vi ignorerer andre mulige parametre indtil videre).</p>
-<p><strong>b</strong>) Når vi har fået modellen med <code>ranger</code> til at virke på det første datasæt laver vi en custom funktion der kan anvendes over samtlige datasæt i kolonnen <code>train</code> - tilpas din <code>ranger</code> model fra <strong>a)</strong> til en custom funktion og kalder den for <code>ranger_function</code>.</p>
-<p><strong>c</strong>) Anvend <code>ranger_function</code> på samtlige datasæt i kolonne “train” (opret en ny kolonne i<code>cv_data</code>, der hedder <code>model</code> hvor dine fem modeller bliver lagret).</p>
+<p>Nu vil vi gerne lave den samme model 5 gange - en gang for hvert datasæt i kolonnen <code>train</code> i vores nye <code>cv_data</code> dataframe. Denne model skal være en ‘klassifikations’ model, da vi gerne vil forudsige “male” eller “female” pingviner (vores afhængige variabel er <code>sex</code>, som er kategorisk med to mulige værdier).</p>
+<p><strong>Problem 3)</strong> <em>Oprettelse af modellen</em></p>
+<p><strong>a</strong>) Lad os starte med det første datasæt og generalisere bagefter til en brugerdefineret funktion i <strong>b</strong>). Anvend <code>pluck</code> for at få adgang til det første datasæt i kolonnen <code>train</code>, og anvend derefter funktionen <code>ranger</code> for at lave en klassifikationsmodel med variablen <code>sex</code> som afhængig variabel, og alle de andre variabler som uafhængige variabler (betegnet med <code>~ .</code> i modellen). Angiv <code>num.trees=100</code> (vi ignorerer andre mulige parametre indtil videre).</p>
+<p><strong>b</strong>) Når vi har fået modellen med <code>ranger</code> til at virke på det første datasæt, laver vi en brugerdefineret funktion, der kan anvendes på alle datasæt i kolonnen <code>train</code> - tilpas din <code>ranger</code>-model fra <strong>a)</strong> til en brugerdefineret funktion og kald den <code>ranger_function</code>.</p>
+<p><strong>c</strong>) Anvend <code>ranger_function</code> på samtlige datasæt i kolonnen “train” (opret en ny kolonne i <code>cv_data</code>, der hedder <code>model</code>, hvor dine fem modeller bliver gemt).</p>
 <hr />
-<p><em>Nu har vi lavet en classification model til hvert træning sæt! Vi vil gerne vide, hvor gode modellerne er til at forudsige <code>sex</code> i de fem datasæts i kolonnen <code>validate</code> (husk at <code>validate</code> indeholder det styk, der ikke var brugt i training til den relevant <code>id</code>(fold)). Vi skal sammenligne to ting fra vores validate sæt - hvad er vores forudsigelser ud fra modellerne (“male” eller “female” til hver pingvin), og hvad er de virkelige værdier for variablen <code>sex</code> (igen “male” eller “female”).</em></p>
-<p><strong>Problem 4)</strong> <em>Make predictions from model</em></p>
+<p>Nu har vi lavet en klassifikationsmodel til hvert træningssæt! Vi vil gerne vide, hvor gode modellerne er til at forudsige <code>sex</code> i de fem datasæt i kolonnen <code>validate</code> (husk at <code>validate</code> indeholder den del, der ikke blev brugt i træningen for den relevante <code>id</code>(fold)). Vi skal sammenligne to ting fra vores valideringssæt - hvad er vores forudsigelser ud fra modellerne (“male” eller “female” til hver pingvin), og hvad er de virkelige værdier for variablen <code>sex</code> (igen “male” eller “female”).</p>
+<p><strong>Problem 4)</strong> <em>Lav forudsigelser ud fra modellen</em></p>
 <p><strong>a</strong>) Brug <code>map</code>/<code>map2</code> til at lave to nye kolonner i <code>cv_data</code>:</p>
 <ul>
-<li><code>actual</code> hvor du udtrækker de virkelige værdier for variablen <code>sex</code></li>
-<li><code>prediction</code> hvor du anvender <code>predict</code> med din models (betegnet som .x) og dine validate sæt (betegnet som .y)</li>
+<li><code>actual</code>, hvor du uddrager de virkelige værdier for variablen <code>sex</code></li>
+<li><code>prediction</code>, hvor du anvender <code>predict</code> med dine modeller (betegnet som .x) og dine valideringssæt (betegnet som .y)</li>
 </ul>
-<p><strong>b</strong>) Udvælg <code>id</code>, <code>actual</code> og <code>prediction</code>, unnest og beregn “accuracy” (proportionen svar, der er rigtige) til hvert af de 5 folds.</p>
-<p><strong>c</strong>) Lav et barplot for at se din accuracies over de 5-folds.</p>
+<p><strong>b</strong>) Vælg <code>id</code>, <code>actual</code> og <code>prediction</code>, unnest og beregn “nøjagtighed” (proportion af svar, der er korrekte) for hver af de 5 folds.</p>
+<p><strong>c</strong>) Lav et søjlediagram for at se din nøjagtighed over de 5 folds.</p>
 <hr />
-<p><em>Nu har vi lavet 5-fold-cross validation til at træne en classification model. Vi kunne godt tænke os at udvide processen lidt, fordi der er nogle parametre der kan ændres på i funktionen <code>ranger</code>. Det er gennem den her ‘udviklingsproces’ hvor vi begynder at forstå fordelen af at bruge cross-fold-validation. Lad os prøve at ændre på parameten <code>mtry</code> for at se, om vi kan gøre modellen bedre. Igen følger vi meget tæt på ovenstående kurusnotaterne.</em></p>
-<p><strong>Problm 5)</strong> Tune parameteren <code>mtry</code>.</p>
-<p><strong>a</strong>) Anvend funktionen <code>crossing</code> til at inddrage <code>mtry</code> (fra 2 til 6 som er antal uafhængig variabler) som kolonne i <code>cv_data</code>. Kald din nye dataframe for <code>cv_tune</code>. Hvor mange datasæt er der nu i kolonnen <code>train</code>?</p>
-<p><strong>b</strong>) Tilpas din custom ranger funktion fra <strong>Spørgsmål 3</strong> hvor du nu inddrager parameteren <code>mtry</code> (med værdi betegnet som <code>.y</code>) og anvende din model på de forskellige training sæt i kolonnen <code>train</code> for hver mulig værdi af <code>mtry</code> (husk at bruge <code>map2</code> her).</p>
-<p><strong>c</strong>) Lav forudsigelser ud fra samtlige modeller og dine validation sæt (kolonnen <code>validate</code>) og udtræk både dine “actual” og “predicted” værdier præcis ligesom før.</p>
-<p><strong>d</strong>) Beregn accuracy for samtlige sæt (alle kombinationer af <code>id</code> og <code>mtry</code>), lav et stacked barplot og vælg den bedste mulige værdi for <code>mtry</code>.</p>
+<p><em>Nu har vi lavet 5-fold-cross validation til at træne en klassifikationsmodel. Vi vil gerne udvide processen lidt, fordi der er nogle parametre, der kan ændres i funktionen <code>ranger</code>. Det er gennem denne udviklingsproces, at vi begynder at forstå fordelen ved at bruge cross-fold-validation. Lad os prøve at ændre parameteren <code>mtry</code> for at se, om vi kan forbedre modellen. Igen følger vi meget tæt på de ovenstående kursusnotater.</em></p>
+<p><strong>Problem 5)</strong> Finjuster parameteren <code>mtry</code>.</p>
+<p><strong>a</strong>) Anvend funktionen <code>crossing</code> for at inddrage <code>mtry</code> (fra 2 til 6, som er antallet af uafhængige variabler) som en kolonne i <code>cv_data</code>. Kald din nye dataframe for <code>cv_tune</code>. Hvor mange datasæt er der nu i kolonnen <code>train</code>?</p>
+<p><strong>b</strong>) Tilpas din brugerdefinerede ranger funktion fra <strong>Spørgsmål 3</strong>, hvor du nu inddrager parameteren <code>mtry</code> (med værdi betegnet som <code>.y</code>) og anvender din model på de forskellige træningssæt i kolonnen <code>train</code> for hver mulig værdi af <code>mtry</code> (husk at bruge <code>map2</code> her).</p>
+<p><strong>c</strong>) Lav forudsigelser ud fra samtlige modeller og dine valideringssæt (kolonnen <code>validate</code>) og udtræk både dine “faktiske” og “forudsagte” værdier præcis som før.</p>
+<p><strong>d</strong>) Beregn nøjagtighed for samtlige sæt (alle kombinationer af <code>id</code> og <code>mtry</code>), lav et stablet søjlediagram og vælg den bedste mulige værdi for <code>mtry</code>.</p>
 <hr />
-<p><em>Nu at vi har valgt en værdi for parameteren <code>mtry</code>, lad os går henne og lav en “final” model! Når vi har lavet den final model kan vi endelig kigge på vores <code>penguins_test</code> datasæt, som vi lagt tidligere til siden. Husk at validate sæts var brugt til at teste modellen undervejs i udviklingsprocessen, men de var stadig en del af <code>penguins_training</code>. Man kigger på den testing datasæt kun én gang til sidste for at spørge - hvor god er vores endelige model?</em></p>
-<p><strong>Problem 6)</strong> <em>Lave en <code>final</code> model</em></p>
-<p><strong>a</strong>) Anvende funktionen <code>ranger</code> til at lave en classifcation model på datasættet <code>penguins_training</code>. Angiv <code>num.trees=100</code> og din valgt værdi for parameteren <code>mtry</code>.</p>
-<p><strong>b</strong>) Lav predictions med funktionen <code>predict</code> hvor du angiv din “final” model samt dit “penguins_test” datasæt. Beregen accuracy fra din model ved at sammenligne de virkelige værdier for variablen <code>sex</code> i dit testing sæt med din beregnede værdier fra <code>predict()</code>.</p>
+<p><em>Nu, da vi har valgt en værdi for parameteren <code>mtry</code>, lad os gå videre og lave en “endelig” model! Når vi har lavet den endelige model, kan vi endelig kigge på vores <code>penguins_test</code> datasæt, som vi tidligere lagde til side. Husk, at valideringssættene blev brugt til at teste modellen undervejs i udviklingsprocessen, men de var stadig en del af <code>penguins_training</code>. Man kigger på testsættet kun én gang til sidst for at stille spørgsmålet - hvor god er vores endelige model?</em></p>
+<p><strong>Problem 6)</strong> <em>Lav en <code>endelig</code> model</em></p>
+<p><strong>a</strong>) Anvend funktionen <code>ranger</code> for at lave en klassifikationsmodel på datasættet <code>penguins_training</code>. Angiv <code>num.trees=100</code> og din valgte værdi for parameteren <code>mtry</code>.</p>
+<p><strong>b</strong>) Lav forudsigelser med funktionen <code>predict</code>, hvor du angiver din “endelige” model samt dit “penguins_test” datasæt. Beregn nøjagtigheden fra din model ved at sammenligne de faktiske værdier for variablen <code>sex</code> i dit testsæt med dine beregnede værdier fra <code>predict()</code>.</p>
 <hr />
-<p><em>Nu at vi er færdig med at lave og bedømme vores “final” model er vi interesseret i - hvilke variabler havde den største indflydelse på vores forudsigelser af “male” og “female” pingviner?</em></p>
+<p><em>Nu, da vi er færdige med at lave og bedømme vores “endelige” model, er vi interesserede i - hvilke variabler havde den største indflydelse på vores forudsigelser af “male” og “female” pingviner?</em></p>
 <p><strong>Problem 7)</strong> <em>Variable importance</em></p>
-<p><strong>a</strong>) Tag din funktion til din “final” model og angiv indstillingen <code>importance = "impurity"</code> i funktionen. Kør modellen og udtræk din variable importance vector med <code>final_RF$variable.importance</code>.</p>
-<p><strong>b</strong>) Omsæt din importance scores til et barplot hvor du angiv rækkefølgen af søjlerne efter vigtigheden af de forskellige variabler (den meste vigtig til venstre).</p>
+<p><strong>a</strong>) Anvend din funktion på din “endelige” model og angiv indstillingen <code>importance = "impurity"</code> i funktionen. Kør modellen og udtræk din variable importance vektor med <code>final_RF$variable.importance</code>.</p>
+<p><strong>b</strong>) Omsæt dine importance scores til et søjlediagram, hvor du angiver rækkefølgen af søjlerne efter vigtigheden af de forskellige variabler (den mest vigtige til venstre).</p>
 <hr />
-<p><strong>Problem 8)</strong> Gentag samme process i et andet datasæt men i en regression contekst:</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="maskinslæring-i-tidyverse.html#cb687-1" aria-hidden="true" tabindex="-1"></a>LungCapData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/ke27fs5d37ks1hm/LungCapData.csv?dl=1&quot;</span>)</span>
-<span id="cb687-2"><a href="maskinslæring-i-tidyverse.html#cb687-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(LungCapData)</span></code></pre></div>
+<p><strong>Problem 8)</strong> Gentag samme proces med et andet datasæt, men i en regressionskontekst:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="maskinslæring-i-tidyverse.html#cb52-1" aria-hidden="true" tabindex="-1"></a>LungCapData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/ke27fs5d37ks1hm/LungCapData.csv?dl=1&quot;</span>)</span>
+<span id="cb52-2"><a href="maskinslæring-i-tidyverse.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(LungCapData)</span></code></pre></div>
 <pre><code>## Rows: 725
 ## Columns: 6
 ## $ LungCap   &lt;dbl&gt; 6.475, 10.125, 9.550, 11.125, 4.800, 6.225, 4.950, 7.325, 8.…
@@ -1028,10 +1033,10 @@ Vi vil gerne prøve de forskellige værdier for <code>mtry</code> i modellen og 
 ## $ Caesarean &lt;chr&gt; &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;…</code></pre>
 <p>Følg processen fra Sektion 12.3 igennem med datasættet <code>LungCapData</code>:</p>
 <ul>
-<li>forudsige <code>LungCap</code> som afhængig variabel og alle andre variabler som uafhængig variabler</li>
-<li>Splitte datasættet (75% training, 25% testing) og anvend 10-fold cross-validation på dit training datasæt</li>
+<li>forudsig <code>LungCap</code> som afhængig variabel og alle andre variabler som uafhængige variabler</li>
+<li>Del datasættet (75% træning, 25% test) og anvend 10-fold cross-validation på dit træningsdatasæt</li>
 <li>Beregn “mean absolute error” for dine forskellige folds</li>
-<li>Lav en færdig model og beregn “mean absolute error”</li>
+<li>Lav en endelig model og beregn “mean absolute error”</li>
 </ul>
 </div>
 <div id="yderligere-kommentarer-og-pakker" class="section level2 hasAnchor" number="12.6">
@@ -1178,20 +1183,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
